@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronLeftIcon, ChevronRightIcon, XIcon } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { MouseEvent } from "react";
@@ -12,10 +13,10 @@ import {
   DialogContent,
   DialogTitle,
 } from "@/components/ui/dialog";
-import type { GalleryImage } from "@/lib/content";
+import type { Photo } from "@/lib/content";
 
 interface GalleryProps {
-  images: GalleryImage[];
+  images: Photo[];
 }
 
 export const Gallery = ({ images }: GalleryProps) => {
@@ -67,24 +68,25 @@ export const Gallery = ({ images }: GalleryProps) => {
   return (
     <>
       <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
-        {images.map((galleryImage, index) => (
-          <li key={galleryImage.src}>
+        {images.map((photo, index) => (
+          <li key={photo.src}>
             <button
               type="button"
               data-index={index}
               onClick={openByIndex}
-              aria-label={`Open photo ${index + 1}: ${galleryImage.alt}`}
-              className="group border-hairline hover:border-gold-500/40 block w-full border transition-colors duration-200"
+              aria-label={`Open photo ${index + 1}: ${photo.alt}`}
+              className="group border-hairline hover:border-gold-500/40 block w-full overflow-hidden border transition-colors duration-200"
             >
-              <Image
-                src={galleryImage.src}
-                alt={galleryImage.alt}
-                width={1200}
-                height={800}
-                unoptimized
-                loading="lazy"
-                className="aspect-[3/2] w-full object-cover transition-transform duration-200 group-hover:scale-[1.02]"
-              />
+              <span className="relative block aspect-[3/2] w-full">
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
+                  loading="lazy"
+                  className="object-cover transition-transform duration-200 group-hover:scale-[1.02]"
+                />
+              </span>
             </button>
           </li>
         ))}
@@ -106,15 +108,26 @@ export const Gallery = ({ images }: GalleryProps) => {
             <>
               <DialogTitle className="sr-only">{image.alt}</DialogTitle>
               <figure className="mx-auto flex w-full max-w-5xl flex-col items-center px-14 sm:px-20">
-                <Image
-                  key={image.src}
-                  src={image.src}
-                  alt={image.alt}
-                  width={1200}
-                  height={800}
-                  unoptimized
-                  className="border-hairline max-h-[76dvh] w-auto max-w-full border"
-                />
+                <div className="relative flex max-h-[76dvh] items-center justify-center">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={image.src}
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.98 }}
+                      transition={{ duration: 0.25, ease: "easeOut" }}
+                    >
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        width={image.width}
+                        height={image.height}
+                        sizes="(min-width: 640px) 80vw, 90vw"
+                        className="border-hairline h-auto max-h-[76dvh] w-auto max-w-full border object-contain"
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
                 <figcaption className="mt-5 flex w-full flex-col items-center gap-1 text-center">
                   <p className="text-ash text-sm">{image.alt}</p>
                   <p className="text-gold-400 font-mono text-[13px] tracking-[0.05em]">

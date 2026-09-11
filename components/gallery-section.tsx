@@ -1,7 +1,7 @@
 import { Gallery } from "@/components/gallery";
 import { SectionHeading } from "@/components/primitives";
 import { Reveal } from "@/components/reveal";
-import { galleryImages } from "@/lib/content";
+import { photos } from "@/lib/content";
 
 export const GallerySection = () => (
   <section
@@ -19,7 +19,7 @@ export const GallerySection = () => (
         />
       </Reveal>
       <Reveal delay={120}>
-        <Gallery images={galleryImages} />
+        <Gallery images={photos} />
       </Reveal>
     </div>
   </section>
