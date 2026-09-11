@@ -1,0 +1,10 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": ["DESIGN.md"],
+  "formatter": {
+    "oxfmt": {
+      "command": ["bunx", "oxfmt", "--write", "$FILE"],
+      "extensions": [".js", ".jsx", ".ts", ".tsx"]
+    }
+  }
+}
