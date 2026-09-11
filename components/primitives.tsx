@@ -49,7 +49,7 @@ export const SectionHeading = ({
     <Kicker>{kicker}</Kicker>
     <h2
       id={id}
-      className="font-display text-bone mt-4 text-[clamp(2rem,4vw,3rem)] leading-[1.12] tracking-[-0.015em]"
+      className="font-display text-bone mt-4 text-[clamp(2rem,4vw,3rem)] leading-[1.12] tracking-[-0.015em] uppercase"
     >
       {title}
     </h2>
