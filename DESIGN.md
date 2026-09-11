@@ -5,11 +5,11 @@
 - Embedded refs: shortlisted `minimalist-skill.md` + `soft-skill.md` (Layer A), user-supplied Framer templates (Layer B) → picked **minimalist-skill (Layer A)** + **Vervee (Layer B, primary aesthetic) + Vibe (Layer B, structural)** because the user said "minimalistic yet artistic" and supplied both template URLs as the visual contract.
 - Live token extraction (Playwright, computed styles): **Vervee** — pure black `rgb(0,0,0)` canvas, Gambetta serif 72px w400 lh1.1 ls-0.02em, bone text `rgb(245,240,232)`, secondary `white/65`, hairlines `white/10`–`white/25`, gold `rgb(196,154,37)` (#C49A25, 119 uses), 0px border-radius everywhere, section rhythm 64–100px, nav 88px transparent. **Vibe** — near-black `rgb(8,8,7)`, Clash Display 58px w600, warm sand accent `rgb(251,210,149)`, secondary `white/75`, 160px big-block rhythm. Full-page screenshots: `.playwright-mcp/vervee-full.png`, `.playwright-mcp/vibe-full.png`.
 - Brand asset: `public/manato-logo.jpg` 1600×977, **black background, all-gold design** (crown + rising sun, gold serif wordmark, handshake, tagline "Grand Stages | Golden Memories"). Blends seamlessly on black canvas; no frame treatment needed.
-- Skipped lanes: lazyweb (reason: user supplied two concrete references), imagen drafts (reason: code-first build with an extracted token contract; hero atmosphere is CSS gold-glow material from the logo's sunburst, not a bitmap focal object).
+- Skipped lanes: lazyweb (reason: user supplied two concrete references), imagen drafts (reason: code-first build with an extracted token contract; hero atmosphere is now the brand photo backdrop (user-supplied photos), not CSS glow material).
 
 ## 1. Atmosphere & Identity
 
-A concert-house programme booklet printed on black velvet. Quiet, editorial, warm — grey whisper, then gold light. The signature is **gold as stage light**: antique-gold serif headlines at light weight over a pure-black stage, gold numbered numerals and hairlines reading like programme metadata, sharp 0-radius edges (never rounded cards), and one hero moment — an oversized serif line lit by a low gold sunburst glow that echoes the Manato logo. Motion is invisible-but-present: content fades up 12px as it enters, like house lights coming up before a set.
+A concert-house programme booklet printed on black velvet. Quiet, editorial, warm — grey whisper, then gold light. The signature is **gold as stage light**: antique-gold serif headlines at light weight over a pure-black stage, gold numbered numerals and hairlines reading like programme metadata, sharp 0-radius edges (never rounded cards), and one hero moment — an oversized serif line over a slowly cross-fading cycle of brand photographs, dimmed to stage light by a black scrim. Motion is invisible-but-present: content fades up 12px as it enters, like house lights coming up before a set.
 
 ## 2. Color
 
@@ -32,12 +32,10 @@ Dark-only site. No light mode.
 | Accent/gold-base | --color-gold-500 | #C79B32 | Primary gold (bridges logo amber ↔ Vervee #C49A25) |
 | Accent/gold-deep | --color-gold-600 | #9C7A22 | Gold on elevated surfaces (contrast), pressed states |
 | Accent/gold-wash | --color-gold-wash | rgba(199,155,50,0.14) | Chip backgrounds, focus glows, radial washes |
-| Accent/glow-core | --color-glow-core | rgba(199,155,50,0.08) | Hero ambient glow core (≤8% alpha rule, §7) |
-| Accent/glow-wide | --color-glow-wide | rgba(199,155,50,0.05) | Hero ambient glow halo |
 
 ### Rules
 
-- Gold is the identity accent: kickers, numerals, interactive states, hero glow. Bone (not gold) is the primary button color — gold never floods large surfaces.
+- Gold is the identity accent: kickers, numerals, interactive states. Bone (not gold) is the primary button color — gold never floods large surfaces.
 - Never introduce a color not in this table. No pure white (#FFFFFF) text — bone only. Status colors omitted: this static site has no error/success states (form is mailto).
 
 ## 3. Typography
@@ -47,7 +45,7 @@ Dark-only site. No light mode.
 | Level | Size | Weight | Line height | Tracking | Usage |
 | --- | --- | --- | --- | --- | --- |
 | Display | clamp(2.75rem, 6vw, 4.5rem) | Fraunces 400 | 1.08 | -0.02em | Hero headline (Vervee: 72px/400/-1.44px) |
-| H1 | clamp(2rem, 4vw, 3rem) | Fraunces 400 | 1.12 | -0.015em | Section headings |
+| H1 | clamp(2rem, 4vw, 3rem) | Fraunces 400 | 1.12 | -0.015em, uppercase | Section headings (Vervee sets display headings uppercase) |
 | H2 | 1.375rem (22px) | Fraunces 500 | 1.3 | 0 | Card/event titles |
 | H3 | 1.125rem (18px) | Fraunces 500 | 1.4 | 0 | Small headings |
 | Body-lg | 1.125rem (18px) | Geist 400 | 1.65 | 0 | Lead paragraphs |
@@ -92,14 +90,7 @@ Dark-only site. No light mode.
 
 ## 5. Components
 
-**Primitive layer: shadcn/ui on Base UI.** Interactive primitives are vendored in
-`components/ui/*` (managed by `bunx shadcn@latest add`; excluded from lint/format as
-vendored code). The shadcn variable contract is mapped onto this system's palette in
-`app/globals.css :root` — `--primary` = bone, `--ring` = gold-400, `--radius` = 0rem
-(sharp), `--border` = hairline. Our internal components (`components/primitives.tsx`,
-site-header, faq, gallery) compose these: Button (primary = bone bg → gold hover;
-ghost = gold hairline outline), Accordion (FAQ, plus-icon rotate), Dialog (lightbox
-scrim/portal/focus management), Sheet (mobile menu, side top).
+**Primitive layer: shadcn/ui on Base UI.** Interactive primitives are vendored in `components/ui/*` (managed by `bunx shadcn@latest add`; excluded from lint/format as vendored code). The shadcn variable contract is mapped onto this system's palette in `app/globals.css :root` — `--primary` = bone, `--ring` = gold-400, `--radius` = 0rem (sharp), `--border` = hairline. Our internal components (`components/primitives.tsx`, site-header, faq, gallery) compose these: Button (primary = bone bg → gold hover; ghost = gold hairline outline), Accordion (FAQ, plus-icon rotate), Dialog (lightbox scrim/portal/focus management), Sheet (mobile menu, side top).
 
 ### Button
 
@@ -178,9 +169,11 @@ scrim/portal/focus management), Sheet (mobile menu, side top).
 | Micro | 150ms | ease-out | Active press scale(0.98) |
 | Standard | 200ms | ease-in-out | Hovers, accordion fade, menu |
 | Emphasis | 250–600ms | cubic-bezier(0.16, 1, 0.3, 1) | Lightbox open (250ms), scroll reveals (600ms) |
-| Ambient | 26s loop | linear infinite | Hero glow slow drift (opacity/transform only) |
+| Ambient | 1.2s cross-fade / 6s cycle | easeInOut | Hero photo backdrop (motion AnimatePresence) |
 
 ### Rules
+
+- **Animation engine: `motion`** (npm, the framer-motion successor — battle-tested). All reveal and cross-fade animation goes through it; scroll reveals via `whileInView` (`viewport.once`), reduced motion via `useReducedMotion`.
 
 - Animate transform + opacity ONLY (height animation banned — accordion answers fade, not slide).
 - Scroll reveals: `Reveal` client component, IntersectionObserver (no scroll listeners), translateY(12px)→0 + opacity, 600ms, threshold 0.15, once. Applied to section headers and major blocks, not every list row.
@@ -194,7 +187,7 @@ scrim/portal/focus management), Sheet (mobile menu, side top).
 - Default: 1px solid var(--color-hairline) — cards, rows, form, nav bottom.
 - Subtle: var(--color-hairline-strong) — emphasized dividers (stats grid internal lines, ghost button border).
 - Depth via tonal steps only: stage #050505 → panel #0C0C0B → elevated #141412.
-- The ONE allowed glow: hero atmosphere — a fixed, pointer-events-none radial gold wash (gold-500 at ≤8% alpha, drifting 26s) + the logo's own sunburst echo. It is atmosphere from the brand's sunburst logo, not a shadow.
+- The ONE allowed glow: hero atmosphere — the brand photo backdrop itself. Photos cycle full-bleed (AnimatePresence cross-fade 1.2s every 6s, `motion`), slightly blurred (2px) and scaled 105%, under a stage scrim (`bg-stage/60` + bottom gradient into the stage) so the headline keeps ≥4.5:1 contrast. Grain overlay stays. The radial glow tokens were removed when the photo backdrop replaced the CSS glow.
 - Lightbox scrim (black/92 + backdrop-blur) is an overlay, not a shadow.
 
 ## 8. Accessibility Constraints & Accepted Debt
@@ -211,7 +204,7 @@ scrim/portal/focus management), Sheet (mobile menu, side top).
 | Item | Location | Why accepted | Owner / Exit |
 | --- | --- | --- | --- |
 | Contact form is mailto-only, no backend | components/contact-form.tsx | Launch scope is explicitly static — no dynamic functionality | User wires a form service post-launch |
-| Gallery images are generated SVG placeholders | public/gallery/*.svg | No real event photos exist yet; site must work offline, no external CDNs | User replaces files, captions in lib/content.ts |
+| Hero/gallery photos are user-supplied JPGs (≤1600px) served as-is to next/image | public/photos/*.jpg | Fine for 2× displays at current sizes; sharp optimizes to AVIF/WebP at runtime | Convert hero set to pre-sized AVIF if LCP budget slips |
 | Primitive Showcase Gate via the page itself, not a separate showcase route | app/page.tsx | User constraint: single page only; the page exercises every primitive + state at 375/768/1280 during visual QA | — |
 | react-scan wired via manual dev-gated snippet (CLI prompt failed) | app/layout.tsx | Canonical manual install from react-dev-tooling-skill; verified dev-gated | — |
 | Fraunces/Geist fetched at build time via next/font | app/layout.tsx | Self-hosted output; build needs network once | — |

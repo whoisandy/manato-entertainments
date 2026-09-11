@@ -25,7 +25,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## Assets
 
-- `bun scripts/generate-gallery.ts` regenerates the `public/gallery/gallery-*.svg` placeholders.
+- `public/photos/01.jpg`–`12.jpg` are the brand event photos (deterministic names); hero cycles the landscape subset (`heroPhotos` in `lib/content.ts`).
 - `public/manato-logo.jpg` is the brand logo (1600×977, black background, gold design).
 
 ## Constraints

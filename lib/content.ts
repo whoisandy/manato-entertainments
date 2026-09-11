@@ -1,24 +1,24 @@
 export interface NavLink {
-  href: string;
   label: string;
+  href: string;
 }
 
 export interface Stat {
   index: string;
-  label: string;
   value: string;
+  label: string;
 }
 
 export interface BuildStep {
-  body: string;
   index: string;
   title: string;
+  body: string;
 }
 
 export interface SetlistEntry {
-  coSinger?: string;
-  singer: string;
   song: string;
+  singer: string;
+  coSinger?: string;
 }
 
 export interface MetaChip {
@@ -26,32 +26,35 @@ export interface MetaChip {
 }
 
 export interface FeaturedEvent {
+  kicker: string;
+  title: string;
+  subtitle: string;
   date: string;
   description: string;
-  kicker: string;
   meta: MetaChip[];
-  note: string;
   setlist: SetlistEntry[];
-  subtitle: string;
-  title: string;
+  note: string;
 }
 
 export interface PastEvent {
-  singers: string;
-  songs: string;
-  subtitle: string;
-  title: string;
   year: string;
+  title: string;
+  subtitle: string;
+  songs: string;
+  singers: string;
 }
 
-export interface GalleryImage {
-  alt: string;
+export interface Photo {
   src: string;
+  alt: string;
+  width: number;
+  height: number;
+  orientation: "landscape" | "portrait";
 }
 
 export interface FaqItem {
-  answer: string;
   question: string;
+  answer: string;
 }
 
 export const site = {
@@ -150,35 +153,102 @@ export const pastEvents: PastEvent[] = [
   },
 ];
 
-export const galleryImages: GalleryImage[] = [
-  {
-    alt: "Edition IV — Ilaiyaraaja × A. R. Rahman, house lights at gold",
-    src: "/gallery/gallery-01.svg",
-  },
-  {
-    alt: "The crowd mid-chorus at An Evening with Koti",
-    src: "/gallery/gallery-02.svg",
-  },
-  {
-    alt: "Aarthi Krishnan on stage, second verse",
-    src: "/gallery/gallery-03.svg",
-  },
-  {
-    alt: "Edition III — The Golden Era, first bows",
-    src: "/gallery/gallery-04.svg",
-  },
-  { alt: "Spotlight before the opening song", src: "/gallery/gallery-05.svg" },
-  {
-    alt: "Duet night — two voices, one microphone",
-    src: "/gallery/gallery-06.svg",
-  },
-  { alt: "The audience at The Golden Hour", src: "/gallery/gallery-07.svg" },
-  { alt: "Sound check, dawn shift", src: "/gallery/gallery-08.svg" },
-  {
-    alt: "Edition II — A Retrospective, curtain call",
-    src: "/gallery/gallery-09.svg",
-  },
-  { alt: "The stage, empty and waiting", src: "/gallery/gallery-10.svg" },
+const photo = (
+  src: string,
+  alt: string,
+  width: number,
+  height: number
+): Photo => ({
+  alt,
+  height,
+  orientation: width >= height ? "landscape" : "portrait",
+  src,
+  width,
+});
+
+/** Brand event photos (user-supplied, 2026-04-10), deterministically named. */
+export const photos: Photo[] = [
+  photo(
+    "/photos/01.jpg",
+    "A traditional welcome at the marigold-draped doorway — aarti tray, silk shawls, and the team around our honoured composer",
+    1040,
+    750
+  ),
+  photo(
+    "/photos/02.jpg",
+    "Our honoured guest with a classical guitar, seated between two Manato singers in silk saris",
+    844,
+    1040
+  ),
+  photo(
+    "/photos/03.jpg",
+    "Thumbs up against the yellow wall — the team with our honoured guest",
+    1040,
+    694
+  ),
+  photo(
+    "/photos/04.jpg",
+    "Around the armchair — singers gathered with the guitar after the evening",
+    1040,
+    758
+  ),
+  photo(
+    "/photos/05.jpg",
+    "At the marigold doorway before the evening begins",
+    1040,
+    751
+  ),
+  photo(
+    "/photos/06.jpg",
+    "The wider team lined up against the yellow wall",
+    1040,
+    501
+  ),
+  photo(
+    "/photos/07.jpg",
+    "Two singers and our guest composer against the yellow wall",
+    853,
+    1280
+  ),
+  photo(
+    "/photos/08.jpg",
+    "Six of us after a studio visit — white jacket, sunglasses, and laughter",
+    1280,
+    625
+  ),
+  photo(
+    "/photos/09.jpg",
+    "The full group after a day of planning the next edition",
+    1280,
+    845
+  ),
+  photo(
+    "/photos/10.jpg",
+    "Two of our singers in the audience seats before the show",
+    1152,
+    864
+  ),
+  photo(
+    "/photos/11.jpg",
+    "With our senior guest in the gold-chaired auditorium",
+    960,
+    1280
+  ),
+  photo(
+    "/photos/12.jpg",
+    "The maestro at work — classical guitar, white jacket, golden light",
+    1600,
+    1068
+  ),
+];
+
+/** Landscape subset used by the hero backdrop cycle (wide crops read best). */
+export const heroPhotos: Photo[] = [
+  photos[11],
+  photos[0],
+  photos[8],
+  photos[9],
+  photos[4],
 ];
 
 export const faqs: FaqItem[] = [
