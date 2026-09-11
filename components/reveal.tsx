@@ -1,9 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import type { ReactNode } from "react";
-
-const EASE_OUT_EXPO = "cubic-bezier(0.16, 1, 0.3, 1)";
 
 interface RevealProps {
   children: ReactNode;
@@ -12,53 +10,25 @@ interface RevealProps {
 }
 
 /**
- * Scroll reveal driven imperatively: initial hidden style in markup, revealed
- * by mutating style directly in the IntersectionObserver callback. No state,
- * no hydration mismatch, no cascading render.
+ * Scroll reveal on motion (framer-motion successor, battle-tested).
+ * GPU-composited transform + opacity only; honors prefers-reduced-motion.
  */
 export const Reveal = ({ children, className, delay = 0 }: RevealProps) => {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const element = ref.current;
-    if (!element) {
-      return;
-    }
-
-    const reveal = () => {
-      element.style.opacity = "1";
-      element.style.transform = "translateY(0)";
-    };
-
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      reveal();
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          reveal();
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15 }
-    );
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, []);
+  const reduceMotion = useReducedMotion();
 
   return (
-    <div
-      ref={ref}
+    <motion.div
       className={className}
-      style={{
-        opacity: 0,
-        transform: "translateY(12px)",
-        transition: `opacity 600ms ${EASE_OUT_EXPO} ${delay}ms, transform 600ms ${EASE_OUT_EXPO} ${delay}ms`,
+      initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ amount: 0.15, margin: "0px 0px -8% 0px", once: true }}
+      transition={{
+        delay: delay / 1000,
+        duration: 0.6,
+        ease: [0.16, 1, 0.3, 1],
       }}
     >
       {children}
-    </div>
+    </motion.div>
   );
 };
