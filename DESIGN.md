@@ -62,18 +62,17 @@ Dark-only site. No light mode.
 | Body-sm | 0.875rem (14px) | Geist 400 | 1.55 | 0 | Secondary info |
 | Caption | 0.75rem (12px) | Geist 500 | 1.4 | 0.02em | Meta, form hints |
 | Overline | 0.6875rem (11px) | Geist 600 | 1.3 | 0.22em uppercase | Kicker labels, crest |
-| Mono-meta | 0.8125rem (13px) | Geist Mono 400 | 1.4 | 0.05em | Numerals, counters, setlist numbers, chips |
 
 ### Font stack
 
 - Display serif: **Fraunces** (next/font/google, self-hosted; wght 400/500; opsz auto) — stands in for Vervee's Gambetta with warmer, more characterful light-weight old-style forms.
-- Primary sans: **Geist** (scaffold default; minimalist-skill-approved).
-- Mono: **Geist Mono** — programme numerals/meta (minimalist-skill mono signature).
+- Primary sans: **Geist** (scaffold default; minimalist-skill-approved). **Mono removed (2026-09-12, stakeholder request):** all numerals/meta/kicker labels now use the Geist sans baseline for uniform consistency; Geist Mono is no longer loaded.
 
 ### Rules
 
 - Serif = voice (headlines, quotes); Sans = UI/body; Mono = numbers and metadata. Headlines always weight 400–500, never bold (Vervee signature).
 - Body never below 14px. Display uses clamp() — never fixed 72px that breaks mobile. Documented exception (2026-09-12, stakeholder request): the footer's closing band stacks to copyright-only on mobile at ~10px, left-aligned and compact; footer columns keep desktop sizes at every breakpoint. Contrast still passes AA at any size.
+- **Hero strapline (2026-09-12, stakeholder request):** the strapline is a glass pill — `rounded-full` wrapper carrying a washed-out bone gradient (`135deg`, bone α0.22 → α0.07) over `backdrop-blur-lg` with a `hairline-strong` border; the silver shimmer text (ash → silver-300 → ash, reduced-motion fallback ash) rides inside as a nested span (its `background-clip: text` needs its own layer, separate from the wrapper's gradient fill). Second documented exception to the site-wide 0-radius rule (after the gallery tab pills).
 
 ## 4. Spacing & Layout
 
@@ -123,12 +122,12 @@ Dark-only site. No light mode.
 
 ### StatBlock
 
-- **Structure**: bordered grid (hairline dividers, Vervee 01–04 strip): mono-meta crest index ("01"), big Fraunces value, body-sm ash label.
+- **Structure**: bordered grid (hairline dividers, Vervee 01–04 strip): crest index ("01"), big Fraunces value, body-sm ash label.
 - **States**: static. **Layout**: 2×2 mobile grid → 4-col md, hairline-only separation.
 
 ### EventRow / SetlistRow
 
-- **Structure**: hairline-topped row: mono-meta crest (index/date/venue) | title (H2 Fraunces) | meta (body-sm ash / chips). Setlist: song title + singer (+ "with X" duet, ash; "ft." not used — "with").
+- **Structure**: hairline-topped row: crest meta (index/date/venue) | title (H2 Fraunces) | meta (body-sm ash / chips). Setlist: song title + singer (+ "with X" duet, ash; "ft." not used — "with").
 - **States**: hover on rows raises bg to panel (event list); setlist rows static.
 - **Layout**: grid stacks to single column at 375px.
 
@@ -194,11 +193,17 @@ Dark-only site. No light mode.
 
 ### LightBeams (gallery + About signature atmosphere)
 
-- **Structure**: vendored aceternity `BackgroundBeams` (`components/ui/background-beams.tsx`, installed via `bunx shadcn@latest add @aceternity/background-beams-demo`; demo scaffold removed) wrapped by `components/light-beams.tsx` (renamed from `gallery-beams.tsx`, 2026-09-12). Mounted twice as `section-fx mask-fade-b` strips at the top of a section — gallery `h-72 md:h-[26rem]`; About `h-72 md:h-[28rem]` — fading to transparent at ~94% height.
+- **Structure**: vendored aceternity `BackgroundBeams` (`components/ui/background-beams.tsx`, installed via `bunx shadcn@latest add @aceternity/background-beams-demo`; demo scaffold removed) wrapped by `components/light-beams.tsx` (renamed from `gallery-beams.tsx`, 2026-09-12). Mounted twice as `section-fx mask-fade-b` strips at the top of a section — gallery `h-72 md:h-[26rem]`; About `h-72 md:h-[28rem]` — fading to transparent at ~94% height. About additionally pairs this with the shared `SectionFloorLight` at its bottom edge (2026-09-12: extracted to `components/section-floor-light.tsx` and mounted on every nav section).
 - **Beam geometry**: 51 light threads flowing from the top edge down and left-to-right (the vendored path field), filling the strip full-bleed (`preserveAspectRatio="none"` on the svg so the field stretches edge-to-edge). About pairs it with the section's top-edge light pool (`.section-glow-about`, the footer band's radial treatment scaled up).
 - **Surgical vendored edits (documented)**: (1) `import { motion }` → `import { m as motion }` — the site's `LazyMotionProvider` is strict and throws on the full `motion` entry; (2) gradient stops re-themed — beam `#18CCFC/#6344F5/#AE48FF` → silver-300 `#EEF1F8` / crest-400 `#ECC777` / crest-500 `#E0B658`, static mesh `#d4d4d4` → silver-500 `#B6C0D8`; (3) `preserveAspectRatio="none"`. No other vendored behavior changed.
 - **States**: the 50 SVG gradients animate on a shared rAF loop with no visibility gate, so the wrapper unmounts the field when the strip leaves the viewport (IntersectionObserver, 160px hysteresis band) and remounts it on return; renders nothing under prefers-reduced-motion (decorative layer). `pointer-events: none` throughout.
 - **Accessibility**: strip + host `aria-hidden`; purely decorative; section interactivity untouched.
+
+### SectionFloorLight (nav-section seam)
+
+- **Structure**: pure-CSS server component (`components/section-floor-light.tsx`) — `section-fx absolute inset-x-0 bottom-0 h-32` with `radial-gradient(35% 128px at 50% 100%, rgba(247,248,252,0.08), transparent)`: a silver floor light pooled at a section's bottom edge, reading as a soft seam into the next section. Same footprint as the footer band's original treatment.
+- **Usage**: About, Events, Gallery, FAQ — every nav section carries one at its own bottom edge (2026-09-12, stakeholder correction round: the pools use the quiet footer-band footprint — 35% × 128px, α0.08 — so a seam reads as a soft edge light, not the wide plate the earlier 45%-wide draft produced). Contact carries the same treatment as a dedicated overlay at its bottom edge — moved out of the footer's top edge (2026-09-12) so it layers over the particle field and the contact→footer seam keeps exactly one light at the bottom.
+- **Accessibility**: `aria-hidden`, purely decorative; no interaction impact.
 
 ### NavItem
 
@@ -214,7 +219,7 @@ Dark-only site. No light mode.
 | Micro | 150ms | ease-out | Active press scale(0.98) |
 | Standard | 200ms | ease-in-out | Hovers, accordion fade, menu |
 | Emphasis | 250–600ms | cubic-bezier(0.16, 1, 0.3, 1) | Lightbox open (250ms), scroll reveals (600ms) |
-| Ambient | 1.2s cross-fade / 6s cycle | easeInOut | Hero photo backdrop (motion AnimatePresence) |
+| Ambient | 1.2s cross-fade / 6s cycle / 7.2s zoom-out | easeInOut | Hero photo backdrop (motion AnimatePresence) |
 
 ### Rules
 
@@ -232,7 +237,7 @@ Dark-only site. No light mode.
 - Default: 1px solid var(--color-hairline) — cards, rows, form, nav bottom.
 - Subtle: var(--color-hairline-strong) — emphasized dividers (stats grid internal lines, ghost button border).
 - Depth via tonal steps only: stage #010F29 → panel #0A1A38 → elevated #122447.
-- Hero atmosphere: the brand photo backdrop, Vervee-style — a photo panel hugging the right on md+ (full-bleed on mobile), cycling via `motion` AnimatePresence (1.2s cross-fade every 6s), 2px blur + 105% scale, blended into the stage by a left-edge dark gradient (`from-stage via-stage/55 to-transparent`) plus top/bottom blends; mobile keeps a flat `stage/55` scrim under stacked text. Grain overlay stays.
+- Hero atmosphere: the brand photo backdrop, Vervee-style — a photo panel hugging the right on md+ (full-bleed on mobile), cycling via `motion` AnimatePresence (1.2s cross-fade every 6s) with a slow Ken Burns zoom-out (1.2 → 1.05 over 7.2s per layer — the 5% end buffer hides the 2px blur edge bleed), 2px blur, blended into the stage by a left-edge dark gradient (`from-stage via-stage/55 to-transparent`) plus top/bottom blends; mobile keeps a flat `stage/55` scrim under stacked text. Grain overlay stays.
 - Section ambience: per-section radial gradient washes (pure CSS, server-safe) inside each content section — absolutely positioned pseudo-elements or child divs with `pointer-events-none`, `aria-hidden`, low-alpha radial gradients bleeding to transparent. Each section gets a distinct placement/combination so the navy canvas shifts subtly as the user scrolls.
   - **Tokens**: reuse existing `--color-silver-wash` (rgba(247,248,252,0.14)) and `--color-crest-wash` (rgba(224,182,88,0.16)) at reduced alpha (≤0.08–0.10 effective) so text contrast stays WCAG AA (bone/ash on stage remains ≥4.5:1 over the wash). No new colors.
   - **Placement**: About — silver light pooled at the section's top edge (footer-band radial treatment: `ellipse 45% 16% at 50% 8%`, α0.12; radii are per-section vars `--glow-rx/--glow-ry`); Events — faint crest wash upper-right; Gallery — silver lower-right; FAQ — crest upper-left; Contact — silver right. Total per-section wash alpha ≤ 0.10–0.12.
