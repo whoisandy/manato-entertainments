@@ -12,7 +12,7 @@ import { SiteHeader } from "@/components/site-header";
 export default function Home() {
   return (
     <>
-      <SiteHeader />
+      <SiteHeader logoVariant="lockup" />
       <main className="flex-1">
         <Hero />
         <About />

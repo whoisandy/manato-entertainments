@@ -14,9 +14,33 @@ import {
 } from "@/components/ui/sheet";
 import { navLinks } from "@/lib/content";
 
-export const SiteHeader = () => {
+/** Header logo options: the crown mark (default) or the full-colour lockup. */
+const HEADER_LOGOS = {
+  crown: {
+    alt: "MANATO Entertainments",
+    height: 707,
+    src: "/manato-crown.webp",
+    width: 992,
+  },
+  lockup: {
+    alt: "MANATO Entertainments — Where Entertainment Meets Experience",
+    height: 844,
+    src: "/manato-lockup.webp",
+    width: 802,
+  },
+} as const;
+
+export type HeaderLogoVariant = keyof typeof HEADER_LOGOS;
+
+export const SiteHeader = ({
+  logoVariant = "crown",
+}: {
+  /** Swap the header mark without touching the layout slot. */
+  logoVariant?: HeaderLogoVariant;
+}) => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const logo = HEADER_LOGOS[logoVariant];
 
   useEffect(() => {
     let frame = 0;
@@ -50,10 +74,10 @@ export const SiteHeader = () => {
           className="shrink-0"
         >
           <Image
-            src="/manato-crown.webp"
-            alt="MANATO Entertainments"
-            width={992}
-            height={707}
+            src={logo.src}
+            alt={logo.alt}
+            width={logo.width}
+            height={logo.height}
             priority
             sizes="(min-width: 768px) 84px, 72px"
             className="h-12 w-auto md:h-14"
