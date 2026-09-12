@@ -1,18 +1,6 @@
-import { cn } from "cn";
 import type { ReactNode } from "react";
 
-import { buttonVariants } from "@/components/ui/button";
-
-const BUTTON_VARIANT_MAP = {
-  ghost: "outline",
-  primary: "default",
-} as const;
-
-export type ButtonVariantName = keyof typeof BUTTON_VARIANT_MAP;
-
-/** Zero-JS anchor/button styling derived from the shadcn button variants. */
-export const buttonClass = (variant: ButtonVariantName): string =>
-  cn(buttonVariants({ size: "lg", variant: BUTTON_VARIANT_MAP[variant] }));
+import { WordReveal } from "@/components/word-reveal";
 
 export const Kicker = ({
   children,
@@ -21,10 +9,10 @@ export const Kicker = ({
   children: ReactNode;
   index?: string;
 }) => (
-  <p className="text-gold-400 flex items-center gap-3 text-[11px] font-semibold tracking-[0.22em] uppercase">
-    <span aria-hidden="true" className="bg-gold-500 h-px w-6" />
+  <p className="text-crest-400 flex items-center gap-3 text-[11px] font-semibold tracking-[0.22em] uppercase">
+    <span aria-hidden="true" className="bg-crest-500 h-px w-6" />
     {index ? (
-      <span className="text-gold-400 font-mono text-[13px] tracking-[0.05em]">
+      <span className="text-crest-400 font-mono text-[13px] tracking-[0.05em]">
         {index}
       </span>
     ) : null}
@@ -36,22 +24,35 @@ interface SectionHeadingProps {
   id: string;
   kicker: string;
   title: string;
+  /** Accent tail of the heading, set in italic crest gold (hero signature). */
+  accent?: string;
   lead?: string;
+  /** Skip the bottom margin when the heading lives inside a split layout. */
+  compact?: boolean;
 }
 
 export const SectionHeading = ({
   id,
   kicker,
   title,
+  accent,
   lead,
+  compact = false,
 }: SectionHeadingProps) => (
-  <div className="mb-12 md:mb-16">
+  <div className={compact ? "" : "mb-12 md:mb-16"}>
     <Kicker>{kicker}</Kicker>
     <h2
       id={id}
-      className="font-display text-bone mt-4 text-[clamp(2rem,4vw,3rem)] leading-[1.12] tracking-[-0.015em] uppercase"
+      className="font-display text-bone mt-4 text-[clamp(2rem,4vw,3rem)] leading-[1.12] tracking-[-0.015em]"
     >
-      {title}
+      <WordReveal text={title} />
+      {accent ? (
+        <WordReveal
+          className="text-crest-300 italic"
+          delayChildren={0.45}
+          text={accent}
+        />
+      ) : null}
     </h2>
     {lead ? (
       <p className="text-ash mt-6 max-w-2xl text-lg leading-relaxed">{lead}</p>

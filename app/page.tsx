@@ -20,16 +20,17 @@ export default function Home() {
         <GallerySection />
         <section
           aria-labelledby="faq-title"
-          className="border-hairline scroll-mt-24 border-t"
+          className="border-hairline scroll-mt-20 border-t md:scroll-mt-[88px]"
           id="faq"
         >
           <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 md:py-28">
             <Reveal>
               <SectionHeading
                 id="faq-title"
-                kicker="Questions"
-                lead="We tried to answer everything. If we missed something, the form below is open."
-                title="Got a question?"
+                kicker="Questions, Answered"
+                lead="Planning an event, exploring a partnership or looking to get involved? Start here. For anything else, get in touch."
+                title="Let’s Make Things"
+                accent="Clear"
               />
             </Reveal>
             <Reveal delay={120}>
