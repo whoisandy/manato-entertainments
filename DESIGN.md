@@ -80,7 +80,7 @@ Dark-only site. No light mode.
 
 | Intent | Token | Value |
 | --- | --- | --- |
-| Section rhythm | py-20 / md:py-28 | 80px / 112px (Vervee's 64–100 range) |
+| Section rhythm | pt-12 pb-20 / md:pt-20 md:pb-28 | mobile 48/80, desktop 80/112 (Vervee's 64–100 range) |
 | Hero rhythm | pt-36 pb-24 / md:pt-44 md:pb-32 | clears fixed nav |
 | Card padding | p-6 / p-8 | 24 / 32px |
 | Stack gaps | gap-4 → gap-12 | 16–48px |
@@ -95,6 +95,7 @@ Dark-only site. No light mode.
 
 - Asymmetric section padding is intentional: sections breathe tighter at the top (pt-16/20) than the bottom (pb-24/28) so headings sit closer to their content — Vervee's 100/80 rhythm.
 - Browser mechanics (clamp(), min-h-[100dvh], aspect-ratio) stay raw.
+- **Nav scroll offset**: lives on the ROOT scroller (`html { scroll-padding-top: 80px }`, 88px ≥768px) — NOT per-section `scroll-mt`, because `overflow: hidden` on `.section-glow` makes each section a scroll container and Chromium then ignores the target's own scroll-margin on anchor scrolls (2026-09-12 alignment fix).
 
 ## 5. Components
 
@@ -147,12 +148,17 @@ Dark-only site. No light mode.
 - **Motion**: background-color + color transitions 200ms ease-in-out on pills. No animation on tab content swap.
 - **Accepted deviation**: The stakeholder explicitly requested pill-shaped tabs, so `TabsTrigger` uses `rounded-full` as a documented exception to the site-wide 0-radius sharp-edge rule. This is the only rounded element on the page.
 
-### Lightbox (client)
+### Lightbox (client) — Vercel image-gallery-starter port
 
-- **Structure**: fixed inset-0 scrim (black/92 + blur), centered figure (image max-h-[82dvh] w-auto), caption + mono counter "3 / 10" bottom, chevron IconBtns mid-sides (≥48px), close top-right, all radius 0, panel borders hairline.
-- **States**: open/close 250ms opacity + image scale 0.98→1; hover states on buttons.
-- **Accessibility**: role="dialog" aria-modal="true" aria-label="{caption}"; ←/→ navigate, Esc closes; focus moves to close button on open, returns to trigger on close; body scroll locked.
-- **Motion**: scrim opacity 250ms, image transform/opacity only.
+> Rebuilt 2026-09-12 (stakeholder request) from `vercel/next.js/examples/with-vercel-blob`'s `SharedModal.tsx` visual language, fed from local `public/photos/*.jpg` (no Vercel Blob/swr/blurhash). Documented exceptions to the site-wide 0-radius rule: the lightbox's circular buttons (`rounded-full`) and filmstrip thumbs (`rounded-md`) — third rounded zone after the tab pills and strapline pill.
+
+- **Structure** (`components/shared-modal.tsx`, composed by `gallery.tsx` through the shadcn/Base-UI `Dialog`): viewport-sized stage (`h-dvh w-full`, `z-50`) inside the popup — the main image keeps its own aspect ratio via replaced-element clamps (`h-auto w-auto max-h-full max-w-[min(100%,80rem)] object-contain` + `priority`), filling width- or height-wise without upscaling; controls live on a `pointer-events-none absolute inset-0` layer **pinned to the viewport corners** (fixed positions across every photo/orientation, always painting above the image — mobile included): close top-right (`DialogClose`→Button; moved top-right and the download anchor removed 2026-09-12, stakeholder request), chevrons mid-sides at `p-3` that render only when a photo exists in that direction (starter behavior — bounded navigation, no wrap-around); bottom filmstrip on a viewport-wide `bg-gradient-to-b from-transparent to-stage/80` band, mounted INSIDE the stage's z-50 stacking context (starter structure) so it always paints above the image.
+- **Filmstrip mechanics (starter-verbatim)**: window of ±15 thumbs; every `motion.button` animates `x: index × −100%` of its own width (the `flex aspect-[3/2] h-14` parent shrink-widths to one thumb, so the row glides the active thumb to the centered viewport); active thumb `scale 1.25 + brightness-110 + shadow-lg shadow-black/50 + rounded-md + z-20`, inactive `brightness-50 contrast-125 hover:brightness-75`; first/last thumbs carry the strip's outer `rounded-l-md`/`rounded-r-md`.
+- **Tokens**: scrim `stage/78% + blur(28px)` via a `body:has(.gallery-lightbox)` rule in globals.css (the vendored Dialog's Backdrop is a portal sibling, so the deepened blur keys off the popup's class — no vendored edits); buttons solid `bg-panel` + `hairline-strong` border → hover `elevated`, icon `bone/75` → `bone`; strip gradient ends `to-stage/80`. No black scrims or new colors.
+- **States**: open/close via Dialog 100ms fade+zoom; image swaps slide ±1000px with `MotionConfig` spring x (stiffness 300, damping 30) + 0.2s opacity, direction-aware (state in `gallery.tsx`); swipe via `react-swipeable` (trackMouse); buttons transition-colors 200ms.
+- **Accessibility**: role="dialog" + sr-only DialogTitle = photo alt (captions/counters removed per stakeholder); ←/→ navigate (bounded), Esc closes; swipeable + filmstrip aria-labels; focus returns to the grid trigger on close; body scroll locked.
+- **prefers-reduced-motion**: slide variants collapse to opacity-only (duration 0), spring removed; filmstrip still functional.
+- **Grid unchanged**: the uniform 2→3→4-column GalleryCard grid above keeps the DESIGN.md §5 contract — only the lightbox adopted starter visuals.
 
 ### AccordionItem (FAQ)
 
