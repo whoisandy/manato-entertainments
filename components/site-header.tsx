@@ -4,6 +4,7 @@ import { MenuIcon, XIcon } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
+import { ScrollProgress } from "@/components/scroll-progress";
 import {
   Sheet,
   SheetClose,
@@ -41,6 +42,7 @@ export const SiteHeader = () => {
           : "border-b border-transparent"
       }`}
     >
+      <ScrollProgress />
       <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between px-4 sm:px-6 md:h-[88px]">
         <a
           href="#top"
@@ -48,12 +50,13 @@ export const SiteHeader = () => {
           className="shrink-0"
         >
           <Image
-            src="/manato-logo.jpg"
+            src="/manato-crown.webp"
             alt="Manato Entertainments"
-            width={1600}
-            height={977}
+            width={992}
+            height={707}
             priority
-            className="h-11 w-auto md:h-12"
+            sizes="(min-width: 768px) 84px, 72px"
+            className="h-12 w-auto md:h-14"
           />
         </a>
 
@@ -69,19 +72,19 @@ export const SiteHeader = () => {
           ))}
           <a
             href="#contact"
-            className="border-hairline-strong text-bone hover:border-gold-400 hover:text-gold-300 border px-5 py-2.5 text-sm font-medium transition-[border-color,color] duration-200"
+            className="border-hairline-strong text-bone hover:border-crest-400 hover:text-crest-300 border px-5 py-2.5 text-sm font-medium transition-[border-color,color] duration-200"
           >
-            Get in touch
+            Plan an Event
           </a>
         </nav>
 
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={open ? "Close navigation" : "Open navigation"}
             render={
               <button
                 type="button"
-                className="border-hairline text-bone hover:border-hairline-strong hover:text-gold-300 flex h-11 w-11 items-center justify-center border transition-colors duration-200 md:hidden"
+                className="border-hairline text-bone hover:border-hairline-strong hover:text-crest-300 flex h-11 w-11 items-center justify-center border transition-colors duration-200 md:hidden"
               />
             }
           >
@@ -107,20 +110,28 @@ export const SiteHeader = () => {
                     className="border-hairline border-b last:border-b-0"
                   >
                     <SheetClose
-                      render={<a href={link.href} />}
-                      className="text-bone hover:text-gold-300 block py-4 text-base transition-colors duration-200"
-                    >
-                      {link.label}
-                    </SheetClose>
+                      render={
+                        <a
+                          className="text-bone hover:text-crest-300 block py-4 text-base transition-colors duration-200"
+                          href={link.href}
+                        >
+                          {link.label}
+                        </a>
+                      }
+                    />
                   </li>
                 ))}
               </ul>
               <SheetClose
-                render={<a href="#contact" />}
-                className="bg-primary text-primary-foreground hover:bg-gold-400 mt-4 flex h-11 items-center justify-center px-7 text-sm font-medium tracking-wide transition-colors duration-200"
-              >
-                Get in touch
-              </SheetClose>
+                render={
+                  <a
+                    className="bg-primary text-primary-foreground hover:bg-crest-400 mt-4 flex h-11 items-center justify-center px-7 text-sm font-medium tracking-wide transition-colors duration-200"
+                    href="#contact"
+                  >
+                    Plan an Event
+                  </a>
+                }
+              />
             </nav>
           </SheetContent>
         </Sheet>

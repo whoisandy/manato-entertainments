@@ -1,30 +1,38 @@
 import Image from "next/image";
 
+import { SocialButtons } from "@/components/social-buttons";
+import { StageDust } from "@/components/stage-dust";
 import { navLinks, site } from "@/lib/content";
 
 export const SiteFooter = () => (
-  <footer className="border-hairline border-t">
-    <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 md:py-16">
+  <footer className="border-hairline relative overflow-hidden border-t">
+    <StageDust
+      className="absolute inset-x-0 bottom-0 h-28 md:h-36"
+      density={16}
+      tone="ember"
+    />
+    <div className="relative mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 md:py-16">
       <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
         <div>
           <Image
             alt="Manato Entertainments"
-            className="h-14 w-auto md:h-16"
-            height={977}
-            src="/manato-logo.jpg"
-            width={1600}
+            className="h-24 w-auto md:h-32"
+            height={844}
+            src="/manato-lockup.webp"
+            width={802}
           />
           <p className="text-ash mt-5 max-w-sm text-sm leading-relaxed">
-            Themed live music evenings — one composer, one pairing, one golden
-            era at a time.
+            Entertainment and event management for concerts, corporate events,
+            celebrations and brand experiences. Creating moments that connect
+            people and stay with them.
           </p>
-          <p className="text-gold-400 mt-4 font-mono text-[13px] tracking-[0.05em]">
+          <p className="text-crest-400 mt-4 font-mono text-[13px] tracking-[0.05em]">
             {site.tagline}
           </p>
         </div>
 
         <nav aria-label="Footer">
-          <h3 className="text-gold-400 font-mono text-[13px] tracking-[0.05em] uppercase">
+          <h3 className="text-crest-400 font-mono text-[13px] tracking-[0.05em] uppercase">
             Explore
           </h3>
           <ul className="mt-4 space-y-3">
@@ -42,8 +50,8 @@ export const SiteFooter = () => (
         </nav>
 
         <div>
-          <h3 className="text-gold-400 font-mono text-[13px] tracking-[0.05em] uppercase">
-            Reach us
+          <h3 className="text-crest-400 font-mono text-[13px] tracking-[0.05em] uppercase">
+            Connect With Manato
           </h3>
           <ul className="text-ash mt-4 space-y-3 text-sm">
             <li>
@@ -54,16 +62,10 @@ export const SiteFooter = () => (
                 {site.email}
               </a>
             </li>
-            <li>
-              <a
-                className="hover:text-bone transition-colors duration-200"
-                href={`tel:${site.phoneHref}`}
-              >
-                {site.phone}
-              </a>
-            </li>
-            <li>{site.address}</li>
           </ul>
+          <div className="mt-5">
+            <SocialButtons />
+          </div>
         </div>
       </div>
 
@@ -71,7 +73,7 @@ export const SiteFooter = () => (
         <p className="text-dust font-mono text-xs">
           © 2026 Manato Entertainments. All rights reserved.
         </p>
-        <p className="text-dust font-mono text-xs">Chennai, India</p>
+        <p className="text-dust font-mono text-xs">{site.brandStatement}</p>
       </div>
     </div>
   </footer>
