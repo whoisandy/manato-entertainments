@@ -26,7 +26,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 ## Assets
 
 - `public/photos/01.jpg`–`12.jpg` are the brand event photos (deterministic names); hero cycles the landscape subset (`heroPhotos` in `lib/content.ts`).
-- `public/manato-logo.jpg` is the brand logo (1600×977, black background, gold design).
+- `public/manato-logo.webp` (header) and `public/manato-logo-footer.webp` (footer) are generated from `assets/manato-logo-sprite.png` by `bun scripts/split-logo.ts` — left half is the vivid gold lockup, right half the dimmed variant.
 
 ## Constraints
 
