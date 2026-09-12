@@ -14,7 +14,10 @@ const CROSSFADE_MS = 1.2;
  * on md+ (full-bleed on mobile), blended into the stage by a left-edge dark
  * gradient. All photos stay mounted as stacked layers and cross-fade via
  * opacity — no mount churn, the priority preload stays consumed, and the
- * cycle images pre-decode. The cycle pauses under prefers-reduced-motion.
+ * cycle images pre-decode. Each active layer also runs a slow Ken Burns
+ * zoom-out (1.2 → 1.05, the 5% buffer hides the 2px blur edge bleed), so
+ * the hero keeps moving between cross-fades. The cycle pauses under
+ * prefers-reduced-motion.
  */
 export const HeroBackdrop = () => {
   const [index, setIndex] = useState(0);
@@ -46,19 +49,34 @@ export const HeroBackdrop = () => {
   return (
     <div
       aria-hidden="true"
-      className="absolute inset-y-0 right-0 left-0 overflow-hidden md:left-[42%]"
+      className="absolute inset-y-0 right-0 left-0 overflow-hidden md:left-[30%]"
     >
       {heroPhotos.map((photo, photoIndex) => {
         if (photoIndex > 0 && !auxLayersMounted) {
           return null;
         }
+        const isActive = photoIndex === index;
         return (
           <m.div
             key={photo.src}
             className="absolute inset-0"
-            initial={false}
-            animate={{ opacity: photoIndex === index ? 1 : 0 }}
-            transition={{ duration: CROSSFADE_MS, ease: "easeInOut" }}
+            initial={{
+              opacity: photoIndex === 0 ? 1 : 0,
+              scale: reduceMotion ? 1 : 1.2,
+            }}
+            animate={
+              isActive
+                ? { opacity: 1, scale: reduceMotion ? 1 : [1.2, 1.05] }
+                : { opacity: 0, scale: reduceMotion ? 1 : 1.2 }
+            }
+            transition={
+              isActive
+                ? {
+                    opacity: { duration: CROSSFADE_MS, ease: "easeInOut" },
+                    scale: { duration: 7.2, ease: "easeInOut" },
+                  }
+                : { duration: CROSSFADE_MS, ease: "easeInOut" }
+            }
           >
             <Image
               src={photo.src}
@@ -67,7 +85,7 @@ export const HeroBackdrop = () => {
               priority={photoIndex === 0}
               sizes="(min-width: 768px) 58vw, 60vw"
               quality={75}
-              className="scale-105 object-cover blur-[2px]"
+              className="object-cover blur-[2px]"
             />
           </m.div>
         );
