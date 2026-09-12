@@ -19,46 +19,8 @@ export const SiteFooter = () => (
       tone="ember"
     />
     <div className="relative mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 md:py-16">
-      <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
+      <div className="grid gap-10 md:grid-cols-[1fr_1fr_1.5fr]">
         <AnimatedContainer className="flex flex-col" delay={0.1}>
-          <Image
-            alt="MANATO Entertainments"
-            className="h-24 w-auto self-start md:h-32"
-            height={844}
-            src="/manato-lockup.webp"
-            width={802}
-          />
-          <p className="text-ash mt-5 max-w-sm text-sm leading-relaxed">
-            Entertainment and event management for concerts, corporate events,
-            celebrations and brand experiences. Creating moments that connect
-            people and stay with them.
-          </p>
-          <p className="text-crest-400 mt-4 font-mono text-[13px] tracking-[0.05em]">
-            {site.tagline}
-          </p>
-        </AnimatedContainer>
-
-        <AnimatedContainer className="flex flex-col" delay={0.2}>
-          <nav aria-label="Footer">
-            <h3 className="text-crest-400 font-mono text-[13px] tracking-[0.05em] uppercase">
-              Explore
-            </h3>
-            <ul className="mt-4 space-y-3">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    className="text-ash hover:text-bone text-sm transition-colors duration-200"
-                    href={link.href}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </AnimatedContainer>
-
-        <AnimatedContainer className="flex flex-col" delay={0.3}>
           <h3 className="text-crest-400 font-mono text-[13px] tracking-[0.05em] uppercase">
             Connect With MANATO
           </h3>
@@ -85,6 +47,43 @@ export const SiteFooter = () => (
           </ul>
           <div className="mt-5">
             <SocialButtons />
+          </div>
+        </AnimatedContainer>
+
+        <AnimatedContainer className="flex flex-col" delay={0.2}>
+          <nav aria-label="Footer">
+            <h3 className="text-crest-400 font-mono text-[13px] tracking-[0.05em] uppercase">
+              Explore
+            </h3>
+            <ul className="mt-4 space-y-3">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    className="text-ash hover:text-bone text-sm transition-colors duration-200"
+                    href={link.href}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </AnimatedContainer>
+
+        <AnimatedContainer className="flex flex-col md:items-end" delay={0.3}>
+          <div className="flex flex-col items-start md:items-end">
+            <Image
+              alt="MANATO Entertainments"
+              className="h-24 w-auto md:h-32"
+              height={844}
+              src="/manato-lockup.webp"
+              width={802}
+            />
+            <p className="text-ash mt-5 max-w-sm text-sm leading-relaxed md:text-right">
+              Entertainment and event management for concerts, corporate events,
+              celebrations and brand experiences. Creating moments that connect
+              people and stay with them.
+            </p>
           </div>
         </AnimatedContainer>
       </div>
