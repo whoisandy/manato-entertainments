@@ -46,12 +46,12 @@ export const SiteHeader = () => {
       <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between px-4 sm:px-6 md:h-[88px]">
         <a
           href="#top"
-          aria-label="Manato Entertainments — back to top"
+          aria-label="MANATO Entertainments — back to top"
           className="shrink-0"
         >
           <Image
             src="/manato-crown.webp"
-            alt="Manato Entertainments"
+            alt="MANATO Entertainments"
             width={992}
             height={707}
             priority
@@ -100,7 +100,7 @@ export const SiteHeader = () => {
             className="border-hairline bg-stage/95 border-b backdrop-blur-md"
           >
             <SheetTitle className="sr-only">
-              Manato Entertainments menu
+              MANATO Entertainments menu
             </SheetTitle>
             <nav aria-label="Primary mobile" className="px-4 pb-5 sm:px-6">
               <ul>
@@ -110,6 +110,7 @@ export const SiteHeader = () => {
                     className="border-hairline border-b last:border-b-0"
                   >
                     <SheetClose
+                      nativeButton={false}
                       render={
                         <a
                           className="text-bone hover:text-crest-300 block py-4 text-base transition-colors duration-200"
@@ -123,6 +124,7 @@ export const SiteHeader = () => {
                 ))}
               </ul>
               <SheetClose
+                nativeButton={false}
                 render={
                   <a
                     className="bg-primary text-primary-foreground hover:bg-crest-400 mt-4 flex h-11 items-center justify-center px-7 text-sm font-medium tracking-wide transition-colors duration-200"

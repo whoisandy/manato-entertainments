@@ -2,7 +2,6 @@ import { HeroBackdrop } from "@/components/hero-backdrop";
 import { Kicker } from "@/components/primitives";
 import { StageDust } from "@/components/stage-dust";
 import { buttonClass } from "@/lib/button";
-import { highlights } from "@/lib/content";
 
 // Hero content renders statically — above-the-fold elements must never be
 // gated behind a JS-driven reveal (it delays LCP paint until hydration).
@@ -51,17 +50,6 @@ export const Hero = () => (
         >
           Explore Our Experiences
         </a>
-      </div>
-
-      <div className="border-hairline bg-hairline mt-16 grid grid-cols-2 gap-px border md:mt-20 md:grid-cols-4">
-        {highlights.map((highlight) => (
-          <div className="bg-panel p-6 md:p-8" key={highlight.label}>
-            <p className="font-display text-bone text-3xl leading-tight md:text-4xl">
-              {highlight.value}
-            </p>
-            <p className="text-ash mt-2 text-sm">{highlight.label}</p>
-          </div>
-        ))}
       </div>
     </div>
   </section>

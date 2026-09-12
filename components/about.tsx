@@ -5,7 +5,7 @@ import { differenceSteps } from "@/lib/content";
 export const About = () => (
   <section
     aria-labelledby="about-title"
-    className="border-hairline scroll-mt-20 border-t md:scroll-mt-[88px]"
+    className="border-hairline section-glow section-glow-about scroll-mt-20 border-t md:scroll-mt-[88px]"
     id="about"
   >
     <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 md:py-28">
@@ -13,7 +13,7 @@ export const About = () => (
         <SectionHeading
           id="about-title"
           kicker="Get to Know Us"
-          lead="Manato Entertainments began with four people and one shared belief: a great event creates an experience that stays with people."
+          lead="MANATO Entertainments began with four people and one shared belief: a great event creates an experience that stays with people."
           title="Built on a Dream."
           accent="Driven by a Team."
         />

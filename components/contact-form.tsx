@@ -17,7 +17,7 @@ const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
   const name = String(data.get("name") ?? "");
   const email = String(data.get("email") ?? "");
   const message = String(data.get("message") ?? "");
-  const subject = encodeURIComponent(`Website enquiry — Manato Entertainments`);
+  const subject = encodeURIComponent(`Website enquiry — MANATO Entertainments`);
   const body = encodeURIComponent(
     `Name: ${name}\nEmail: ${email}\n\nEnquiry:\n${message}`
   );

@@ -53,7 +53,7 @@ export interface FaqItem {
 export const site = {
   brandStatement: "Dream Big. Create Experiences. Build a Legacy.",
   email: "hello@manato.in",
-  name: "Manato Entertainments",
+  name: "MANATO Entertainments",
   tagline: "Grand Stages | Golden Memories",
 };
 

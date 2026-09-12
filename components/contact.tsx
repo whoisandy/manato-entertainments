@@ -7,7 +7,7 @@ import { site } from "@/lib/content";
 export const Contact = () => (
   <section
     aria-labelledby="contact-title"
-    className="border-hairline scroll-mt-20 border-t md:scroll-mt-[88px]"
+    className="border-hairline section-glow section-glow-contact scroll-mt-20 border-t md:scroll-mt-[88px]"
     id="contact"
   >
     <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 md:py-28">

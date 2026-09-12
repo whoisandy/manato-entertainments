@@ -20,7 +20,7 @@ export default function Home() {
         <GallerySection />
         <section
           aria-labelledby="faq-title"
-          className="border-hairline scroll-mt-20 border-t md:scroll-mt-[88px]"
+          className="border-hairline section-glow section-glow-faq scroll-mt-20 border-t md:scroll-mt-[88px]"
           id="faq"
         >
           <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 md:py-28">

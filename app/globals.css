@@ -190,6 +190,86 @@
   }
 }
 
+/* ── Section ambience: per-section radial gradient washes ──
+   Pure CSS, server-safe. Each section gets one slow-drifting radial
+   gradient layer (transform-only animation). Alpha kept ≤0.10 so
+   bone/ash text stays WCAG AA over the wash. */
+
+.section-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-glow::before {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  /* Default: full-bleed, overridden by placement classes */
+  inset: -20%;
+  opacity: 0.55;
+  background: radial-gradient(
+    ellipse 65% 55% at var(--glow-x, 50%) var(--glow-y, 50%),
+    var(--glow-color, rgba(247, 248, 252, 0.14)) 0%,
+    transparent 70%
+  );
+  animation: glow-drift 25s ease-in-out alternate infinite;
+  will-change: transform;
+}
+
+/* Ensure section content sits above the glow layer */
+.section-glow > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Placement + color modifiers */
+.section-glow-about {
+  --glow-x: 15%;
+  --glow-y: 20%;
+  --glow-color: rgba(247, 248, 252, 0.1);
+}
+
+.section-glow-events {
+  --glow-x: 85%;
+  --glow-y: 15%;
+  --glow-color: rgba(224, 182, 88, 0.07);
+}
+
+.section-glow-gallery {
+  --glow-x: 85%;
+  --glow-y: 85%;
+  --glow-color: rgba(247, 248, 252, 0.09);
+}
+
+.section-glow-faq {
+  --glow-x: 12%;
+  --glow-y: 18%;
+  --glow-color: rgba(224, 182, 88, 0.08);
+}
+
+.section-glow-contact {
+  --glow-x: 80%;
+  --glow-y: 50%;
+  --glow-color: rgba(247, 248, 252, 0.08);
+}
+
+@keyframes glow-drift {
+  0% {
+    transform: translate3d(-2%, -1%, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(2%, 1%, 0) scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-glow::before {
+    animation: none;
+    transform: none;
+  }
+}
+
 /* Film grain texture — neutral noise, no color token (mechanics, not a palette color) */
 .grain::after {
   position: absolute;

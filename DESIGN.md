@@ -1,4 +1,4 @@
-# Manato Entertainments Design System
+# MANATO Entertainments Design System
 
 > **v2 Retheme (2026-09-12):** the brand moved from black/gold to **navy blue + white** with new logo assets (`public/assets/manato-navy-no-sparkle.png` — navy bg #01102A, white mark, gold crest #E0B658). All `gold-*` tokens are renamed: `silver-*` = white/silver interactive accent, `crest-*` = crest gold (numerals/decoration only). Section 0 is the historical v1 research log; where prose below says "gold stage light" or "black velvet", read it as "silver on navy" per the Section 2 palette.
 >
@@ -197,6 +197,12 @@ Dark-only site. No light mode.
 - Subtle: var(--color-hairline-strong) — emphasized dividers (stats grid internal lines, ghost button border).
 - Depth via tonal steps only: stage #010F29 → panel #0A1A38 → elevated #122447.
 - Hero atmosphere: the brand photo backdrop, Vervee-style — a photo panel hugging the right on md+ (full-bleed on mobile), cycling via `motion` AnimatePresence (1.2s cross-fade every 6s), 2px blur + 105% scale, blended into the stage by a left-edge dark gradient (`from-stage via-stage/55 to-transparent`) plus top/bottom blends; mobile keeps a flat `stage/55` scrim under stacked text. Grain overlay stays.
+- Section ambience: per-section radial gradient washes (pure CSS, server-safe) inside each content section — absolutely positioned pseudo-elements or child divs with `pointer-events-none`, `aria-hidden`, low-alpha radial gradients bleeding to transparent. Each section gets a distinct placement/combination so the navy canvas shifts subtly as the user scrolls.
+  - **Tokens**: reuse existing `--color-silver-wash` (rgba(247,248,252,0.14)) and `--color-crest-wash` (rgba(224,182,88,0.16)) at reduced alpha (≤0.08–0.10 effective) so text contrast stays WCAG AA (bone/ash on stage remains ≥4.5:1 over the wash). No new colors.
+  - **Placement**: About — silver wash upper-left; Events — faint crest wash upper-right; Gallery — silver lower-right; FAQ — crest upper-left; Contact — silver right. Total per-section wash alpha ≤ 0.10.
+  - **Motion**: at most ONE slow drifting layer per section, CSS `@keyframes` animating `transform` (`translate` / `scale`) only, 20–30s `ease-in-out` `alternate infinite`. Disabled under `prefers-reduced-motion: reduce` (static gradient paint). NO `background-position` animation (repaints every frame — forbidden after performance fix).
+  - **Performance**: compositor-only (`transform`/`opacity`); static gradient paint otherwise; no `backdrop-filter` on these layers; no new JS/client components.
+  - **Structure**: each section wrapper adds `overflow-hidden` (safe — inner `max-w-6xl` container already constrains content); wash layers are `absolute inset-0` or positioned with negative offsets to bleed past edges.
 - Lightbox scrim (black/92 + backdrop-blur) is an overlay, not a shadow.
 
 ## 8. Accessibility Constraints & Accepted Debt

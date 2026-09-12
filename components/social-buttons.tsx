@@ -87,7 +87,7 @@ export const SocialButtons = () => (
       return (
         <li key={social.label}>
           <a
-            aria-label={`Manato Entertainments on ${social.label}`}
+            aria-label={`MANATO Entertainments on ${social.label}`}
             className="border-hairline text-ash hover:border-hairline-strong hover:text-bone flex h-10 w-10 items-center justify-center border transition-colors duration-200"
             href={social.href}
             rel="noopener noreferrer"

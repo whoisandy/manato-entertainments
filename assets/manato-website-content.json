@@ -1,27 +1,27 @@
 {
   "brand": {
-    "name": "Manato Entertainments",
+    "name": "MANATO Entertainments",
     "logoTagline": "Grand Stages | Golden Memories",
     "brandStatement": "Dream Big. Create Experiences. Build a Legacy."
   },
   "seo": {
-    "title": "Manato Entertainments | Events & Entertainment",
+    "title": "MANATO Entertainments | Events & Entertainment",
     "description": "Concerts, corporate events, celebrity meet & greets, celebrations and brand activations. Manato creates experiences that connect people.",
     "canonicalUrl": "https://www.manatoentertainments.com/",
-    "openGraphTitle": "Manato Entertainments | Where Entertainment Meets Experience",
+    "openGraphTitle": "MANATO Entertainments | Where Entertainment Meets Experience",
     "openGraphDescription": "Creating moments. Connecting people. Building a legacy. Discover concerts, celebrations, corporate events and brand experiences with Manato.",
-    "openGraphImageAlt": "Manato Entertainments — Grand Stages | Golden Memories",
+    "openGraphImageAlt": "MANATO Entertainments — Grand Stages | Golden Memories",
     "organization": {
       "@context": "https://schema.org",
       "@type": "Organization",
-      "name": "Manato Entertainments",
+      "name": "MANATO Entertainments",
       "url": "https://www.manatoentertainments.com/",
       "description": "An entertainment and event management company creating concerts, corporate events, celebrity meet & greets, celebrations and brand activations."
     }
   },
   "navigation": {
     "logoHref": "#top",
-    "logoAlt": "Manato Entertainments",
+    "logoAlt": "MANATO Entertainments",
     "items": [
       {
         "label": "About",
@@ -89,7 +89,7 @@
     "eyebrow": "Get to Know Us",
     "heading": "Built on a Dream. Driven by a Team.",
     "paragraphs": [
-      "Manato Entertainments began with four people and one shared belief: a great event creates an experience that stays with people. Bringing different strengths and perspectives together, our founders set out to build something they could grow with purpose.",
+      "MANATO Entertainments began with four people and one shared belief: a great event creates an experience that stays with people. Bringing different strengths and perspectives together, our founders set out to build something they could grow with purpose.",
       "Our journey started with small events. Each one taught us more about audiences, artists, production, partnerships and the details that bring an experience to life. Those early experiences became the foundation of a passionate, growing team.",
       "Today, we bring that foundation to concerts, corporate events, celebrity meet & greets, celebrations and brand experiences. We are building Manato for the long term, with the ambition to take on bigger ideas, reach new audiences and earn trust through every experience we create."
     ],
@@ -319,7 +319,7 @@
       ],
       "submitLabel": "Continue to Email",
       "helperText": "This opens your email app with your enquiry filled in. Review it and select Send to contact us.",
-      "emailSubjectPrefix": "Website enquiry — Manato Entertainments",
+      "emailSubjectPrefix": "Website enquiry — MANATO Entertainments",
       "emailBodyTemplate": "Name: {name}\nEmail: {email}\n\nEnquiry:\n{message}",
       "emailOpenedMessage": "Your email app should now be open. Review and send your message to complete your enquiry."
     }
@@ -329,7 +329,7 @@
     "tagline": "Grand Stages | Golden Memories",
     "exploreHeading": "Explore",
     "contactHeading": "Connect With Manato",
-    "copyrightTemplate": "© {year} Manato Entertainments. All rights reserved.",
+    "copyrightTemplate": "© {year} MANATO Entertainments. All rights reserved.",
     "closingLine": "Dream Big. Create Experiences. Build a Legacy.",
     "location": null
   },

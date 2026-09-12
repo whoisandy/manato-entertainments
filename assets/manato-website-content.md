@@ -1,4 +1,4 @@
-# Manato Entertainments — Website Replacement Copy
+# MANATO Entertainments — Website Replacement Copy
 
 Prepared for [manatoentertainments.com](https://www.manatoentertainments.com/) · Live page reviewed 11 September 2026.
 
@@ -36,7 +36,7 @@ The existing website presents a narrower music-night concept and includes sample
 
 **Header button:** Plan an Event → #contact
 
-**Logo alternative text:** Manato Entertainments
+**Logo alternative text:** MANATO Entertainments
 
 **Mobile menu labels:** Open navigation / Close navigation
 
@@ -69,7 +69,7 @@ Editorial note: the first two highlights use facts from the brief. The other two
 
 **Heading:** Built on a Dream. Driven by a Team.
 
-Manato Entertainments began with four people and one shared belief: a great event creates an experience that stays with people. Bringing different strengths and perspectives together, our founders set out to build something they could grow with purpose.
+MANATO Entertainments began with four people and one shared belief: a great event creates an experience that stays with people. Bringing different strengths and perspectives together, our founders set out to build something they could grow with purpose.
 
 Our journey started with small events. Each one taught us more about audiences, artists, production, partnerships and the details that bring an experience to life. Those early experiences became the foundation of a passionate, growing team.
 
@@ -230,7 +230,7 @@ Send us a short introduction, your area of expertise, your location and links to
 
 **Optional message after opening the email app:** Your email app should now be open. Review and send your message to complete your enquiry.
 
-**Email subject prefix:** Website enquiry — Manato Entertainments
+**Email subject prefix:** Website enquiry — MANATO Entertainments
 
 | Validation case | Message                                                 |
 | --------------- | ------------------------------------------------------- |
@@ -264,7 +264,7 @@ The structured content file deliberately leaves contact values unset. These are 
 
 **Closing statement:** Dream Big. Create Experiences. Build a Legacy.
 
-**Copyright:** © 2026 Manato Entertainments. All rights reserved.
+**Copyright:** © 2026 MANATO Entertainments. All rights reserved.
 
 Reuse the same five navigation labels and destinations as the header. Show only verified contact details. Keep the copyright year current.
 
@@ -272,12 +272,12 @@ Reuse the same five navigation labels and destinations as the header. Show only 
 
 | Field | Replacement |
 | --- | --- |
-| Page title | Manato Entertainments \| Events & Entertainment |
+| Page title | MANATO Entertainments \| Events & Entertainment |
 | Meta description | Concerts, corporate events, celebrity meet & greets, celebrations and brand activations. Manato creates experiences that connect people. |
 | Canonical URL | https://www.manatoentertainments.com/ |
-| Social title | Manato Entertainments \| Where Entertainment Meets Experience |
+| Social title | MANATO Entertainments \| Where Entertainment Meets Experience |
 | Social description | Creating moments. Connecting people. Building a legacy. Discover concerts, celebrations, corporate events and brand experiences with Manato. |
-| Social image alternative text | Manato Entertainments — Grand Stages \| Golden Memories |
+| Social image alternative text | MANATO Entertainments — Grand Stages \| Golden Memories |
 
 Use the canonical URL shown above because the non-www address currently redirects to www. This is one page: the anchor sections do not need invented standalone page URLs. Use a complete, legible brand image for the social preview; the crown-only mark is suitable for a compact icon once a proper transparent export is available.
 
@@ -347,4 +347,4 @@ If founder portraits or biography cards are added, obtain all four names, their 
 
 Companion file: `manato-website-content.json`. Public copy is grouped by the existing section IDs. `_editorial` contains handoff notes and must not be rendered as website copy. `optionalSections` contains proposed additions. The contact fields are intentionally null until verified.
 
-Source: [current Manato Entertainments homepage](https://www.manatoentertainments.com/), retrieved 11 September 2026, and the company narrative supplied in this conversation. No live website changes or publication are represented by this document.
+Source: [current MANATO Entertainments homepage](https://www.manatoentertainments.com/), retrieved 11 September 2026, and the company narrative supplied in this conversation. No live website changes or publication are represented by this document.

@@ -31,16 +31,16 @@ export const metadata: Metadata = {
       "Creating moments. Connecting people. Building a legacy. Discover concerts, celebrations, corporate events and brand experiences with Manato.",
     images: [
       {
-        alt: "Manato Entertainments — Grand Stages | Golden Memories",
+        alt: "MANATO Entertainments — Grand Stages | Golden Memories",
         height: 1254,
         url: "/assets/manato-navy-no-sparkle.png",
         width: 1254,
       },
     ],
-    title: "Manato Entertainments | Where Entertainment Meets Experience",
+    title: "MANATO Entertainments | Where Entertainment Meets Experience",
     type: "website",
   },
-  title: "Manato Entertainments | Events & Entertainment",
+  title: "MANATO Entertainments | Events & Entertainment",
 };
 
 export const viewport: Viewport = {

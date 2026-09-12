@@ -6,7 +6,7 @@ import { audiences, eventFormats, featuredEvent } from "@/lib/content";
 export const Events = () => (
   <section
     aria-labelledby="events-title"
-    className="border-hairline scroll-mt-20 border-t md:scroll-mt-[88px]"
+    className="border-hairline section-glow section-glow-events scroll-mt-20 border-t md:scroll-mt-[88px]"
     id="events"
   >
     <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 md:py-28">
@@ -91,13 +91,13 @@ export const Events = () => (
           <ul className="mt-6">
             {eventFormats.map((format) => (
               <li
-                className="border-hairline hover:bg-panel -mx-2 grid grid-cols-[auto_1fr] items-baseline gap-x-4 gap-y-1 border-t px-2 py-5 transition-colors duration-200 md:grid-cols-[12rem_1fr]"
+                className="border-hairline hover:bg-panel -mx-2 grid grid-cols-1 items-baseline gap-x-4 gap-y-2 border-t px-2 py-5 transition-colors duration-200 md:grid-cols-[12rem_1fr]"
                 key={format.title}
               >
                 <h4 className="font-display text-bone text-xl">
                   {format.title}
                 </h4>
-                <p className="text-dust col-start-2 text-sm md:col-start-2">
+                <p className="text-dust text-sm md:col-start-2">
                   {format.body}
                 </p>
               </li>
