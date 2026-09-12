@@ -1,7 +1,6 @@
 import { ContactForm } from "@/components/contact-form";
 import { SectionHeading } from "@/components/primitives";
 import { Reveal } from "@/components/reveal";
-import { SocialButtons } from "@/components/social-buttons";
 import { site } from "@/lib/content";
 
 export const Contact = () => (
@@ -52,10 +51,15 @@ export const Contact = () => (
               </div>
               <div>
                 <dt className="text-crest-400 font-mono text-[13px] tracking-[0.05em] uppercase">
-                  Follow MANATO
+                  Call
                 </dt>
-                <dd className="mt-2">
-                  <SocialButtons />
+                <dd className="mt-1">
+                  <a
+                    className="text-bone hover:text-crest-300 transition-colors duration-200"
+                    href={`tel:${site.phone.replaceAll(" ", "")}`}
+                  >
+                    {site.phone}
+                  </a>
                 </dd>
               </div>
             </dl>
