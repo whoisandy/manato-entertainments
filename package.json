@@ -8,6 +8,7 @@
     "check": "ultracite check",
     "dev": "next dev",
     "doctor": "bunx react-doctor@latest",
+    "extract-logo": "bun scripts/extract-logo.ts",
     "fix": "ultracite fix",
     "lint": "ultracite check",
     "start": "next start"
