@@ -28,9 +28,14 @@ export const Hero = () => (
         <em className="text-crest-300 italic">Golden Memories</em>
       </h1>
 
-      <p className="text-shimmer mt-4 font-mono text-sm tracking-wider uppercase">
-        Creating Moments. Connecting People. Building a Legacy.
-      </p>
+      {/* Glass pill strapline — washed bone gradient + backdrop blur,
+          with the crest-gold shimmer text inside. rounded-full is a
+          documented exception to the 0-radius rule. */}
+      <span className="border-hairline-strong mt-4 inline-flex w-fit max-w-full items-center rounded-full border bg-[linear-gradient(135deg,rgba(247,248,252,0.22),rgba(247,248,252,0.07))] px-3 py-2.5 backdrop-blur-lg sm:px-5">
+        <span className="text-shimmer text-[11px] tracking-normal sm:text-sm sm:tracking-wide">
+          Creating Moments. Connecting People. Building a Legacy.
+        </span>
+      </span>
 
       <p className="text-ash mt-8 max-w-2xl text-lg leading-relaxed">
         From intimate celebrations to live concerts, corporate events and brand
