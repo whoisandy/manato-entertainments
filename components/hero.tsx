@@ -22,10 +22,11 @@ export const Hero = () => (
         className="font-display text-bone mt-6 max-w-4xl text-[clamp(2.75rem,6vw,4.5rem)] leading-[1.08] tracking-[-0.02em]"
         id="hero-title"
       >
-        Grand Stages, <em className="text-crest-300 italic">Golden Memories</em>
+        Grand Stages, <br />
+        <em className="text-crest-300 italic">Golden Memories</em>
       </h1>
 
-      <p className="text-shimmer mt-4 font-mono text-sm tracking-[0.05em] uppercase">
+      <p className="text-shimmer mt-4 font-mono text-sm tracking-wider uppercase">
         Creating Moments. Connecting People. Building a Legacy.
       </p>
 
