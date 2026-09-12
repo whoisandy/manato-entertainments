@@ -18,6 +18,13 @@ export const Contact = () => (
     >
       <ParticleNetwork intensity={0.65} />
     </div>
+    {/* Stage light pooled at the section's bottom edge — the footer band's
+        radial treatment, moved up as an overlay so it plays over the
+        particle field instead of the footer carrying it (DESIGN.md §5). */}
+    <div
+      aria-hidden="true"
+      className="section-fx pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-[radial-gradient(35%_128px_at_50%_100%,rgba(247,248,252,0.08),transparent)]"
+    />
     <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 md:py-28">
       <div className="grid gap-12 md:grid-cols-2 md:gap-16">
         <Reveal>
@@ -46,7 +53,7 @@ export const Contact = () => (
 
             <dl className="mt-12 space-y-8">
               <div>
-                <dt className="text-crest-400 font-mono text-[13px] tracking-[0.05em] uppercase">
+                <dt className="text-crest-400 text-[13px] tracking-[0.05em] uppercase">
                   Email
                 </dt>
                 <dd className="mt-1">
@@ -59,7 +66,7 @@ export const Contact = () => (
                 </dd>
               </div>
               <div>
-                <dt className="text-crest-400 font-mono text-[13px] tracking-[0.05em] uppercase">
+                <dt className="text-crest-400 text-[13px] tracking-[0.05em] uppercase">
                   Call
                 </dt>
                 <dd className="mt-1">
