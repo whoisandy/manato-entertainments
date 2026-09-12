@@ -1,4 +1,5 @@
 import { ContactForm } from "@/components/contact-form";
+import { ParticleNetwork } from "@/components/particle-network";
 import { SectionHeading } from "@/components/primitives";
 import { Reveal } from "@/components/reveal";
 import { site } from "@/lib/content";
@@ -9,6 +10,14 @@ export const Contact = () => (
     className="border-hairline section-glow section-glow-contact scroll-mt-20 border-t md:scroll-mt-[88px]"
     id="contact"
   >
+    {/* Quiet counterweight to the About strip: a subtle particle field
+        fading upward from the section's bottom edge (DESIGN.md §5). */}
+    <div
+      aria-hidden="true"
+      className="section-fx mask-fade-t pointer-events-none absolute inset-x-0 bottom-0 h-64 md:h-80"
+    >
+      <ParticleNetwork intensity={0.65} />
+    </div>
     <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 md:py-28">
       <div className="grid gap-12 md:grid-cols-2 md:gap-16">
         <Reveal>
