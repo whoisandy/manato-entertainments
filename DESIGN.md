@@ -105,6 +105,7 @@ Dark-only site. No light mode.
 
 - **Structure**: `<a>`/`<button>` inline-flex, px-7 py-3.5, radius 0 (sharp — Vervee), text-sm font-medium tracking-wide.
 - **Variants**: `primary` — bone bg, navy text, hover crest-400 bg; `ghost` — 1px hairline-strong border, bone text, hover crest border+text; `quiet` — text link, bone → crest-300, 40px min height.
+- **Icons**: main action CTAs carry a leading lucide glyph (`size-4`, `currentColor`, inherits the button's text color) — calendar family for planning actions, `ArrowRight` for forward/secondary actions. Icons are decorative (`aria-hidden` via lucide default) — the label alone is read.
 - **States**: default/hover (200ms)/active scale(0.98)/focus-visible 2px crest-400 outline offset-3.
 - **Accessibility**: real `<a href>`/`<button>`; min 44px touch height.
 - **Motion**: background-color+transform 200ms.

@@ -1,3 +1,5 @@
+import { ArrowRightIcon, CalendarPlusIcon } from "lucide-react";
+
 import { HeroBackdrop } from "@/components/hero-backdrop";
 import { Kicker } from "@/components/primitives";
 import { StageDust } from "@/components/stage-dust";
@@ -42,12 +44,14 @@ export const Hero = () => (
           href="#contact"
           className={`${buttonClass("primary")} w-full justify-center sm:w-auto`}
         >
+          <CalendarPlusIcon aria-hidden="true" className="size-4" />
           Plan an Event
         </a>
         <a
           href="#events"
           className={`${buttonClass("ghost")} w-full justify-center sm:w-auto`}
         >
+          <ArrowRightIcon aria-hidden="true" className="size-4" />
           Explore Our Experiences
         </a>
       </div>

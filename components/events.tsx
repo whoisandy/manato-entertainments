@@ -1,3 +1,5 @@
+import { CalendarPlusIcon } from "lucide-react";
+
 import { SectionHeading } from "@/components/primitives";
 import { Reveal } from "@/components/reveal";
 import { buttonClass } from "@/lib/button";
@@ -48,6 +50,7 @@ export const Events = () => (
             </ul>
             <div className="mt-10 flex flex-wrap gap-4">
               <a href="#contact" className={buttonClass("primary")}>
+                <CalendarPlusIcon aria-hidden="true" className="size-4" />
                 Plan a Live Event
               </a>
             </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowRightIcon } from "lucide-react";
 import type { FormEvent } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -69,7 +70,8 @@ export const ContactForm = () => (
         />
       </div>
       <Button type="submit" className="w-full sm:w-auto">
-        Start a Conversation <span aria-hidden="true">→</span>
+        Start a Conversation
+        <ArrowRightIcon aria-hidden="true" className="size-4" />
       </Button>
       <p className="text-dust text-sm">
         This opens your email app with your enquiry filled in. Review it and
