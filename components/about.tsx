@@ -1,13 +1,13 @@
 import { LightBeams } from "@/components/light-beams";
 import { SectionHeading } from "@/components/primitives";
-import { Reveal } from "@/components/reveal";
+import { Reveal, Stagger, StaggerItem } from "@/components/reveal";
 import { SectionFloorLight } from "@/components/section-floor-light";
 import { differenceSteps } from "@/lib/content";
 
 export const About = () => (
   <section
     aria-labelledby="about-title"
-    className="border-hairline section-glow section-glow-about scroll-mt-20 border-t md:scroll-mt-[88px]"
+    className="border-hairline section-glow section-glow-about border-t"
     id="about"
   >
     {/* Signature atmosphere: a beam field flowing top → bottom, left →
@@ -18,14 +18,14 @@ export const About = () => (
     />
     <div
       aria-hidden="true"
-      className="section-fx mask-fade-b pointer-events-none absolute inset-x-0 top-0 h-72 md:h-[28rem]"
+      className="section-fx mask-fade-b pointer-events-none absolute inset-x-0 top-0 h-72 md:h-112"
     >
       <LightBeams />
     </div>
     {/* Floor light at the section's bottom edge — quiet separation from
         the next section, mirroring the top pool at lower alpha. */}
     <SectionFloorLight />
-    <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 md:py-28">
+    <div className="mx-auto w-full max-w-6xl px-4 pt-12 pb-20 sm:px-6 md:pt-20 md:pb-28">
       <Reveal>
         <SectionHeading
           id="about-title"
@@ -74,16 +74,18 @@ export const About = () => (
 
         <Reveal delay={120}>
           <div>
-            <h3 className="text-crest-400 text-[13px] tracking-[0.05em] uppercase">
+            <h3 className="text-crest-400 text-[13px] tracking-wider uppercase">
               The MANATO Difference
             </h3>
-            <ul className="mt-6">
-              {differenceSteps.map((step) => (
-                <li
-                  className="border-hairline grid grid-cols-[3rem_1fr] gap-x-4 border-t py-6 first:border-t-0 first:pt-0"
+            <Stagger as="ul" className="mt-6">
+              {differenceSteps.map((step, index) => (
+                <StaggerItem
+                  as="li"
+                  index={index}
+                  className="border-hairline grid grid-cols-[3rem_1fr] items-baseline gap-x-4 border-t py-6 first:border-t-0 first:pt-0"
                   key={step.index}
                 >
-                  <span className="text-crest-400 text-[13px] tracking-[0.05em]">
+                  <span className="text-crest-400 text-[13px] tracking-wider">
                     {step.index}
                   </span>
                   <div>
@@ -94,9 +96,9 @@ export const About = () => (
                       {step.body}
                     </p>
                   </div>
-                </li>
+                </StaggerItem>
               ))}
-            </ul>
+            </Stagger>
           </div>
         </Reveal>
       </div>

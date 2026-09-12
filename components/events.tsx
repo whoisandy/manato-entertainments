@@ -2,7 +2,7 @@ import { CalendarPlusIcon } from "lucide-react";
 
 import { DottedGlowCorner } from "@/components/dotted-glow";
 import { SectionHeading } from "@/components/primitives";
-import { Reveal } from "@/components/reveal";
+import { Reveal, Stagger, StaggerItem } from "@/components/reveal";
 import { SectionFloorLight } from "@/components/section-floor-light";
 import { buttonClass } from "@/lib/button";
 import { audiences, eventFormats, featuredEvent } from "@/lib/content";
@@ -10,11 +10,11 @@ import { audiences, eventFormats, featuredEvent } from "@/lib/content";
 export const Events = () => (
   <section
     aria-labelledby="events-title"
-    className="border-hairline section-glow section-glow-events scroll-mt-20 border-t md:scroll-mt-[88px]"
+    className="border-hairline section-glow section-glow-events border-t"
     id="events"
   >
     <SectionFloorLight />
-    <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 md:py-28">
+    <div className="mx-auto w-full max-w-6xl px-4 pt-12 pb-20 sm:px-6 md:pt-20 md:pb-28">
       <Reveal>
         <SectionHeading
           id="events-title"
@@ -45,16 +45,18 @@ export const Events = () => (
             <p className="text-ash mt-6 text-base leading-relaxed">
               {featuredEvent.description}
             </p>
-            <ul className="mt-8 flex flex-wrap gap-3">
-              {featuredEvent.meta.map((chip) => (
-                <li
+            <Stagger as="ul" className="mt-8 flex flex-wrap gap-3" delay={200}>
+              {featuredEvent.meta.map((chip, chipIndex) => (
+                <StaggerItem
+                  as="li"
+                  index={chipIndex}
                   className="border-hairline bg-crest-wash text-crest-300 border px-3 py-1.5 text-[13px] tracking-[0.05em]"
                   key={chip.label}
                 >
                   {chip.label}
-                </li>
+                </StaggerItem>
               ))}
-            </ul>
+            </Stagger>
             <div className="mt-10 flex flex-wrap gap-4">
               <a href="#contact" className={buttonClass("primary")}>
                 <CalendarPlusIcon aria-hidden="true" className="size-4" />
@@ -68,10 +70,12 @@ export const Events = () => (
             <h4 className="text-crest-400 text-[13px] tracking-[0.05em] uppercase">
               Who We Create For
             </h4>
-            <ol className="mt-4">
+            <Stagger as="ol" className="mt-4">
               {audiences.map((entry, index) => (
-                <li
-                  className="border-hairline flex items-baseline gap-4 border-t py-4 first:border-t-0 first:pt-2"
+                <StaggerItem
+                  as="li"
+                  index={index}
+                  className="border-hairline grid grid-cols-[3rem_1fr] items-baseline gap-x-4 border-t py-4 first:border-t-0 first:pt-2"
                   key={entry.title}
                 >
                   <span className="text-crest-400 text-[13px] tracking-[0.05em]">
@@ -83,9 +87,9 @@ export const Events = () => (
                     </p>
                     <p className="text-ash mt-1 text-sm">{entry.body}</p>
                   </div>
-                </li>
+                </StaggerItem>
               ))}
-            </ol>
+            </Stagger>
             <p className="text-dust mt-6 text-sm">
               An event begins with an idea. It comes alive through people.
             </p>
@@ -93,31 +97,31 @@ export const Events = () => (
         </article>
       </Reveal>
 
-      <Reveal delay={120}>
-        <div className="mt-16 md:mt-20">
+      <Stagger as="div" className="mt-16 md:mt-20" delay={120}>
+        <StaggerItem index={0}>
           <h3 className="text-crest-400 text-[13px] tracking-[0.05em] uppercase">
             More Ways to Create an Experience
           </h3>
-          <ul className="mt-6">
-            {eventFormats.map((format) => (
-              <li
-                className="border-hairline hover:bg-panel -mx-2 grid grid-cols-1 items-baseline gap-x-4 gap-y-2 border-t px-2 py-5 transition-colors duration-200 md:grid-cols-[12rem_1fr]"
-                key={format.title}
-              >
-                <h4 className="font-display text-bone text-xl">
-                  {format.title}
-                </h4>
-                <p className="text-dust text-sm md:col-start-2">
-                  {format.body}
-                </p>
-              </li>
-            ))}
-          </ul>
+        </StaggerItem>
+        <ul className="mt-6">
+          {eventFormats.map((format, index) => (
+            <StaggerItem
+              as="li"
+              index={index + 1}
+              className="border-hairline hover:bg-panel -mx-2 grid grid-cols-1 items-baseline gap-x-4 gap-y-2 border-t px-2 py-5 transition-colors duration-200 md:grid-cols-[12rem_1fr]"
+              key={format.title}
+            >
+              <h4 className="font-display text-bone text-xl">{format.title}</h4>
+              <p className="text-dust text-sm md:col-start-2">{format.body}</p>
+            </StaggerItem>
+          ))}
+        </ul>
+        <StaggerItem index={eventFormats.length + 1}>
           <p className="text-crest-300 font-display mt-10 text-lg italic">
             Think Bigger. Plan Smarter. Execute Better.
           </p>
-        </div>
-      </Reveal>
+        </StaggerItem>
+      </Stagger>
     </div>
   </section>
 );
