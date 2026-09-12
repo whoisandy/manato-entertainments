@@ -48,10 +48,10 @@ export interface Photo {
 export interface VideoItem {
   id: string;
   title: string;
-  /** Video source URL — optional for placeholder entries. */
-  src?: string;
-  /** Poster image URL — optional for placeholder entries. */
-  poster?: string;
+  /** Video source URL — real self-hosted clips (deterministically named). */
+  src: string;
+  /** Poster image URL — real frame extracted from the clip (ffmpeg). */
+  poster: string;
 }
 
 export interface FaqItem {
@@ -257,16 +257,64 @@ export const heroPhotos: Photo[] = [
   photos[4],
 ];
 
-/** Video placeholders — swap in src/poster when the mp4s arrive. */
+/** Brand event videos (user-supplied, 2026-09-12), deterministically named
+ *  01–09 in public/videos. Posters are real frames extracted from the files
+ *  at 25% duration (ffmpeg, scale 960, q3) into public/videos/posters. */
 export const videos: VideoItem[] = [
-  { id: "v01", title: "Concert film" },
-  { id: "v02", title: "Event highlights" },
-  { id: "v03", title: "Behind the scenes" },
-  { id: "v04", title: "Artist stories" },
-  { id: "v05", title: "Festival aftermovie" },
-  { id: "v06", title: "Brand experience" },
-  { id: "v07", title: "Celebration reel" },
-  { id: "v08", title: "Corporate showcase" },
+  {
+    id: "v01",
+    poster: "/videos/posters/01.jpg",
+    src: "/videos/01.mp4",
+    title: "Concert film",
+  },
+  {
+    id: "v02",
+    poster: "/videos/posters/02.jpg",
+    src: "/videos/02.mp4",
+    title: "Event highlights",
+  },
+  {
+    id: "v03",
+    poster: "/videos/posters/03.jpg",
+    src: "/videos/03.mp4",
+    title: "Behind the scenes",
+  },
+  {
+    id: "v04",
+    poster: "/videos/posters/04.jpg",
+    src: "/videos/04.mp4",
+    title: "Artist stories",
+  },
+  {
+    id: "v05",
+    poster: "/videos/posters/05.jpg",
+    src: "/videos/05.mp4",
+    title: "Festival aftermovie",
+  },
+  {
+    id: "v06",
+    poster: "/videos/posters/06.jpg",
+    src: "/videos/06.mp4",
+    title: "Brand experience",
+  },
+  {
+    id: "v07",
+    poster: "/videos/posters/07.jpg",
+    src: "/videos/07.mp4",
+    title: "Celebration reel",
+  },
+  {
+    id: "v08",
+    poster: "/videos/posters/08.jpg",
+    src: "/videos/08.mp4",
+    title: "Corporate showcase",
+  },
+  {
+    id: "v09",
+    poster: "/videos/posters/09.jpg",
+    src: "/videos/09.mp4",
+    title: "Family moments",
+  },
 ];
 
 export const faqs: FaqItem[] = [
