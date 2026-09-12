@@ -209,7 +209,8 @@
   inset: -20%;
   opacity: 0.55;
   background: radial-gradient(
-    ellipse 65% 55% at var(--glow-x, 50%) var(--glow-y, 50%),
+    ellipse var(--glow-rx, 65%) var(--glow-ry, 55%) at var(--glow-x, 50%)
+      var(--glow-y, 50%),
     var(--glow-color, rgba(247, 248, 252, 0.14)) 0%,
     transparent 70%
   );
@@ -225,11 +226,43 @@
   z-index: 1;
 }
 
+/* Atmosphere layers (e.g. the About particle strip) stay full-bleed
+   absolute overlays beneath the content instead of the default
+   relative z-1 flow position applied to section children. */
+.section-glow > .section-fx {
+  position: absolute;
+  z-index: 0;
+}
+
+/* Same exemption inside the featured-event card: .border-beam > * pins
+   children at relative z-2 above the beam's panel-interior ::before; the
+   dotted-glow corner layer must sit absolute at that same level (first in
+   DOM, so card content paints above it). */
+.border-beam > .section-fx {
+  position: absolute;
+  z-index: 2;
+}
+
+/* Fade a decorative strip to transparent toward its lower edge
+   (prefixed for engines still requiring -webkit-mask-image). */
+.mask-fade-b {
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 94%);
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 94%);
+}
+
+/* Mirror of .mask-fade-b for strips anchored to a section's bottom edge. */
+.mask-fade-t {
+  -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 94%);
+  mask-image: linear-gradient(to top, #000 0%, transparent 94%);
+}
+
 /* Placement + color modifiers */
+/* About: the top-edge light pool is a dedicated element in about.tsx
+   (mirroring the footer band's gradient exactly — the shared ::before
+   layer's -20% inset places pool cores off-section, so the diffuse wash
+   is neutralized here to let the dedicated pool stand alone). */
 .section-glow-about {
-  --glow-x: 15%;
-  --glow-y: 20%;
-  --glow-color: rgba(247, 248, 252, 0.1);
+  --glow-color: transparent;
 }
 
 .section-glow-events {
