@@ -7,11 +7,8 @@ import { navLinks, site } from "@/lib/content";
 
 export const SiteFooter = () => (
   <footer className="border-hairline relative overflow-hidden border-t">
-    {/* Stage light falling on the floor from above the footer edge. */}
-    <div
-      aria-hidden="true"
-      className="absolute inset-x-0 top-0 h-32 bg-[radial-gradient(35%_128px_at_50%_0%,rgba(247,248,252,0.08),transparent)]"
-    />
+    {/* The stage light that used to fall from the footer's top edge now
+        lives as an overlay at the bottom of the Contact section above. */}
     <StageDust
       className="absolute inset-x-0 bottom-0 h-28 md:h-36"
       density={22}
@@ -21,7 +18,7 @@ export const SiteFooter = () => (
     <div className="relative mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 md:py-16">
       <div className="grid gap-10 md:grid-cols-[1fr_1fr_1.5fr]">
         <AnimatedContainer className="flex flex-col" delay={0.1}>
-          <h3 className="text-crest-400 font-mono text-[13px] tracking-[0.05em] uppercase">
+          <h3 className="text-crest-400 text-[13px] tracking-[0.05em] uppercase">
             Connect With MANATO
           </h3>
           <ul className="text-ash mt-4 space-y-3 text-sm">
@@ -52,7 +49,7 @@ export const SiteFooter = () => (
 
         <AnimatedContainer className="flex flex-col" delay={0.2}>
           <nav aria-label="Footer">
-            <h3 className="text-crest-400 font-mono text-[13px] tracking-[0.05em] uppercase">
+            <h3 className="text-crest-400 text-[13px] tracking-[0.05em] uppercase">
               Explore
             </h3>
             <ul className="mt-4 space-y-3">
@@ -93,7 +90,7 @@ export const SiteFooter = () => (
         Mobile keeps just the copyright line, left-aligned and compact. */}
     <div className="bg-panel border-hairline relative border-t">
       <AnimatedContainer delay={0.4}>
-        <div className="text-dust mx-auto flex w-full max-w-6xl flex-col gap-1 px-4 py-4 font-mono text-[10px] sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-6 md:text-xs">
+        <div className="text-dust mx-auto flex w-full max-w-6xl flex-col gap-1 px-4 py-4 text-[10px] sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-6 md:text-xs">
           <p>© 2026 MANATO Entertainments. All rights reserved.</p>
           <p className="hidden sm:block">{site.brandStatement}</p>
         </div>

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, Geist } from "next/font/google";
 import Script from "next/script";
 
 import { LazyMotionProvider } from "@/components/lazy-motion-provider";
@@ -15,11 +15,6 @@ const fraunces = Fraunces({
 const geistSans = Geist({
   subsets: ["latin"],
   variable: "--font-geist-sans",
-});
-
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
 });
 
 export const metadata: Metadata = {
@@ -50,7 +45,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      className={`${fraunces.variable} ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${fraunces.variable} ${geistSans.variable} h-full antialiased`}
       lang="en"
     >
       <head>

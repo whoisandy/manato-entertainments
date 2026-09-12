@@ -133,7 +133,7 @@ export const Gallery = ({ images }: GalleryProps) => {
                 </div>
                 <figcaption className="mt-5 flex w-full flex-col items-center gap-1 text-center">
                   <p className="text-ash text-sm">{image.alt}</p>
-                  <p className="text-crest-400 font-mono text-[13px] tracking-[0.05em]">
+                  <p className="text-crest-400 text-[13px] tracking-[0.05em]">
                     Photo {(openIndex ?? 0) + 1} of {images.length}
                   </p>
                 </figcaption>

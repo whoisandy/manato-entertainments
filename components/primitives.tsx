@@ -12,7 +12,7 @@ export const Kicker = ({
   <p className="text-crest-400 flex items-center gap-3 text-[11px] font-semibold tracking-[0.22em] uppercase">
     <span aria-hidden="true" className="bg-crest-500 h-px w-6" />
     {index ? (
-      <span className="text-crest-400 font-mono text-[13px] tracking-[0.05em]">
+      <span className="text-crest-400 text-[13px] tracking-[0.05em]">
         {index}
       </span>
     ) : null}
