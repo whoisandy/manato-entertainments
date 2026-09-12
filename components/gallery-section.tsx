@@ -1,7 +1,7 @@
-import { Gallery } from "@/components/gallery";
+import { GalleryTabs } from "@/components/gallery-tabs";
 import { SectionHeading } from "@/components/primitives";
 import { Reveal } from "@/components/reveal";
-import { photos } from "@/lib/content";
+import { photos, videos } from "@/lib/content";
 
 export const GallerySection = () => (
   <section
@@ -13,17 +13,14 @@ export const GallerySection = () => (
       <Reveal>
         <SectionHeading
           id="gallery-title"
-          kicker="The Manato Gallery"
+          kicker="The MANATO Gallery"
           lead="A glimpse into the people, connections and shared moments behind Manato. Explore the gallery for a closer look at our journey."
           title="Moments"
           accent="That Bring Us Together"
         />
       </Reveal>
-      <Reveal delay={60}>
-        <p className="text-dust mb-6 text-sm">Select an image to view it.</p>
-      </Reveal>
       <Reveal delay={120}>
-        <Gallery images={photos} />
+        <GalleryTabs images={photos} videos={videos} />
       </Reveal>
     </div>
   </section>

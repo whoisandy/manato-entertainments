@@ -138,6 +138,15 @@ Dark-only site. No light mode.
 - **Accessibility**: aria-label "Open photo N: {caption}"; images always have alt.
 - **Motion**: 200ms transform/border-color.
 
+### GalleryTabs / TabPills
+
+- **Structure**: shadcn/Base UI Tabs (`Tabs`, `TabsList`, `TabsTrigger`, `TabsContent`) inside the gallery section. Two tabs: "Photos" (default) and "Videos". The tab list is a single hairline-bordered container (`border-hairline`, `bg-transparent` or `bg-panel`) holding two pill-shaped triggers.
+- **Tokens**: active pill uses `--color-bone` background with `--color-stage` text (primary button signature); inactive pill is transparent with `--color-ash` text, hover → `--color-bone` text; focus-visible = 2px `--color-silver-400` outline, 3px offset per the focus contract. Container border uses `--color-hairline`.
+- **States**: default/hover (200ms ease-in-out)/active (`scale(0.98)`)/focus-visible. Tab switch is instant (no cross-fade on content — Base UI handles roving tabindex and arrow-key navigation).
+- **Accessibility**: Base UI Tabs provides roving `tabindex`, ←/→ arrow-key switching, and `aria-selected` out of the box. Each `TabsTrigger` has `aria-controls` pointing to its `TabsContent` panel. Photos tab content is the existing photo grid + lightbox (keyboard ←/→/Esc, focus trap, focus return unchanged). Videos tab content is decorative placeholder cards marked with `aria-label="Video placeholder"`.
+- **Motion**: background-color + color transitions 200ms ease-in-out on pills. No animation on tab content swap.
+- **Accepted deviation**: The stakeholder explicitly requested pill-shaped tabs, so `TabsTrigger` uses `rounded-full` as a documented exception to the site-wide 0-radius sharp-edge rule. This is the only rounded element on the page.
+
 ### Lightbox (client)
 
 - **Structure**: fixed inset-0 scrim (black/92 + blur), centered figure (image max-h-[82dvh] w-auto), caption + mono counter "3 / 10" bottom, chevron IconBtns mid-sides (≥48px), close top-right, all radius 0, panel borders hairline.

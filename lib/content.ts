@@ -45,6 +45,15 @@ export interface Photo {
   orientation: "landscape" | "portrait";
 }
 
+export interface VideoItem {
+  id: string;
+  title: string;
+  /** Video source URL — optional for placeholder entries. */
+  src?: string;
+  /** Poster image URL — optional for placeholder entries. */
+  poster?: string;
+}
+
 export interface FaqItem {
   question: string;
   answer: string;
@@ -246,6 +255,18 @@ export const heroPhotos: Photo[] = [
   photos[8],
   photos[9],
   photos[4],
+];
+
+/** Video placeholders — swap in src/poster when the mp4s arrive. */
+export const videos: VideoItem[] = [
+  { id: "v01", title: "Concert film" },
+  { id: "v02", title: "Event highlights" },
+  { id: "v03", title: "Behind the scenes" },
+  { id: "v04", title: "Artist stories" },
+  { id: "v05", title: "Festival aftermovie" },
+  { id: "v06", title: "Brand experience" },
+  { id: "v07", title: "Celebration reel" },
+  { id: "v08", title: "Corporate showcase" },
 ];
 
 export const faqs: FaqItem[] = [
