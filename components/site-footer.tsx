@@ -89,12 +89,13 @@ export const SiteFooter = () => (
       </div>
     </div>
 
-    {/* Full-width closing band: bold navy floor with subtle mono text. */}
+    {/* Full-width closing band: bold navy floor with subtle mono text.
+        Mobile keeps just the copyright line, left-aligned and compact. */}
     <div className="bg-panel border-hairline relative border-t">
       <AnimatedContainer delay={0.4}>
-        <div className="text-dust mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 py-6 font-mono text-xs sm:flex-row sm:items-center sm:justify-between sm:px-6">
+        <div className="text-dust mx-auto flex w-full max-w-6xl flex-col gap-1 px-4 py-4 font-mono text-[10px] sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-6 md:text-xs">
           <p>© 2026 MANATO Entertainments. All rights reserved.</p>
-          <p>{site.brandStatement}</p>
+          <p className="hidden sm:block">{site.brandStatement}</p>
         </div>
       </AnimatedContainer>
     </div>
