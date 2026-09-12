@@ -1,20 +1,21 @@
 import { SectionHeading } from "@/components/primitives";
 import { Reveal } from "@/components/reveal";
-import { buildSteps } from "@/lib/content";
+import { differenceSteps } from "@/lib/content";
 
 export const About = () => (
   <section
     aria-labelledby="about-title"
-    className="border-hairline scroll-mt-24 border-t"
+    className="border-hairline scroll-mt-20 border-t md:scroll-mt-[88px]"
     id="about"
   >
     <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 md:py-28">
       <Reveal>
         <SectionHeading
           id="about-title"
-          kicker="Who we are"
-          lead="Manato Entertainments is a live music house. We don't book acts and hope for the best — we build each evening around a single theme, and hand it to singers who carry it from first song to encore."
-          title="Evenings built like concerts, not playlists."
+          kicker="Get to Know Us"
+          lead="Manato Entertainments began with four people and one shared belief: a great event creates an experience that stays with people."
+          title="Built on a Dream."
+          accent="Driven by a Team."
         />
       </Reveal>
 
@@ -22,36 +23,40 @@ export const About = () => (
         <Reveal>
           <div className="text-ash space-y-6 text-base leading-relaxed">
             <p>
-              Every Manato night honours one body of music. It might be the film
-              songs of a single composer, a golden era of two studios, or two
-              maestros — Ilaiyaraaja and A. R. Rahman — sharing one stage for a
-              night.
+              Bringing different strengths and perspectives together, our
+              founders set out to build something they could grow with purpose.
             </p>
             <p>
-              Twenty to thirty songs per theme. Every song sung live by our
-              hand-picked singers, and every song that was born a duet is sung
-              as a duet, with a co-singer on stage. Nothing is playback. Nothing
-              is filler.
+              Our journey started with small events. Each one taught us more
+              about audiences, artists, production, partnerships and the details
+              that bring an experience to life. Those early experiences became
+              the foundation of a passionate, growing team.
             </p>
-            <p className="border-gold-500 font-display text-bone border-l-2 pl-5 text-lg italic">
-              &ldquo;We don&apos;t stage playlists. We stage the songs people
-              ask for on their way home.&rdquo;
+            <p>
+              Today, we bring that foundation to concerts, corporate events,
+              celebrity meet &amp; greets, celebrations and brand experiences.
+              We are building Manato for the long term, with the ambition to
+              take on bigger ideas, reach new audiences and earn trust through
+              every experience we create.
+            </p>
+            <p className="border-crest-500 font-display text-bone border-l-2 pl-5 text-lg italic">
+              &ldquo;Our journey is still young. Our vision is not.&rdquo;
             </p>
           </div>
         </Reveal>
 
         <Reveal delay={120}>
           <div>
-            <h3 className="text-gold-400 font-mono text-[13px] tracking-[0.05em] uppercase">
-              How a Manato night is built
+            <h3 className="text-crest-400 font-mono text-[13px] tracking-[0.05em] uppercase">
+              The Manato Difference
             </h3>
             <ul className="mt-6">
-              {buildSteps.map((step) => (
+              {differenceSteps.map((step) => (
                 <li
                   className="border-hairline grid grid-cols-[3rem_1fr] gap-x-4 border-t py-6 first:border-t-0 first:pt-0"
                   key={step.index}
                 >
-                  <span className="text-gold-400 font-mono text-[13px] tracking-[0.05em]">
+                  <span className="text-crest-400 font-mono text-[13px] tracking-[0.05em]">
                     {step.index}
                   </span>
                   <div>
