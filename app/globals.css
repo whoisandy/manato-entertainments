@@ -33,7 +33,19 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Header offset lives on the ROOT scroller: the sections carry
+       `overflow: hidden` (section-glow), which turns each into a scroll
+       container and makes Chromium ignore the target's own
+       scroll-margin-top on anchor scrolls. Root scroll-padding is immune
+       and keeps section borders flush under the fixed header. */
+    scroll-padding-top: 80px;
     @apply font-sans;
+  }
+
+  @media (min-width: 768px) {
+    html {
+      scroll-padding-top: 88px;
+    }
   }
 
   body {
@@ -253,6 +265,47 @@
 .mask-fade-t {
   -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 94%);
   mask-image: linear-gradient(to top, #000 0%, transparent 94%);
+}
+
+/* Gallery lightbox: the vendored Dialog renders its Backdrop as a sibling
+   of the popup inside the portal, so the deepen-to-template look (the
+   starter's bg-black/70 + backdrop-blur-2xl, navy-keyed) is keyed off the
+   popup's .gallery-lightbox class via :has() — no vendored edits. Both
+   layers sit at z-70 so the lightbox covers the z-60 site header. */
+body:has([data-slot="dialog-content"].gallery-lightbox)
+  [data-slot="dialog-overlay"] {
+  z-index: 70;
+  background-color: color-mix(in srgb, var(--color-stage) 78%, transparent);
+  /* Standard property only — authoring the -webkit- alias alongside makes
+     Lightning CSS downlevel to the alias, which Chrome ignores. */
+  backdrop-filter: blur(28px);
+}
+
+body:has([data-slot="dialog-content"].gallery-lightbox)
+  [data-slot="dialog-content"].gallery-lightbox {
+  z-index: 70;
+}
+
+/* Video lightbox (media-chrome): theme the player chrome onto the navy
+   palette — buttons carry a hairline ring, the progress bar reads as the
+   crest hairline, and icons render bone. Vars are set on media-controller
+   so shadow-DOM parts inherit them. */
+body:has([data-slot="dialog-content"].gallery-lightbox) media-controller {
+  --media-control-background: rgba(1, 15, 41, 0.85);
+  --media-control-hover-background: rgba(1, 15, 41, 0.95);
+  --media-icon-color: var(--color-bone);
+  --media-icon-hover-color: var(--color-silver-300);
+  --media-time-buffered-color: rgba(182, 192, 216, 0.35);
+  --media-range-track-background: rgba(247, 248, 252, 0.14);
+  --media-range-bar-color: var(--color-crest-500);
+  --media-font: var(--font-geist-sans), sans-serif;
+  --media-font-size: 13px;
+  --media-button-border-radius: 0px;
+}
+
+body:has([data-slot="dialog-content"].gallery-lightbox) media-control-bar {
+  --media-control-background: transparent;
+  background: color-mix(in srgb, var(--color-stage) 72%, transparent);
 }
 
 /* Placement + color modifiers */
