@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { m, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -10,13 +10,15 @@ const CYCLE_MS = 6000;
 const CROSSFADE_MS = 1.2;
 
 /**
- * Full-bleed cycling photo backdrop (Vervee-style): brand photos cross-fade
- * under a stage-colored scrim that keeps the headline legible. First photo
- * is priority-preloaded; the cycle pauses under prefers-reduced-motion.
+ * Vervee/Vibe-style cycling photo backdrop: a photo panel hugging the right
+ * on md+ (full-bleed on mobile), blended into the stage by a left-edge dark
+ * gradient. All photos stay mounted as stacked layers and cross-fade via
+ * opacity — no mount churn, the priority preload stays consumed, and the
+ * cycle images pre-decode. The cycle pauses under prefers-reduced-motion.
  */
 export const HeroBackdrop = () => {
   const [index, setIndex] = useState(0);
-  const [hasCycled, setHasCycled] = useState(false);
+  const [auxLayersMounted, setAuxLayersMounted] = useState(false);
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
@@ -25,39 +27,55 @@ export const HeroBackdrop = () => {
     }
     const timer = setInterval(() => {
       setIndex((current) => (current + 1) % heroPhotos.length);
-      setHasCycled(true);
     }, CYCLE_MS);
     return () => clearInterval(timer);
   }, [reduceMotion]);
 
-  const photo = heroPhotos[index] ?? heroPhotos[0];
-  if (!photo) {
+  // Keep the wire clear for the LCP image: the first photo mounts with the
+  // page; the remaining layers mount a beat later, still well before the
+  // 6s first crossfade so they arrive pre-decoded.
+  useEffect(() => {
+    const timer = setTimeout(() => setAuxLayersMounted(true), 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (heroPhotos.length === 0) {
     return null;
   }
 
   return (
-    <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
-      <AnimatePresence initial={false}>
-        <motion.div
-          key={photo.src}
-          className="absolute inset-0"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: CROSSFADE_MS, ease: "easeInOut" }}
-        >
-          <Image
-            src={photo.src}
-            alt=""
-            fill
-            priority={index === 0 && !hasCycled}
-            sizes="100vw"
-            className="scale-105 object-cover blur-[2px]"
-          />
-        </motion.div>
-      </AnimatePresence>
-      {/* Scrim: flat wash for global legibility + top/bottom blends into the stage */}
-      <div className="bg-stage/60 absolute inset-0" />
+    <div
+      aria-hidden="true"
+      className="absolute inset-y-0 right-0 left-0 overflow-hidden md:left-[42%]"
+    >
+      {heroPhotos.map((photo, photoIndex) => {
+        if (photoIndex > 0 && !auxLayersMounted) {
+          return null;
+        }
+        return (
+          <m.div
+            key={photo.src}
+            className="absolute inset-0"
+            initial={false}
+            animate={{ opacity: photoIndex === index ? 1 : 0 }}
+            transition={{ duration: CROSSFADE_MS, ease: "easeInOut" }}
+          >
+            <Image
+              src={photo.src}
+              alt=""
+              fill
+              priority={photoIndex === 0}
+              sizes="(min-width: 768px) 58vw, 60vw"
+              quality={70}
+              className="scale-105 object-cover blur-[2px]"
+            />
+          </m.div>
+        );
+      })}
+      {/* Dark gradient overlay: photo blends left into the stage (md+),
+          mobile keeps a full scrim under the stacked text. */}
+      <div className="from-stage via-stage/55 absolute inset-0 bg-gradient-to-r to-transparent" />
+      <div className="bg-stage/55 absolute inset-0 md:bg-transparent" />
       <div className="from-stage/70 absolute inset-0 bg-gradient-to-b via-transparent to-transparent" />
       <div className="from-stage via-stage/10 absolute inset-0 bg-gradient-to-t to-transparent" />
     </div>
