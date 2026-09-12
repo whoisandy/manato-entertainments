@@ -17,7 +17,7 @@ export const SiteFooter = () => (
     />
     <div className="relative mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 md:py-16">
       <div className="grid gap-10 md:grid-cols-[1fr_1fr_1.5fr]">
-        <AnimatedContainer className="flex flex-col" delay={0.1}>
+        <AnimatedContainer className="flex flex-col" delay={0.05}>
           <h3 className="text-crest-400 text-[13px] tracking-[0.05em] uppercase">
             Connect With MANATO
           </h3>
@@ -47,7 +47,7 @@ export const SiteFooter = () => (
           </div>
         </AnimatedContainer>
 
-        <AnimatedContainer className="flex flex-col" delay={0.2}>
+        <AnimatedContainer className="flex flex-col" delay={0.1}>
           <nav aria-label="Footer">
             <h3 className="text-crest-400 text-[13px] tracking-[0.05em] uppercase">
               Explore
@@ -67,7 +67,7 @@ export const SiteFooter = () => (
           </nav>
         </AnimatedContainer>
 
-        <AnimatedContainer className="flex flex-col md:items-end" delay={0.3}>
+        <AnimatedContainer className="flex flex-col md:items-end" delay={0.15}>
           <div className="flex flex-col items-start md:items-end">
             <Image
               alt="MANATO Entertainments"
@@ -89,7 +89,7 @@ export const SiteFooter = () => (
     {/* Full-width closing band: bold navy floor with subtle mono text.
         Mobile keeps just the copyright line, left-aligned and compact. */}
     <div className="bg-panel border-hairline relative border-t">
-      <AnimatedContainer delay={0.4}>
+      <AnimatedContainer delay={0.2}>
         <div className="text-dust mx-auto flex w-full max-w-6xl flex-col gap-1 px-4 py-4 text-[10px] sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-6 md:text-xs">
           <p>© 2026 MANATO Entertainments. All rights reserved.</p>
           <p className="hidden sm:block">{site.brandStatement}</p>

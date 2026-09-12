@@ -27,7 +27,7 @@ export const AnimatedContainer = ({
     <m.div
       className={className}
       initial={{ filter: "blur(4px)", opacity: 0, translateY: -8 }}
-      transition={{ delay, duration: 0.8 }}
+      transition={{ delay, duration: 0.6 }}
       viewport={{ once: true }}
       whileInView={{ filter: "blur(0px)", opacity: 1, translateY: 0 }}
     >
