@@ -82,7 +82,7 @@ export const SiteHeader = ({
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-40 transition-colors duration-200 ${
+      className={`fixed inset-x-0 top-0 z-[60] transition-colors duration-200 ${
         scrolled || open
           ? "border-hairline bg-stage/85 border-b backdrop-blur-sm"
           : "border-b border-transparent"
@@ -131,20 +131,32 @@ export const SiteHeader = ({
             render={
               <button
                 type="button"
-                className="text-bone hover:text-crest-300 flex h-12 w-12 items-center justify-center transition-colors duration-200 md:hidden"
+                className="text-bone hover:text-crest-300 relative z-[70] flex h-12 w-12 items-center justify-center transition-colors duration-200 md:hidden"
               />
             }
           >
-            {open ? (
-              <XIcon className="size-6" />
-            ) : (
-              <MenuGlyph className="size-6" />
-            )}
+            {/* Burger ⇄ close morph: crossfade + counter-rotation, 200ms. */}
+            <span aria-hidden="true" className="relative block size-6">
+              <MenuGlyph
+                className={`absolute inset-0 size-6 transition-[opacity,transform] duration-200 ${
+                  open
+                    ? "scale-75 -rotate-45 opacity-0"
+                    : "scale-100 rotate-0 opacity-100"
+                }`}
+              />
+              <XIcon
+                className={`absolute inset-0 size-6 transition-[opacity,transform] duration-200 ${
+                  open
+                    ? "scale-100 rotate-0 opacity-100"
+                    : "scale-75 rotate-45 opacity-0"
+                }`}
+              />
+            </span>
           </SheetTrigger>
           <SheetContent
             side="top"
             showCloseButton={false}
-            className="border-hairline bg-stage/95 border-b backdrop-blur-md"
+            className="border-hairline bg-stage/95 border-b pt-20 backdrop-blur-md"
           >
             <SheetTitle className="sr-only">
               MANATO Entertainments menu
