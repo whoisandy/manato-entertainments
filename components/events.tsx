@@ -1,5 +1,6 @@
 import { CalendarPlusIcon } from "lucide-react";
 
+import { DottedGlowCorner } from "@/components/dotted-glow";
 import { SectionHeading } from "@/components/primitives";
 import { Reveal } from "@/components/reveal";
 import { buttonClass } from "@/lib/button";
@@ -24,6 +25,10 @@ export const Events = () => (
 
       <Reveal>
         <article className="border-beam border-hairline bg-panel grid gap-10 border p-6 sm:p-8 md:grid-cols-2 md:gap-12 md:p-10">
+          {/* Dotted glow corners: top-left + bottom-right at every
+              breakpoint (DESIGN.md §5). First child so card content paints
+              above both fields. */}
+          <DottedGlowCorner />
           <div>
             <p className="text-crest-400 flex items-center gap-3 text-[11px] font-semibold tracking-[0.22em] uppercase">
               <span aria-hidden="true" className="bg-crest-500 h-px w-6" />
