@@ -7,7 +7,7 @@ import { site } from "@/lib/content";
 export const Contact = () => (
   <section
     aria-labelledby="contact-title"
-    className="border-hairline section-glow section-glow-contact scroll-mt-20 border-t md:scroll-mt-[88px]"
+    className="border-hairline section-glow section-glow-contact border-t"
     id="contact"
   >
     {/* Quiet counterweight to the About strip: a subtle particle field
@@ -25,7 +25,7 @@ export const Contact = () => (
       aria-hidden="true"
       className="section-fx pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-[radial-gradient(35%_128px_at_50%_100%,rgba(247,248,252,0.08),transparent)]"
     />
-    <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 md:py-28">
+    <div className="mx-auto w-full max-w-6xl px-4 pt-12 pb-20 sm:px-6 md:pt-20 md:pb-28">
       <div className="grid gap-12 md:grid-cols-2 md:gap-16">
         <Reveal>
           <div>

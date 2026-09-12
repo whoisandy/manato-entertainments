@@ -21,18 +21,18 @@ export default function Home() {
         <GallerySection />
         <section
           aria-labelledby="faq-title"
-          className="border-hairline section-glow section-glow-faq scroll-mt-20 border-t md:scroll-mt-22"
+          className="border-hairline section-glow section-glow-faq border-t"
           id="faq"
         >
           <SectionFloorLight />
-          <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 md:py-28">
+          <div className="mx-auto w-full max-w-6xl px-4 pt-12 pb-20 sm:px-6 md:pt-20 md:pb-28">
             <Reveal>
               <SectionHeading
                 id="faq-title"
                 kicker="Questions, Answered"
                 lead="Planning an event, exploring a partnership or looking to get involved? Start here. For anything else, get in touch."
-                title="Let’s Make Things"
-                accent="Clear"
+                title="Let’s Make"
+                accent="Things Clear"
               />
             </Reveal>
             <Reveal delay={120}>
