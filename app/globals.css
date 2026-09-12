@@ -5,19 +5,26 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --color-stage: #050505;
-  --color-panel: #0c0c0b;
-  --color-elevated: #141412;
-  --color-bone: #f2ede3;
-  --color-ash: #a8a296;
-  --color-dust: #6e6a62;
-  --color-hairline: rgba(255, 255, 255, 0.1);
-  --color-hairline-strong: rgba(255, 255, 255, 0.25);
-  --color-gold-300: #ead28a;
-  --color-gold-400: #dbb85c;
-  --color-gold-500: #c79b32;
-  --color-gold-600: #9c7a22;
-  --color-gold-wash: rgba(199, 155, 50, 0.14);
+  /* Manato navy theme (DESIGN.md §2) — navy stage, white text,
+     white/silver accents, crest gold for numerals/decoration only. */
+  --color-stage: #010f29;
+  --color-panel: #0a1a38;
+  --color-elevated: #122447;
+  --color-bone: #f7f8fc;
+  --color-ash: #b3bdd4;
+  --color-dust: #8d99b8;
+  --color-hairline: rgba(247, 248, 252, 0.12);
+  --color-hairline-strong: rgba(247, 248, 252, 0.28);
+  --color-silver-300: #eef1f8;
+  --color-silver-400: #d9dfef;
+  --color-silver-500: #b6c0d8;
+  --color-silver-600: #7e8cab;
+  --color-silver-wash: rgba(247, 248, 252, 0.14);
+  --color-crest-300: #f6d996;
+  --color-crest-400: #ecc777;
+  --color-crest-500: #e0b658;
+  --color-crest-600: #b58e3f;
+  --color-crest-wash: rgba(224, 182, 88, 0.16);
 
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
   --font-display: var(--font-fraunces), Georgia, serif;
@@ -39,11 +46,11 @@
 
   ::selection {
     color: var(--color-stage);
-    background-color: var(--color-gold-500);
+    background-color: var(--color-bone);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-gold-400);
+    outline: 2px solid var(--color-silver-400);
     outline-offset: 3px;
   }
   * {
@@ -69,6 +76,118 @@
 
 .animate-fade-in {
   animation: fade-in 200ms ease-in-out both;
+}
+
+/* Stage-light border beam: a crest sector rotating behind a 1px ring.
+   The ::before cover re-paints the panel interior, leaving only the border
+   gap showing the travelling light. Decoration only — crest never floods. */
+@keyframes beam-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.border-beam {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.border-beam::after {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  z-index: 0;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg 290deg,
+    var(--color-crest-300) 330deg,
+    var(--color-crest-500) 352deg,
+    transparent 360deg
+  );
+  animation: beam-spin 8s linear infinite;
+  pointer-events: none;
+}
+
+.border-beam::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: 1;
+  background: var(--color-panel);
+  pointer-events: none;
+}
+
+.border-beam > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Silver stage-light sweep through mono meta text (hero strapline). */
+@keyframes shimmer-sweep {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.text-shimmer {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-ash) 42%,
+    var(--color-silver-300) 50%,
+    var(--color-ash) 58%
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: shimmer-sweep 7s ease-in-out infinite;
+}
+
+/* One-shot crest sheen across primary buttons on hover (transform-only). */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(246, 217, 150, 0.5) 50%,
+    transparent 70%
+  );
+  transform: translateX(-110%);
+  transition: transform 700ms ease;
+  pointer-events: none;
+}
+
+.btn-shine:hover::after,
+.btn-shine:focus-visible::after {
+  transform: translateX(110%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .border-beam::after {
+    animation: none;
+    opacity: 0;
+  }
+
+  .text-shimmer {
+    animation: none;
+    background-image: none;
+    color: var(--color-ash);
+  }
+
+  .btn-shine::after {
+    content: none;
+  }
 }
 
 /* Film grain texture — neutral noise, no color token (mechanics, not a palette color) */
@@ -125,33 +244,33 @@
 }
 
 :root {
-  /* Manato Entertainments design tokens (DESIGN.md §2) mapped onto the
+  /* Manato navy design tokens (DESIGN.md §2) mapped onto the
      shadcn/Base UI variable contract. Site is dark-only — no .dark block. */
-  --background: #050505;
-  --foreground: #f2ede3;
-  --card: #0c0c0b;
-  --card-foreground: #f2ede3;
-  --popover: #141412;
-  --popover-foreground: #f2ede3;
-  --primary: #f2ede3;
-  --primary-foreground: #050505;
-  --secondary: #141412;
-  --secondary-foreground: #f2ede3;
-  --muted: #141412;
-  --muted-foreground: #a8a296;
-  --accent: rgba(199, 155, 50, 0.14);
-  --accent-foreground: #ead28a;
+  --background: #010f29;
+  --foreground: #f7f8fc;
+  --card: #0a1a38;
+  --card-foreground: #f7f8fc;
+  --popover: #122447;
+  --popover-foreground: #f7f8fc;
+  --primary: #f7f8fc;
+  --primary-foreground: #010f29;
+  --secondary: #122447;
+  --secondary-foreground: #f7f8fc;
+  --muted: #122447;
+  --muted-foreground: #b3bdd4;
+  --accent: rgba(247, 248, 252, 0.14);
+  --accent-foreground: #eef1f8;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: rgba(255, 255, 255, 0.1);
-  --input: rgba(255, 255, 255, 0.1);
-  --ring: #dbb85c;
+  --border: rgba(247, 248, 252, 0.12);
+  --input: rgba(247, 248, 252, 0.12);
+  --ring: #d9dfef;
   --radius: 0rem;
-  --sidebar: #0c0c0b;
-  --sidebar-foreground: #f2ede3;
-  --sidebar-primary: #c79b32;
-  --sidebar-primary-foreground: #050505;
-  --sidebar-accent: #141412;
-  --sidebar-accent-foreground: #f2ede3;
-  --sidebar-border: rgba(255, 255, 255, 0.1);
-  --sidebar-ring: #dbb85c;
+  --sidebar: #0a1a38;
+  --sidebar-foreground: #f7f8fc;
+  --sidebar-primary: #e0b658;
+  --sidebar-primary-foreground: #010f29;
+  --sidebar-accent: #122447;
+  --sidebar-accent-foreground: #f7f8fc;
+  --sidebar-border: rgba(247, 248, 252, 0.12);
+  --sidebar-ring: #d9dfef;
 }

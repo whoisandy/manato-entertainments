@@ -24,14 +24,14 @@ const buttonVariants = cva(
         xs: "h-6 gap-1 rounded-[min(var(--radius-md),10px)] px-2 text-xs in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
       },
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-gold-400",
+        default: "bg-primary text-primary-foreground hover:bg-crest-400",
         destructive:
           "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20",
         ghost:
-          "hover:bg-elevated hover:text-gold-300 aria-expanded:bg-elevated aria-expanded:text-gold-300",
-        link: "text-gold-400 hover:text-gold-300 underline-offset-4 hover:underline",
+          "hover:bg-elevated hover:text-crest-300 aria-expanded:bg-elevated aria-expanded:text-crest-300",
+        link: "text-crest-400 hover:text-crest-300 underline-offset-4 hover:underline",
         outline:
-          "border-hairline-strong text-bone hover:border-gold-400 hover:text-gold-300 aria-expanded:bg-gold-wash aria-expanded:text-gold-300 bg-transparent",
+          "border-hairline-strong text-bone hover:border-crest-400 hover:text-crest-300 aria-expanded:bg-crest-wash aria-expanded:text-crest-300 bg-transparent",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-elevated aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
       },

@@ -1,7 +1,7 @@
 <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-  <rect fill="#050505" height="64" width="64" />
+  <rect fill="#010f29" height="64" width="64" />
   <text
-    fill="#DBB85C"
+    fill="#F7F8FC"
     font-family="Georgia, 'Times New Roman', serif"
     font-size="38"
     text-anchor="middle"

@@ -1,15 +1,19 @@
 # Manato Entertainments Design System
 
+> **v2 Retheme (2026-09-12):** the brand moved from black/gold to **navy blue + white** with new logo assets (`public/assets/manato-navy-no-sparkle.png` — navy bg #01102A, white mark, gold crest #E0B658). All `gold-*` tokens are renamed: `silver-*` = white/silver interactive accent, `crest-*` = crest gold (numerals/decoration only). Section 0 is the historical v1 research log; where prose below says "gold stage light" or "black velvet", read it as "silver on navy" per the Section 2 palette.
+>
+> **v2 Logos:** header uses the crown mark (`public/manato-crown.webp`, h-12/56px), footer uses the full-colour lockup (`public/manato-lockup.webp`, h-24/128px). Both are extracted from the stakeholder's opaque checkerboard PNGs (`public/assets/manato-crown.png`, `manato-full-color-no-sparkle.png`) by `bun run extract-logo` (border flood-fill + checker-tone keying + global chroma key); re-run it only if the source assets change. The grey-ground variants (`manato-black-white-no-sparkle.png`, `manato-full-color-no-sparkle.png` raw) are not usable on navy; the navy square (`manato-navy-no-sparkle.png`) remains the OG image. The v1 sprite webps and `scripts/split-logo.ts` were removed.
+
 ## 0. Research Log (greenfield)
 
 - Embedded refs: shortlisted `minimalist-skill.md` + `soft-skill.md` (Layer A), user-supplied Framer templates (Layer B) → picked **minimalist-skill (Layer A)** + **Vervee (Layer B, primary aesthetic) + Vibe (Layer B, structural)** because the user said "minimalistic yet artistic" and supplied both template URLs as the visual contract.
 - Live token extraction (Playwright, computed styles): **Vervee** — pure black `rgb(0,0,0)` canvas, Gambetta serif 72px w400 lh1.1 ls-0.02em, bone text `rgb(245,240,232)`, secondary `white/65`, hairlines `white/10`–`white/25`, gold `rgb(196,154,37)` (#C49A25, 119 uses), 0px border-radius everywhere, section rhythm 64–100px, nav 88px transparent. **Vibe** — near-black `rgb(8,8,7)`, Clash Display 58px w600, warm sand accent `rgb(251,210,149)`, secondary `white/75`, 160px big-block rhythm. Full-page screenshots: `.playwright-mcp/vervee-full.png`, `.playwright-mcp/vibe-full.png`.
-- Brand asset: `public/manato-logo.jpg` 1600×977, **black background, all-gold design** (crown + rising sun, gold serif wordmark, handshake, tagline "Grand Stages | Golden Memories"). Blends seamlessly on black canvas; no frame treatment needed.
+- Brand asset: `assets/manato-logo-sprite.png` 1296×832, transparent — split by `scripts/split-logo.ts` into `public/manato-logo.webp` (left half, vivid gold vertical lockup: crown + rising sun, serif wordmark, handshake, tagline) and `public/manato-logo-footer.webp` (right half, dimmed variant). 399×512 each, ~30KB.
 - Skipped lanes: lazyweb (reason: user supplied two concrete references), imagen drafts (reason: code-first build with an extracted token contract; hero atmosphere is now the brand photo backdrop (user-supplied photos), not CSS glow material).
 
 ## 1. Atmosphere & Identity
 
-A concert-house programme booklet printed on black velvet. Quiet, editorial, warm — grey whisper, then gold light. The signature is **gold as stage light**: antique-gold serif headlines at light weight over a pure-black stage, gold numbered numerals and hairlines reading like programme metadata, sharp 0-radius edges (never rounded cards), and one hero moment — an oversized serif line over a slowly cross-fading cycle of brand photographs, dimmed to stage light by a black scrim. Motion is invisible-but-present: content fades up 12px as it enters, like house lights coming up before a set.
+A concert-house programme booklet printed on navy velvet. Quiet, editorial, cool — navy whisper, then white light. The signature is **silver as stage light**: white serif headlines at light weight over a deep-navy stage, crest-gold numbered numerals and hairlines reading like programme metadata, sharp 0-radius edges (never rounded cards), and one hero moment — an oversized serif line over a slowly cross-fading cycle of brand photographs, dimmed to stage light by a navy scrim. Motion is invisible-but-present: content fades up 12px as it enters, like house lights coming up before a set.
 
 ## 2. Color
 
@@ -19,24 +23,29 @@ Dark-only site. No light mode.
 
 | Role | Token | Value | Usage |
 | --- | --- | --- | --- |
-| Surface/stage | --color-stage | #050505 | Page background (pure-black canvas like Vervee, lifted 5 so panels can step) |
-| Surface/panel | --color-panel | #0C0C0B | Cards, setlist rows, form, lightbox chrome |
-| Surface/elevated | --color-elevated | #141412 | Hover panels, active accordion, chips |
-| Text/primary | --color-bone | #F2EDE3 | Headlines, body (warm bone, from Vervee's 245,240,232) |
-| Text/secondary | --color-ash | #A8A296 | Secondary copy (solid equivalent of Vervee white/65 on black) |
-| Text/tertiary | --color-dust | #6E6A62 | Meta, disabled, footnotes |
-| Border/default | --color-hairline | rgba(255,255,255,0.10) | Dividers, card borders (Vervee white/10) |
-| Border/strong | --color-hairline-strong | rgba(255,255,255,0.25) | Emphasised dividers (Vervee white/25) |
-| Accent/gold-light | --color-gold-300 | #EAD28A | Hover text, highlights, active states |
-| Accent/gold | --color-gold-400 | #DBB85C | Kicker labels, numerals, links |
-| Accent/gold-base | --color-gold-500 | #C79B32 | Primary gold (bridges logo amber ↔ Vervee #C49A25) |
-| Accent/gold-deep | --color-gold-600 | #9C7A22 | Gold on elevated surfaces (contrast), pressed states |
-| Accent/gold-wash | --color-gold-wash | rgba(199,155,50,0.14) | Chip backgrounds, focus glows, radial washes |
+| Surface/stage | --color-stage | #010F29 | Page background (navy canvas, extracted from logo bg #01102A, lifted to beat the darkest photo pixel) |
+| Surface/panel | --color-panel | #0A1A38 | Cards, setlist rows, form, lightbox chrome |
+| Surface/elevated | --color-elevated | #122447 | Hover panels, active accordion, chips |
+| Text/primary | --color-bone | #F7F8FC | Headlines, body (cool white; pure #FFFFFF reserved to the logo mark) |
+| Text/secondary | --color-ash | #B3BDD4 | Secondary copy (white/72 on navy) |
+| Text/tertiary | --color-dust | #8D99B8 | Meta, footnotes (≥4.5:1 on stage — AA-passing) |
+| Border/default | --color-hairline | rgba(247,248,252,0.12) | Dividers, card borders |
+| Border/strong | --color-hairline-strong | rgba(247,248,252,0.28) | Emphasised dividers |
+| Accent/silver-light | --color-silver-300 | #EEF1F8 | Hover text, highlights, active states |
+| Accent/silver | --color-silver-400 | #D9DFEF | Focus ring, interactive accents |
+| Accent/silver | --color-silver-500 | #B6C0D8 | Secondary interactive accent |
+| Accent/silver-deep | --color-silver-600 | #7E8CAB | Silver on elevated surfaces, pressed states |
+| Accent/silver-wash | --color-silver-wash | rgba(247,248,252,0.14) | Chip backgrounds, focus glows, radial washes |
+| Accent/crest-light | --color-crest-300 | #F6D996 | Crest-gold hover text, italic flourishes |
+| Accent/crest | --color-crest-400 | #ECC777 | Kicker labels, numerals, mono meta |
+| Accent/crest | --color-crest-500 | #E0B658 | Crest gold (extracted from logo crest) — kicker dashes, pull-quote border, chips |
+| Accent/crest-deep | --color-crest-600 | #B58E3F | Crest on elevated surfaces, pressed states |
+| Accent/crest-wash | --color-crest-wash | rgba(224,182,88,0.16) | Chip backgrounds |
 
 ### Rules
 
-- Gold is the identity accent: kickers, numerals, interactive states. Bone (not gold) is the primary button color — gold never floods large surfaces.
-- Never introduce a color not in this table. No pure white (#FFFFFF) text — bone only. Status colors omitted: this static site has no error/success states (form is mailto).
+- White/silver is the identity accent for interaction (focus, hover, buttons). Crest gold is decoration: numerals, kickers, the pull-quote rule — it never floods large surfaces (matches the logo, where gold is the crest only).
+- Never introduce a color not in this table. Pure #FFFFFF text is reserved to the logo mark; UI text uses bone #F7F8FC. Status colors omitted: this static site has no error/success states (form is mailto).
 
 ## 3. Typography
 
@@ -52,7 +61,7 @@ Dark-only site. No light mode.
 | Body | 1rem (16px) | Geist 400 | 1.65 | 0 | Default text |
 | Body-sm | 0.875rem (14px) | Geist 400 | 1.55 | 0 | Secondary info |
 | Caption | 0.75rem (12px) | Geist 500 | 1.4 | 0.02em | Meta, form hints |
-| Overline | 0.6875rem (11px) | Geist 600 | 1.3 | 0.22em uppercase | Kicker labels, gold |
+| Overline | 0.6875rem (11px) | Geist 600 | 1.3 | 0.22em uppercase | Kicker labels, crest |
 | Mono-meta | 0.8125rem (13px) | Geist Mono 400 | 1.4 | 0.05em | Numerals, counters, setlist numbers, chips |
 
 ### Font stack
@@ -90,19 +99,19 @@ Dark-only site. No light mode.
 
 ## 5. Components
 
-**Primitive layer: shadcn/ui on Base UI.** Interactive primitives are vendored in `components/ui/*` (managed by `bunx shadcn@latest add`; excluded from lint/format as vendored code). The shadcn variable contract is mapped onto this system's palette in `app/globals.css :root` — `--primary` = bone, `--ring` = gold-400, `--radius` = 0rem (sharp), `--border` = hairline. Our internal components (`components/primitives.tsx`, site-header, faq, gallery) compose these: Button (primary = bone bg → gold hover; ghost = gold hairline outline), Accordion (FAQ, plus-icon rotate), Dialog (lightbox scrim/portal/focus management), Sheet (mobile menu, side top).
+**Primitive layer: shadcn/ui on Base UI.** Interactive primitives are vendored in `components/ui/*` (managed by `bunx shadcn@latest add`; excluded from lint/format as vendored code). The shadcn variable contract is mapped onto this system's palette in `app/globals.css :root` — `--primary` = bone, `--ring` = silver-400, `--radius` = 0rem (sharp), `--border` = hairline. Our internal components (`components/primitives.tsx`, site-header, faq, gallery) compose these: Button (primary = bone bg → crest hover; ghost = hairline-strong outline), Accordion (FAQ, plus-icon rotate), Dialog (lightbox scrim/portal/focus management), Sheet (mobile menu, side top).
 
 ### Button
 
 - **Structure**: `<a>`/`<button>` inline-flex, px-7 py-3.5, radius 0 (sharp — Vervee), text-sm font-medium tracking-wide.
-- **Variants**: `primary` — bone bg, black text, hover gold-400 bg; `ghost` — 1px hairline-strong border, bone text, hover gold border+text; `quiet` — text link, bone → gold-300, 40px min height.
-- **States**: default/hover (200ms)/active scale(0.98)/focus-visible 2px gold-400 outline offset-3.
+- **Variants**: `primary` — bone bg, navy text, hover crest-400 bg; `ghost` — 1px hairline-strong border, bone text, hover crest border+text; `quiet` — text link, bone → crest-300, 40px min height.
+- **States**: default/hover (200ms)/active scale(0.98)/focus-visible 2px crest-400 outline offset-3.
 - **Accessibility**: real `<a href>`/`<button>`; min 44px touch height.
 - **Motion**: background-color+transform 200ms.
 
 ### Kicker
 
-- **Structure**: overline row — 11px Geist 600 uppercase 0.22em gold-400, preceded by 24px gold-500 hairline dash; optional mono index (01…).
+- **Structure**: overline row — 11px Geist 600 uppercase 0.22em crest-400, preceded by 24px crest-500 hairline dash; optional mono index (01…).
 - **States**: static (non-interactive, no motion).
 - **Accessibility**: h2 follows; kicker is `<span>` inside `<p>` — not a heading.
 
@@ -113,19 +122,19 @@ Dark-only site. No light mode.
 
 ### StatBlock
 
-- **Structure**: bordered grid (hairline dividers, Vervee 01–04 strip): mono-meta gold index ("01"), big Fraunces value, body-sm ash label.
+- **Structure**: bordered grid (hairline dividers, Vervee 01–04 strip): mono-meta crest index ("01"), big Fraunces value, body-sm ash label.
 - **States**: static. **Layout**: 2×2 mobile grid → 4-col md, hairline-only separation.
 
 ### EventRow / SetlistRow
 
-- **Structure**: hairline-topped row: mono-meta gold (index/date/venue) | title (H2 Fraunces) | meta (body-sm ash / chips). Setlist: song title + singer (+ "with X" duet, ash; "ft." not used — "with").
+- **Structure**: hairline-topped row: mono-meta crest (index/date/venue) | title (H2 Fraunces) | meta (body-sm ash / chips). Setlist: song title + singer (+ "with X" duet, ash; "ft." not used — "with").
 - **States**: hover on rows raises bg to panel (event list); setlist rows static.
 - **Layout**: grid stacks to single column at 375px.
 
 ### GalleryCard
 
 - **Structure**: `<button>` wrapping image, radius 0, 1px hairline border; caption (body-sm ash) below or overlaid.
-- **States**: hover — border gold-wash→gold-500/40, image scale 1.02 (transform only); focus-visible gold outline; active scale 0.99.
+- **States**: hover — border crest-wash→crest-500/40, image scale 1.02 (transform only); focus-visible crest outline; active scale 0.99.
 - **Accessibility**: aria-label "Open photo N: {caption}"; images always have alt.
 - **Motion**: 200ms transform/border-color.
 
@@ -139,25 +148,25 @@ Dark-only site. No light mode.
 ### AccordionItem (FAQ)
 
 - **Structure**: `<h3><button aria-expanded>` + answer div; hairline border-b only (minimalist-skill: strip boxes); plus/minus toggle (SVG, rotates +→− via transform).
-- **States**: hover title → gold-300; open: button aria-expanded=true, answer fades (opacity 200ms — no height animation), bg stays stage.
+- **States**: hover title → crest-300; open: button aria-expanded=true, answer fades (opacity 200ms — no height animation), bg stays stage.
 - **Accessibility**: full keyboard; answer region tied via aria-controls.
 - **Motion**: toggle icon transform 200ms; answer opacity 200ms (GPU-only rule respected).
 
 ### FormField
 
-- **Structure**: label (body-sm bone) + input/textarea: bg panel, 1px hairline border, radius 0, px-4 py-3, text bone; focus — border gold-500 + 3px gold-wash ring.
+- **Structure**: label (body-sm bone) + input/textarea: bg panel, 1px hairline border, radius 0, px-4 py-3, text bone; focus — border crest-500 + 3px crest-wash ring.
 - **States**: default/focus/placeholder dust; required attrs native.
 - **Accessibility**: every input labelled; autocomplete attrs; form submit builds mailto (no backend).
 
 ### IconBtn (chevrons, close, hamburger)
 
 - **Structure**: 48×48 button, inline SVG stroke 1.5 consistent 24px grid, bone stroke, hairline border.
-- **States**: hover — border-strong + gold-300 stroke; focus-visible gold outline; active scale 0.98.
+- **States**: hover — border-strong + crest-300 stroke; focus-visible crest outline; active scale 0.98.
 - **Accessibility**: aria-label mandatory.
 
 ### NavItem
 
-- **Structure**: body-sm ash, hover bone + gold-400 2px underline offset; active section not tracked (static site).
+- **Structure**: body-sm ash, hover bone + crest-400 2px underline offset; active section not tracked (static site).
 - **States**: hover/focus-visible.
 
 ## 6. Motion & Interaction
@@ -186,16 +195,16 @@ Dark-only site. No light mode.
 
 - Default: 1px solid var(--color-hairline) — cards, rows, form, nav bottom.
 - Subtle: var(--color-hairline-strong) — emphasized dividers (stats grid internal lines, ghost button border).
-- Depth via tonal steps only: stage #050505 → panel #0C0C0B → elevated #141412.
-- The ONE allowed glow: hero atmosphere — the brand photo backdrop itself. Photos cycle full-bleed (AnimatePresence cross-fade 1.2s every 6s, `motion`), slightly blurred (2px) and scaled 105%, under a stage scrim (`bg-stage/60` + bottom gradient into the stage) so the headline keeps ≥4.5:1 contrast. Grain overlay stays. The radial glow tokens were removed when the photo backdrop replaced the CSS glow.
+- Depth via tonal steps only: stage #010F29 → panel #0A1A38 → elevated #122447.
+- Hero atmosphere: the brand photo backdrop, Vervee-style — a photo panel hugging the right on md+ (full-bleed on mobile), cycling via `motion` AnimatePresence (1.2s cross-fade every 6s), 2px blur + 105% scale, blended into the stage by a left-edge dark gradient (`from-stage via-stage/55 to-transparent`) plus top/bottom blends; mobile keeps a flat `stage/55` scrim under stacked text. Grain overlay stays.
 - Lightbox scrim (black/92 + backdrop-blur) is an overlay, not a shadow.
 
 ## 8. Accessibility Constraints & Accepted Debt
 
 ### Constraints
 
-- WCAG 2.2 AA. Contrast: bone #F2EDE3 on #050505 ≈ 16:1; ash #A8A296 ≈ 7.8:1; gold-400 #DBB85C ≈ 9.5:1; gold-500 #C79B32 on stage ≈ 7.2:1 (kicker/numerals); gold-600 only on elevated surfaces. All pass 4.5:1 body / 3:1 large.
-- Visible focus (2px gold-400 outline, 3px offset) on every interactive element; full keyboard reachability: nav, mobile menu (Esc closes), lightbox (←/→/Esc + focus trap-in/out), accordion, form.
+- WCAG 2.2 AA. Contrast: bone #F7F8FC on #010F29 ≈ 18:1; ash #B3BDD4 ≈ 10.1:1; dust #8D99B8 ≈ 6.7:1; crest-400 #ECC777 ≈ 11.8:1 (kicker/numerals); crest-500 #E0B658 ≈ 10:1; crest-600 #B58E3F only on elevated surfaces (5:1). All pass 4.5:1 body / 3:1 large.
+- Visible focus (2px crest-400 outline, 3px offset) on every interactive element; full keyboard reachability: nav, mobile menu (Esc closes), lightbox (←/→/Esc + focus trap-in/out), accordion, form.
 - Semantic landmarks: header/nav/main/section[aria-labelledby]/footer; one h1 (hero); kicker spans never headings; images always alt'd; inputs always labelled.
 - prefers-reduced-motion respected (Section 6).
 
@@ -208,4 +217,3 @@ Dark-only site. No light mode.
 | Primitive Showcase Gate via the page itself, not a separate showcase route | app/page.tsx | User constraint: single page only; the page exercises every primitive + state at 375/768/1280 during visual QA | — |
 | react-scan wired via manual dev-gated snippet (CLI prompt failed) | app/layout.tsx | Canonical manual install from react-dev-tooling-skill; verified dev-gated | — |
 | Fraunces/Geist fetched at build time via next/font | app/layout.tsx | Self-hosted output; build needs network once | — |
-| Logo is a 1600×977 JPG (127KB) served as-is | public/manato-logo.jpg | Fine for 2× displays; pre-launch optimization unnecessary | Convert to AVIF/WebP with transparent cutout if size ever matters |
