@@ -1,6 +1,6 @@
 "use client";
 
-import { XIcon } from "lucide-react";
+import { CalendarPlusIcon, XIcon } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import type { ComponentProps } from "react";
@@ -118,8 +118,9 @@ export const SiteHeader = ({
           ))}
           <a
             href="#contact"
-            className="border-hairline-strong text-bone hover:border-crest-400 hover:text-crest-300 border px-5 py-2.5 text-sm font-medium transition-[border-color,color] duration-200"
+            className="border-hairline-strong bg-silver-wash text-bone hover:border-crest-400 hover:text-crest-300 inline-flex items-center gap-2 border px-5 py-2.5 text-sm font-medium transition-[border-color,color] duration-200"
           >
+            <CalendarPlusIcon aria-hidden="true" className="size-4" />
             Plan an Event
           </a>
         </nav>
@@ -176,6 +177,7 @@ export const SiteHeader = ({
                     className="bg-primary text-primary-foreground hover:bg-crest-400 mt-4 flex h-11 items-center justify-center px-7 text-sm font-medium tracking-wide transition-colors duration-200"
                     href="#contact"
                   >
+                    <CalendarPlusIcon aria-hidden="true" className="size-4" />
                     Plan an Event
                   </a>
                 }
