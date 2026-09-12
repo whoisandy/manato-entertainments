@@ -66,7 +66,7 @@ export const HeroBackdrop = () => {
               fill
               priority={photoIndex === 0}
               sizes="(min-width: 768px) 58vw, 60vw"
-              quality={70}
+              quality={75}
               className="scale-105 object-cover blur-[2px]"
             />
           </m.div>
