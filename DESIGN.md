@@ -73,7 +73,7 @@ Dark-only site. No light mode.
 ### Rules
 
 - Serif = voice (headlines, quotes); Sans = UI/body; Mono = numbers and metadata. Headlines always weight 400–500, never bold (Vervee signature).
-- Body never below 14px. Display uses clamp() — never fixed 72px that breaks mobile.
+- Body never below 14px. Display uses clamp() — never fixed 72px that breaks mobile. Documented exception (2026-09-12, stakeholder request): the footer's closing band stacks to copyright-only on mobile at ~10px, left-aligned and compact; footer columns keep desktop sizes at every breakpoint. Contrast still passes AA at any size.
 
 ## 4. Spacing & Layout
 
@@ -174,6 +174,32 @@ Dark-only site. No light mode.
 - **States**: hover — border-strong + crest-300 stroke; focus-visible crest outline; active scale 0.98.
 - **Accessibility**: aria-label mandatory.
 
+### ParticleNetwork (Contact bottom field)
+
+- **Structure**: native zero-dependency `<canvas>` strip (mechanism extracted from the particles.js pattern; no CDN script, no `@ts-ignore`). Anchors the Contact section's bottom edge — `absolute inset-x-0 bottom-0 h-64 md:h-80`, class `section-fx mask-fade-t` (fades upward to transparent at ~94%), `intensity={0.65}` alpha multiplier for the quieter field. `.section-fx` exempts it from the `.section-glow > *` relative/z-1 flow rule.
+- **Rendering**: drifting motes (silver-300 / crest-300, radius 1–2.6, alpha 0.30–0.65 × intensity) joined by 1px hairline proximity links (silver-500, alpha ≤0.32 × intensity, distance 120px); pointer "grab" draws crest-400 threads to motes within 170px. Count = clamp(area/9000, 20, 90); DPR capped at 2; bounce at edges.
+- **States**: static single frame under prefers-reduced-motion (no loop, no pointer listening); rAF pauses via IntersectionObserver (rootMargin 80px) + `visibilitychange`; ResizeObserver reseeds; full teardown on unmount.
+- **Interaction**: `pointer-events: none` on the canvas — pointermove is listened on the section passively and only feeds the grab lines, so text selection/clicks/hover are untouched. The demo's click-to-push mode is omitted (it would require intercepting clicks).
+- **Accessibility**: canvas + wrapper `aria-hidden`; purely decorative.
+- **Motion budget**: quiet counterweight under the Contact form; the `section-glow-contact` CSS wash remains as ambience beneath it. Off-screen pause keeps it off the compositor everywhere else. (Was the About strip until 2026-09-12, when the About signature moved to `LightBeams`.)
+
+### DottedGlowCorner (featured-event card corners)
+
+- **Structure**: vendored aceternity `DottedGlowBackground` (`components/ui/dotted-glow-background.tsx`, installed via `bunx shadcn@latest add @aceternity/dotted-glow-background-demo`; demo scaffold removed) wrapped by `components/dotted-glow.tsx`. Two patches mounted as the featured-event card's first children with `section-fx` — `.border-beam > .section-fx` keeps them absolute at the card's z-2 level (`.border-beam > *` pins children there), first in DOM so card content paints above.
+- **Placement (2026-09-12)**: both corners at every breakpoint — top-left (`top-0 left-0 h-40 w-56 md:h-64 md:w-[24rem]`) and bottom-right (`bottom-0 right-0`, same size).
+- **Mask**: `mask-radial-at-top-left` / `mask-radial-at-bottom-right`, both `mask-radial-to-75%` — each dot field dissolves toward the card interior from its anchored corner.
+- **Tokens**: silver-500-based dot `rgba(182,192,216,0.6)` pulsing with a crest-400 glow `rgba(236,199,119,0.85)`; layer `opacity 0.5`, `gap 14`, `radius 1.3`, speeds 0.3–1.2 rad/s × 0.9 (slower than the demo). No cyan/blue demo colors.
+- **States**: the vendored canvas has no reduced-motion path, so the wrapper renders nothing under prefers-reduced-motion (decorative layer — losing it is acceptable; animating it is not). The vendored IO gate skips drawing off-screen.
+- **Accessibility**: wrappers `aria-hidden`; `pointer-events-none` on both wrappers and canvases; no interactivity is intercepted.
+
+### LightBeams (gallery + About signature atmosphere)
+
+- **Structure**: vendored aceternity `BackgroundBeams` (`components/ui/background-beams.tsx`, installed via `bunx shadcn@latest add @aceternity/background-beams-demo`; demo scaffold removed) wrapped by `components/light-beams.tsx` (renamed from `gallery-beams.tsx`, 2026-09-12). Mounted twice as `section-fx mask-fade-b` strips at the top of a section — gallery `h-72 md:h-[26rem]`; About `h-72 md:h-[28rem]` — fading to transparent at ~94% height.
+- **Beam geometry**: 51 light threads flowing from the top edge down and left-to-right (the vendored path field), filling the strip full-bleed (`preserveAspectRatio="none"` on the svg so the field stretches edge-to-edge). About pairs it with the section's top-edge light pool (`.section-glow-about`, the footer band's radial treatment scaled up).
+- **Surgical vendored edits (documented)**: (1) `import { motion }` → `import { m as motion }` — the site's `LazyMotionProvider` is strict and throws on the full `motion` entry; (2) gradient stops re-themed — beam `#18CCFC/#6344F5/#AE48FF` → silver-300 `#EEF1F8` / crest-400 `#ECC777` / crest-500 `#E0B658`, static mesh `#d4d4d4` → silver-500 `#B6C0D8`; (3) `preserveAspectRatio="none"`. No other vendored behavior changed.
+- **States**: the 50 SVG gradients animate on a shared rAF loop with no visibility gate, so the wrapper unmounts the field when the strip leaves the viewport (IntersectionObserver, 160px hysteresis band) and remounts it on return; renders nothing under prefers-reduced-motion (decorative layer). `pointer-events: none` throughout.
+- **Accessibility**: strip + host `aria-hidden`; purely decorative; section interactivity untouched.
+
 ### NavItem
 
 - **Structure**: body-sm ash, hover bone + crest-400 2px underline offset; active section not tracked (static site).
@@ -209,7 +235,7 @@ Dark-only site. No light mode.
 - Hero atmosphere: the brand photo backdrop, Vervee-style — a photo panel hugging the right on md+ (full-bleed on mobile), cycling via `motion` AnimatePresence (1.2s cross-fade every 6s), 2px blur + 105% scale, blended into the stage by a left-edge dark gradient (`from-stage via-stage/55 to-transparent`) plus top/bottom blends; mobile keeps a flat `stage/55` scrim under stacked text. Grain overlay stays.
 - Section ambience: per-section radial gradient washes (pure CSS, server-safe) inside each content section — absolutely positioned pseudo-elements or child divs with `pointer-events-none`, `aria-hidden`, low-alpha radial gradients bleeding to transparent. Each section gets a distinct placement/combination so the navy canvas shifts subtly as the user scrolls.
   - **Tokens**: reuse existing `--color-silver-wash` (rgba(247,248,252,0.14)) and `--color-crest-wash` (rgba(224,182,88,0.16)) at reduced alpha (≤0.08–0.10 effective) so text contrast stays WCAG AA (bone/ash on stage remains ≥4.5:1 over the wash). No new colors.
-  - **Placement**: About — silver wash upper-left; Events — faint crest wash upper-right; Gallery — silver lower-right; FAQ — crest upper-left; Contact — silver right. Total per-section wash alpha ≤ 0.10.
+  - **Placement**: About — silver light pooled at the section's top edge (footer-band radial treatment: `ellipse 45% 16% at 50% 8%`, α0.12; radii are per-section vars `--glow-rx/--glow-ry`); Events — faint crest wash upper-right; Gallery — silver lower-right; FAQ — crest upper-left; Contact — silver right. Total per-section wash alpha ≤ 0.10–0.12.
   - **Motion**: at most ONE slow drifting layer per section, CSS `@keyframes` animating `transform` (`translate` / `scale`) only, 20–30s `ease-in-out` `alternate infinite`. Disabled under `prefers-reduced-motion: reduce` (static gradient paint). NO `background-position` animation (repaints every frame — forbidden after performance fix).
   - **Performance**: compositor-only (`transform`/`opacity`); static gradient paint otherwise; no `backdrop-filter` on these layers; no new JS/client components. Drift layers carry no permanent `will-change` — the running transform animation promotes the layer on its own, and a pinned `will-change` held five full-section textures in GPU memory at every scroll position (measured jank fix, 2026-09-12).
   - **Fixed header**: glassy when scrolled — `bg-stage/85` + `backdrop-blur-sm`. `blur-sm` (8px in Tailwind v4) instead of a larger radius: the backdrop re-filters every frame during scroll, so the blur is kept to the cheapest radius that still reads as glass on the 85%-opaque navy.
