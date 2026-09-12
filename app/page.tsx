@@ -6,6 +6,7 @@ import { GallerySection } from "@/components/gallery-section";
 import { Hero } from "@/components/hero";
 import { SectionHeading } from "@/components/primitives";
 import { Reveal } from "@/components/reveal";
+import { SectionFloorLight } from "@/components/section-floor-light";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
@@ -20,9 +21,10 @@ export default function Home() {
         <GallerySection />
         <section
           aria-labelledby="faq-title"
-          className="border-hairline section-glow section-glow-faq scroll-mt-20 border-t md:scroll-mt-[88px]"
+          className="border-hairline section-glow section-glow-faq scroll-mt-20 border-t md:scroll-mt-22"
           id="faq"
         >
+          <SectionFloorLight />
           <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 md:py-28">
             <Reveal>
               <SectionHeading

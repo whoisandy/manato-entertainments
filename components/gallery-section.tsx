@@ -2,6 +2,7 @@ import { GalleryTabs } from "@/components/gallery-tabs";
 import { LightBeams } from "@/components/light-beams";
 import { SectionHeading } from "@/components/primitives";
 import { Reveal } from "@/components/reveal";
+import { SectionFloorLight } from "@/components/section-floor-light";
 import { photos, videos } from "@/lib/content";
 
 export const GallerySection = () => (
@@ -18,6 +19,7 @@ export const GallerySection = () => (
     >
       <LightBeams />
     </div>
+    <SectionFloorLight />
     <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 md:py-28">
       <Reveal>
         <SectionHeading

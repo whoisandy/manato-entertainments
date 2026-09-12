@@ -3,6 +3,7 @@ import { CalendarPlusIcon } from "lucide-react";
 import { DottedGlowCorner } from "@/components/dotted-glow";
 import { SectionHeading } from "@/components/primitives";
 import { Reveal } from "@/components/reveal";
+import { SectionFloorLight } from "@/components/section-floor-light";
 import { buttonClass } from "@/lib/button";
 import { audiences, eventFormats, featuredEvent } from "@/lib/content";
 
@@ -12,6 +13,7 @@ export const Events = () => (
     className="border-hairline section-glow section-glow-events scroll-mt-20 border-t md:scroll-mt-[88px]"
     id="events"
   >
+    <SectionFloorLight />
     <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 md:py-28">
       <Reveal>
         <SectionHeading
@@ -46,7 +48,7 @@ export const Events = () => (
             <ul className="mt-8 flex flex-wrap gap-3">
               {featuredEvent.meta.map((chip) => (
                 <li
-                  className="border-hairline bg-crest-wash text-crest-300 border px-3 py-1.5 font-mono text-[13px] tracking-[0.05em]"
+                  className="border-hairline bg-crest-wash text-crest-300 border px-3 py-1.5 text-[13px] tracking-[0.05em]"
                   key={chip.label}
                 >
                   {chip.label}
@@ -63,7 +65,7 @@ export const Events = () => (
           </div>
 
           <div>
-            <h4 className="text-crest-400 font-mono text-[13px] tracking-[0.05em] uppercase">
+            <h4 className="text-crest-400 text-[13px] tracking-[0.05em] uppercase">
               Who We Create For
             </h4>
             <ol className="mt-4">
@@ -72,7 +74,7 @@ export const Events = () => (
                   className="border-hairline flex items-baseline gap-4 border-t py-4 first:border-t-0 first:pt-2"
                   key={entry.title}
                 >
-                  <span className="text-crest-400 font-mono text-[13px] tracking-[0.05em]">
+                  <span className="text-crest-400 text-[13px] tracking-[0.05em]">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <div>
@@ -93,7 +95,7 @@ export const Events = () => (
 
       <Reveal delay={120}>
         <div className="mt-16 md:mt-20">
-          <h3 className="text-crest-400 font-mono text-[13px] tracking-[0.05em] uppercase">
+          <h3 className="text-crest-400 text-[13px] tracking-[0.05em] uppercase">
             More Ways to Create an Experience
           </h3>
           <ul className="mt-6">

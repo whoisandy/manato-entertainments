@@ -1,6 +1,7 @@
 import { LightBeams } from "@/components/light-beams";
 import { SectionHeading } from "@/components/primitives";
 import { Reveal } from "@/components/reveal";
+import { SectionFloorLight } from "@/components/section-floor-light";
 import { differenceSteps } from "@/lib/content";
 
 export const About = () => (
@@ -21,6 +22,9 @@ export const About = () => (
     >
       <LightBeams />
     </div>
+    {/* Floor light at the section's bottom edge — quiet separation from
+        the next section, mirroring the top pool at lower alpha. */}
+    <SectionFloorLight />
     <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 md:py-28">
       <Reveal>
         <SectionHeading
@@ -70,7 +74,7 @@ export const About = () => (
 
         <Reveal delay={120}>
           <div>
-            <h3 className="text-crest-400 font-mono text-[13px] tracking-[0.05em] uppercase">
+            <h3 className="text-crest-400 text-[13px] tracking-[0.05em] uppercase">
               The MANATO Difference
             </h3>
             <ul className="mt-6">
@@ -79,7 +83,7 @@ export const About = () => (
                   className="border-hairline grid grid-cols-[3rem_1fr] gap-x-4 border-t py-6 first:border-t-0 first:pt-0"
                   key={step.index}
                 >
-                  <span className="text-crest-400 font-mono text-[13px] tracking-[0.05em]">
+                  <span className="text-crest-400 text-[13px] tracking-[0.05em]">
                     {step.index}
                   </span>
                   <div>
