@@ -12,9 +12,7 @@ export const Kicker = ({
   <p className="text-crest-400 flex items-center gap-3 text-[11px] font-semibold tracking-[0.22em] uppercase">
     <span aria-hidden="true" className="bg-crest-500 h-px w-6" />
     {index ? (
-      <span className="text-crest-400 text-[13px] tracking-[0.05em]">
-        {index}
-      </span>
+      <span className="text-crest-400 text-[13px] tracking-wider">{index}</span>
     ) : null}
     <span>{children}</span>
   </p>
@@ -47,15 +45,15 @@ export const SectionHeading = ({
     >
       <WordReveal text={title} />
       {accent ? (
-        <>
-          {/* Spacer between the base title and the italic accent tail. */}
-          <span aria-hidden="true"> </span>
+        // The accent tail sits on its own line (stakeholder: text on top,
+        // accent underneath).
+        <span className="block">
           <WordReveal
             className="text-crest-300 italic"
             delayChildren={0.45}
             text={accent}
           />
-        </>
+        </span>
       ) : null}
     </h2>
     {lead ? (

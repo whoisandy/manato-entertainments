@@ -136,16 +136,16 @@ export const SiteHeader = ({
             }
           >
             {/* Burger ⇄ close morph: crossfade + counter-rotation, 200ms. */}
-            <span aria-hidden="true" className="relative block size-6">
+            <span aria-hidden="true" className="relative block size-7">
               <MenuGlyph
-                className={`absolute inset-0 size-6 transition-[opacity,transform] duration-200 ${
+                className={`absolute inset-0 size-7 transition-[opacity,transform] duration-200 ${
                   open
                     ? "scale-75 -rotate-45 opacity-0"
                     : "scale-100 rotate-0 opacity-100"
                 }`}
               />
               <XIcon
-                className={`absolute inset-0 size-6 transition-[opacity,transform] duration-200 ${
+                className={`absolute inset-0 size-7 transition-[opacity,transform] duration-200 ${
                   open
                     ? "scale-100 rotate-0 opacity-100"
                     : "scale-75 rotate-45 opacity-0"
