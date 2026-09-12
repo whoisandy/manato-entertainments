@@ -13,7 +13,7 @@ export const About = () => (
         <SectionHeading
           id="about-title"
           kicker="Get to Know Us"
-          lead="MANATO Entertainments began with four people and one shared belief: a great event creates an experience that stays with people."
+          lead="Built for the stage. Trusted by artists. Remembered by audiences."
           title="Built on a Dream."
           accent="Driven by a Team."
         />
@@ -23,21 +23,31 @@ export const About = () => (
         <Reveal>
           <div className="text-ash space-y-6 text-base leading-relaxed">
             <p>
-              Bringing different strengths and perspectives together, our
-              founders set out to build something they could grow with purpose.
+              MANATO Entertainments began with four people, one shared belief,
+              and a simple idea — every event should become an experience that
+              stays with people.
             </p>
             <p>
-              Our journey started with small events. Each one taught us more
-              about audiences, artists, production, partnerships and the details
-              that bring an experience to life. Those early experiences became
-              the foundation of a passionate, growing team.
+              From the beginning, we wanted to create more than just events. We
+              wanted to build moments that bring artists and audiences closer,
+              create genuine excitement, and leave a lasting impression long
+              after the lights go down.
             </p>
             <p>
-              Today, we bring that foundation to concerts, corporate events,
-              celebrity meet &amp; greets, celebrations and brand experiences.
-              We are building Manato for the long term, with the ambition to
-              take on bigger ideas, reach new audiences and earn trust through
-              every experience we create.
+              We started with small events, learning the craft one experience at
+              a time. Every show taught us something new — about audiences,
+              artists, production, partnerships, storytelling, and the countless
+              details that transform a live performance into something
+              unforgettable.
+            </p>
+            <p>
+              Those early experiences became the foundation of the team we are
+              today. And we are only getting started.
+            </p>
+            <p>
+              Today, MANATO brings that foundation to concerts, corporate
+              events, celebrity appearances, meet &amp; greets, celebrations and
+              brand experiences.
             </p>
             <p className="border-crest-500 font-display text-bone border-l-2 pl-5 text-lg italic">
               &ldquo;Our journey is still young. Our vision is not.&rdquo;
@@ -48,7 +58,7 @@ export const About = () => (
         <Reveal delay={120}>
           <div>
             <h3 className="text-crest-400 font-mono text-[13px] tracking-[0.05em] uppercase">
-              The Manato Difference
+              The MANATO Difference
             </h3>
             <ul className="mt-6">
               {differenceSteps.map((step) => (

@@ -23,6 +23,7 @@ export const InstagramIcon = (props: ComponentProps<"svg">) => (
   </svg>
 );
 
+/** The X logo — lucide no longer carries brand marks, so it's inlined. */
 export const XIcon = (props: ComponentProps<"svg">) => (
   <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
     <path d="M17.7 3h2.9l-6.4 7.3L21.7 21h-5.9l-4.6-6-5.3 6H3l6.9-7.8L2.6 3h6.1l4.2 5.5L17.7 3Zm-1 16.2h1.6L7.8 4.7H6L16.7 19.2Z" />
@@ -72,12 +73,15 @@ export interface SocialLink {
   href: string;
 }
 
-/** Placeholder links — swap hrefs once verified profile URLs arrive. */
+/** Verified profile URLs supplied by the stakeholder (2026-09-11/12). */
 export const socialLinks: SocialLink[] = [
-  { href: "#", label: "Instagram" },
-  { href: "#", label: "X" },
-  { href: "#", label: "Facebook" },
-  { href: "#", label: "YouTube" },
+  {
+    href: "https://www.instagram.com/manato_entertainments",
+    label: "Instagram",
+  },
+  { href: "https://x.com/MANATO_Team", label: "X" },
+  { href: "https://www.facebook.com/manatoentertainments", label: "Facebook" },
+  { href: "https://www.youtube.com/@MANATOEntertainments", label: "YouTube" },
 ];
 
 export const SocialButtons = () => (

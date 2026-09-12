@@ -60,7 +60,7 @@ export const SiteFooter = () => (
 
         <AnimatedContainer className="flex flex-col" delay={0.3}>
           <h3 className="text-crest-400 font-mono text-[13px] tracking-[0.05em] uppercase">
-            Connect With Manato
+            Connect With MANATO
           </h3>
           <ul className="text-ash mt-4 space-y-3 text-sm">
             <li>
@@ -71,19 +71,31 @@ export const SiteFooter = () => (
                 {site.email}
               </a>
             </li>
+            <li>
+              <a
+                className="hover:text-bone transition-colors duration-200"
+                href={`tel:${site.phone.replaceAll(" ", "")}`}
+              >
+                {site.phone}
+              </a>
+            </li>
+            <li className="text-dust max-w-64 leading-relaxed">
+              {site.address}
+            </li>
           </ul>
           <div className="mt-5">
             <SocialButtons />
           </div>
         </AnimatedContainer>
       </div>
+    </div>
 
+    {/* Full-width closing band: bold navy floor with subtle mono text. */}
+    <div className="bg-panel border-hairline relative border-t">
       <AnimatedContainer delay={0.4}>
-        <div className="border-hairline mt-12 flex flex-col gap-2 border-t pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-dust font-mono text-xs">
-            © 2026 MANATO Entertainments. All rights reserved.
-          </p>
-          <p className="text-dust font-mono text-xs">{site.brandStatement}</p>
+        <div className="text-dust mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 py-6 font-mono text-xs sm:flex-row sm:items-center sm:justify-between sm:px-6">
+          <p>© 2026 MANATO Entertainments. All rights reserved.</p>
+          <p>{site.brandStatement}</p>
         </div>
       </AnimatedContainer>
     </div>

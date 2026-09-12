@@ -1,8 +1,9 @@
 "use client";
 
-import { MenuIcon, XIcon } from "lucide-react";
+import { XIcon } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import type { ComponentProps } from "react";
 
 import { ScrollProgress } from "@/components/scroll-progress";
 import {
@@ -13,6 +14,27 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { navLinks } from "@/lib/content";
+
+/**
+ * Custom staggered menu glyph — three rounded bars with a deliberate
+ * offset rhythm (short, full, right-shifted), per the stakeholder's
+ * reference mark. Stroke/bone color follow the IconBtn contract.
+ */
+const MenuGlyph = (props: ComponentProps<"svg">) => (
+  <svg
+    fill="none"
+    stroke="currentColor"
+    strokeLinecap="round"
+    strokeWidth="2.4"
+    aria-hidden="true"
+    viewBox="0 0 24 24"
+    {...props}
+  >
+    <path d="M5 7.25h7" />
+    <path d="M4.5 12h15" />
+    <path d="M11 16.75h8.5" />
+  </svg>
+);
 
 /** Header logo options: the crown mark (default) or the full-colour lockup. */
 const HEADER_LOGOS = {
@@ -108,14 +130,14 @@ export const SiteHeader = ({
             render={
               <button
                 type="button"
-                className="border-hairline text-bone hover:border-hairline-strong hover:text-crest-300 flex h-11 w-11 items-center justify-center border transition-colors duration-200 md:hidden"
+                className="text-bone hover:text-crest-300 flex h-12 w-12 items-center justify-center transition-colors duration-200 md:hidden"
               />
             }
           >
             {open ? (
-              <XIcon className="size-5" />
+              <XIcon className="size-6" />
             ) : (
-              <MenuIcon className="size-5" />
+              <MenuGlyph className="size-6" />
             )}
           </SheetTrigger>
           <SheetContent

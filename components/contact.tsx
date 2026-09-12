@@ -15,13 +15,26 @@ export const Contact = () => (
         <Reveal>
           <div>
             <SectionHeading
-              accent="What You Have in Mind"
+              accent="Our Expertise."
               compact
               id="contact-title"
-              kicker="Let’s Create Something Memorable"
-              lead="Planning a celebration, bringing a brand experience to life, exploring a partnership or looking to collaborate? Start a conversation with Manato."
-              title="Tell Us"
+              kicker="Tell Us What You Have in Mind"
+              lead="One unforgettable experience. What are you imagining? A celebration? A brand experience? A special collaboration? Whatever the idea, let’s build something people will remember."
+              title="Your Idea."
             />
+
+            <a
+              className="text-ash hover:text-crest-300 group inline-flex items-center gap-2 text-sm transition-colors duration-200"
+              href="#contact-form"
+            >
+              <span
+                aria-hidden="true"
+                className="text-crest-400 transition-transform duration-200 group-hover:translate-x-1"
+              >
+                →
+              </span>
+              Fill in the form with all the necessary information
+            </a>
 
             <dl className="mt-12 space-y-8">
               <div>
@@ -39,7 +52,7 @@ export const Contact = () => (
               </div>
               <div>
                 <dt className="text-crest-400 font-mono text-[13px] tracking-[0.05em] uppercase">
-                  Follow Manato
+                  Follow MANATO
                 </dt>
                 <dd className="mt-2">
                   <SocialButtons />

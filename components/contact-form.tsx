@@ -25,7 +25,7 @@ const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
 };
 
 export const ContactForm = () => (
-  <form onSubmit={handleSubmit}>
+  <form id="contact-form" onSubmit={handleSubmit}>
     <div className="space-y-6">
       <div>
         <Label htmlFor="contact-name" className="text-bone text-sm">
@@ -69,7 +69,7 @@ export const ContactForm = () => (
         />
       </div>
       <Button type="submit" className="w-full sm:w-auto">
-        Continue to Email
+        Start a Conversation <span aria-hidden="true">→</span>
       </Button>
       <p className="text-dust text-sm">
         This opens your email app with your enquiry filled in. Review it and

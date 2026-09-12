@@ -51,9 +51,12 @@ export interface FaqItem {
 }
 
 export const site = {
+  address:
+    "Villa No.9, Lion’s Park Colony, Hi tension Road, Alwal, Hyderabad, Telangana - 500010",
   brandStatement: "Dream Big. Create Experiences. Build a Legacy.",
-  email: "hello@manato.in",
+  email: "manatoentertainments@gmail.com",
   name: "MANATO Entertainments",
+  phone: "+91 91001 38089",
   tagline: "Grand Stages | Golden Memories",
 };
 
@@ -74,22 +77,22 @@ export const highlights: Highlight[] = [
 
 export const differenceSteps: DifferenceStep[] = [
   {
-    body: "We begin with what the experience needs to achieve and how we want people to feel.",
+    body: "Every remarkable experience begins with a clear intention. We start by understanding what you want people to feel, remember and take away from the experience then shape every decision around that vision.",
     index: "01",
     title: "A Clear Vision",
   },
   {
-    body: "We shape ideas around the occasion, audience and purpose, giving every event its own character.",
+    body: "Ideas should feel as unique as the people they are created for. We bring fresh thinking to every brief, creating experiences that feel distinctive, relevant and impossible to forget.",
     index: "02",
     title: "Creative Thinking",
   },
   {
-    body: "We bring ideas to life through planning, coordination and attention to the details that matter.",
+    body: "Great ideas mean nothing without exceptional execution. From planning and production to coordination and the smallest details, we bring precision, care and consistency to every moment.",
     index: "03",
     title: "Strong Execution",
   },
   {
-    body: "We put people at the heart of the experience, creating moments they want to be part of.",
+    body: "The best events don’t just attract people. They make people feel something. We create experiences that connect with audiences, spark emotion and leave them with moments they want to remember and talk about.",
     index: "04",
     title: "Audience Connection",
   },
@@ -253,27 +256,27 @@ export const faqs: FaqItem[] = [
   },
   {
     answer:
-      "Tell us about the occasion, your preferred date and city, the audience size and what you want the experience to achieve. If you have a budget in mind, include that too. These details help us understand the brief and discuss a suitable direction.",
+      "Tell us about your occasion, preferred date and city, audience size, and the experience you want to create. If you have a budget in mind, please include that too. These details help us understand your brief and recommend the right direction for your event.",
     question: "How do we start planning an event with Manato?",
   },
   {
     answer:
-      "Yes. We welcome conversations with brands and sponsors interested in event partnerships and entertainment activations. Share your objectives and the audiences you want to reach so we can explore a relevant opportunity together.",
+      "Yes. We welcome partnerships with brands and sponsors looking to create meaningful event experiences and entertainment activations. Share your objectives, target audience, and partnership goals with us, and we’ll explore opportunities that align with your brand and our events.",
     question: "Can brands and sponsors partner with Manato?",
   },
   {
     answer:
-      "Contact us to ask about upcoming public events. Dates, venues, participating artists and booking details are confirmed for each event individually.",
+      "Get in touch with us to learn about our upcoming public events. Event dates, venues, participating artists, and booking details are confirmed individually, so our team can provide you with the latest information and availability.",
     question: "How can I find out about upcoming events?",
   },
   {
     answer:
-      "Yes. We plan experiences for private occasions, teams, brands and businesses. Share the occasion and what matters to your guests, and we can discuss the format, scale and support your event needs.",
+      "Yes. We create curated experiences for private celebrations, corporate gatherings, teams, brands, and businesses. Tell us about your occasion, your expectations, and what matters most to your guests, and we’ll work with you to shape the right format, scale, and experience.",
     question: "Do you organise private celebrations and corporate events?",
   },
   {
     answer:
-      "Send us a short introduction, your area of expertise, your location and links to relevant work. Let us know the kinds of events or collaborations you are interested in so we can understand how you might fit future opportunities.",
+      "We’re always open to connecting with artists, talent, and event professionals. Send us a brief introduction, your area of expertise, location, and relevant work or portfolio links. Let us know what kind of events or collaborations interest you, and we’ll consider you for relevant future opportunities.",
     question: "How can artists, talent and event professionals get involved?",
   },
 ];
