@@ -174,7 +174,7 @@ export const SiteHeader = ({
                 nativeButton={false}
                 render={
                   <a
-                    className="bg-primary text-primary-foreground hover:bg-crest-400 mt-4 flex h-11 items-center justify-center px-7 text-sm font-medium tracking-wide transition-colors duration-200"
+                    className="bg-primary text-primary-foreground hover:bg-crest-400 mt-4 flex h-11 items-center justify-center gap-2 px-7 text-sm font-medium tracking-wide transition-colors duration-200"
                     href="#contact"
                   >
                     <CalendarPlusIcon aria-hidden="true" className="size-4" />
