@@ -3,22 +3,20 @@ export interface NavLink {
   href: string;
 }
 
-export interface Stat {
-  index: string;
+export interface Highlight {
   value: string;
   label: string;
 }
 
-export interface BuildStep {
+export interface DifferenceStep {
   index: string;
   title: string;
   body: string;
 }
 
-export interface SetlistEntry {
-  song: string;
-  singer: string;
-  coSinger?: string;
+export interface AudienceEntry {
+  title: string;
+  body: string;
 }
 
 export interface MetaChip {
@@ -29,19 +27,14 @@ export interface FeaturedEvent {
   kicker: string;
   title: string;
   subtitle: string;
-  date: string;
   description: string;
   meta: MetaChip[];
-  setlist: SetlistEntry[];
   note: string;
 }
 
-export interface PastEvent {
-  year: string;
+export interface EventFormat {
   title: string;
-  subtitle: string;
-  songs: string;
-  singers: string;
+  body: string;
 }
 
 export interface Photo {
@@ -58,98 +51,99 @@ export interface FaqItem {
 }
 
 export const site = {
-  address: "12, Eldams Road, T. Nagar, Chennai 600017, India",
+  brandStatement: "Dream Big. Create Experiences. Build a Legacy.",
   email: "hello@manato.in",
   name: "Manato Entertainments",
-  phone: "+91 98400 00000",
-  phoneHref: "+919840000000",
-  socials: [
-    { href: "#", label: "Instagram" },
-    { href: "#", label: "YouTube" },
-  ] satisfies NavLink[],
   tagline: "Grand Stages | Golden Memories",
 };
 
 export const navLinks: NavLink[] = [
   { href: "#about", label: "About" },
-  { href: "#events", label: "Events" },
+  { href: "#events", label: "Experiences" },
   { href: "#gallery", label: "Gallery" },
   { href: "#faq", label: "FAQ" },
   { href: "#contact", label: "Contact" },
 ];
 
-export const stats: Stat[] = [
-  { index: "01", label: "Nights staged", value: "12+" },
-  { index: "02", label: "Songs sung live", value: "300+" },
-  { index: "03", label: "Singers on stage", value: "40+" },
-  { index: "04", label: "Guests welcomed", value: "5,000+" },
+export const highlights: Highlight[] = [
+  { label: "Founders", value: "4" },
+  { label: "Shared vision", value: "1" },
+  { label: "Team", value: "Growing" },
+  { label: "Experiences", value: "Lasting" },
 ];
 
-export const buildSteps: BuildStep[] = [
+export const differenceSteps: DifferenceStep[] = [
   {
-    body: "Every evening is built around one artist or one pairing — Koti's greatest era, or Ilaiyaraaja and A. R. Rahman sharing a single stage.",
-    index: "#01",
-    title: "The theme",
+    body: "We begin with what the experience needs to achieve and how we want people to feel.",
+    index: "01",
+    title: "A Clear Vision",
   },
   {
-    body: "Hand-picked vocalists carry the set, with co-singers stepping in for the duets these songs were born as.",
-    index: "#02",
-    title: "The singers",
+    body: "We shape ideas around the occasion, audience and purpose, giving every event its own character.",
+    index: "02",
+    title: "Creative Thinking",
   },
   {
-    body: "Twenty to thirty songs, sequenced for the night — openings that lift, duets that hold, finales that stay with you.",
-    index: "#03",
-    title: "The setlist",
+    body: "We bring ideas to life through planning, coordination and attention to the details that matter.",
+    index: "03",
+    title: "Strong Execution",
   },
   {
-    body: "One evening, start to encore. No opening acts, no filler — just the songs and the people who love them.",
-    index: "#04",
-    title: "The night",
+    body: "We put people at the heart of the experience, creating moments they want to be part of.",
+    index: "04",
+    title: "Audience Connection",
   },
 ];
 
 export const featuredEvent: FeaturedEvent = {
-  date: "Coming soon · Chennai",
   description:
-    "One evening, two composers who wrote the soundtrack of a generation. Our singers trace the golden thread from Ilaiyaraaja's ragas to Rahman's Madras choruses — twenty-eight songs, sequenced as one story.",
-  kicker: "The next edition",
-  meta: [{ label: "28 songs" }, { label: "6 singers" }, { label: "2 duets" }],
-  note: "Announcements for our next edition drop first on Instagram.",
-  setlist: [
-    { singer: "Aarthi Krishnan", song: "Kaadhalin Deepam Ondru" },
-    {
-      coSinger: "Meera Sundar",
-      singer: "Vignesh Ravi",
-      song: "Chinna Chinna Asai",
-    },
-    { singer: "Deepak Menon", song: "Nila Kaigiradhu" },
-    { coSinger: "Aarthi Krishnan", singer: "Meera Sundar", song: "Munbe Vaa" },
-  ],
-  subtitle: "Two Maestros, One Stage",
-  title: "Ilaiyaraaja × A. R. Rahman",
+    "Live music and entertainment experiences built around the connection between the stage and the crowd. We bring creative direction, planning and production together to shape moments audiences can feel, share and remember.",
+  kicker: "Live Entertainment",
+  meta: [{ label: "Music" }, { label: "Artists" }, { label: "Audiences" }],
+  note: "Tell us about the experience you want to create, and let’s explore what it could become.",
+  subtitle: "Where artists and audiences come together.",
+  title: "Concerts & Live Events",
 };
 
-export const pastEvents: PastEvent[] = [
+export const audiences: AudienceEntry[] = [
   {
-    singers: "4 singers",
-    songs: "24 songs",
-    subtitle: "The Golden Hour",
-    title: "An Evening with Koti",
-    year: "2025",
+    body: "Moments to feel, share and remember long after the event ends.",
+    title: "Audiences",
   },
   {
-    singers: "5 singers",
-    songs: "26 songs",
-    subtitle: "The Golden Era",
-    title: "MSV × KVM",
-    year: "2024",
+    body: "Experiences shaped around performance and a connection with the audience.",
+    title: "Artists",
   },
   {
-    singers: "3 singers",
-    songs: "22 songs",
-    subtitle: "A Retrospective",
-    title: "K. J. Yesudas",
-    year: "2024",
+    body: "Opportunities to become part of the moment through relevant, creative experiences.",
+    title: "Brands",
+  },
+  {
+    body: "Collaborations built around shared purpose, audience relevance and meaningful engagement.",
+    title: "Partners & Sponsors",
+  },
+];
+
+export const eventFormats: EventFormat[] = [
+  {
+    body: "Professional, engaging experiences shaped around your brand, teams and business objectives. We bring purpose, creativity and thoughtful coordination to every gathering.",
+    title: "Corporate Events",
+  },
+  {
+    body: "Curated experiences that bring celebrities and their audiences together, with attention to the interactions and details that make the occasion meaningful.",
+    title: "Celebrity Meet & Greets",
+  },
+  {
+    body: "From intimate gatherings to high-energy celebrations, we shape the occasion around the people at its heart and the memories they want to create.",
+    title: "Parties & Celebrations",
+  },
+  {
+    body: "Creative experiences that help brands connect with audiences through entertainment, participation and shared moments, making the brand part of the experience.",
+    title: "Brand & Entertainment Activations",
+  },
+  {
+    body: "Distinctive concepts built around your occasion, audience and purpose. We bring fresh thinking to experiences that call for an individual approach.",
+    title: "Special Events",
   },
 ];
 
@@ -170,73 +164,73 @@ const photo = (
 export const photos: Photo[] = [
   photo(
     "/photos/01.jpg",
-    "A traditional welcome at the marigold-draped doorway — aarti tray, silk shawls, and the team around our honoured composer",
+    "A group holding a ceremonial tray at a flower-decorated doorway.",
     1040,
     750
   ),
   photo(
     "/photos/02.jpg",
-    "Our honoured guest with a classical guitar, seated between two Manato singers in silk saris",
+    "A man holding a classical guitar, seated behind two women in colourful saris.",
     844,
     1040
   ),
   photo(
     "/photos/03.jpg",
-    "Thumbs up against the yellow wall — the team with our honoured guest",
+    "Four people posing against a yellow wall in formal and traditional clothing.",
     1040,
     694
   ),
   photo(
     "/photos/04.jpg",
-    "Around the armchair — singers gathered with the guitar after the evening",
+    "Six people gathered around a seated guitarist and a white armchair.",
     1040,
     758
   ),
   photo(
     "/photos/05.jpg",
-    "At the marigold doorway before the evening begins",
+    "Four people standing at a doorway decorated with orange flowers and green leaves.",
     1040,
     751
   ),
   photo(
     "/photos/06.jpg",
-    "The wider team lined up against the yellow wall",
+    "Five people standing together in front of a white wall and wooden doorway.",
     1040,
     501
   ),
   photo(
     "/photos/07.jpg",
-    "Two singers and our guest composer against the yellow wall",
+    "Three people posing against a yellow wall, with the person in the centre giving a thumbs-up.",
     853,
     1280
   ),
   photo(
     "/photos/08.jpg",
-    "Six of us after a studio visit — white jacket, sunglasses, and laughter",
+    "Six people posing indoors, with a person in a white jacket and green shirt near the centre.",
     1280,
     625
   ),
   photo(
     "/photos/09.jpg",
-    "The full group after a day of planning the next edition",
+    "Six people standing together in front of a dark wall panel.",
     1280,
     845
   ),
   photo(
     "/photos/10.jpg",
-    "Two of our singers in the audience seats before the show",
+    "Two women taking a selfie among rows of cream and gold chairs.",
     1152,
     864
   ),
   photo(
     "/photos/11.jpg",
-    "With our senior guest in the gold-chaired auditorium",
+    "Three people smiling for a selfie in a hall with cream and gold chairs.",
     960,
     1280
   ),
   photo(
     "/photos/12.jpg",
-    "The maestro at work — classical guitar, white jacket, golden light",
+    "A person in sunglasses and a white jacket playing a classical guitar.",
     1600,
     1068
   ),
@@ -254,32 +248,32 @@ export const heroPhotos: Photo[] = [
 export const faqs: FaqItem[] = [
   {
     answer:
-      "A single-theme live concert. We pick one composer or one pairing — Koti, or Ilaiyaraaja and A. R. Rahman — and build one evening of twenty to thirty of their songs, performed live.",
-    question: "What exactly is a Manato evening?",
+      "We create and manage concerts and live events, corporate events, celebrity meet & greets, parties and celebrations, brand activations and special events. Each experience is shaped around its audience, purpose and scale.",
+    question: "What kinds of events does Manato manage?",
   },
   {
     answer:
-      "By popular demand, literally. Each edition's theme comes from what our audience asks for and what our singers can do justice to — golden eras, beloved pairings, composers with stories worth an evening.",
-    question: "How do you choose the themes?",
+      "Tell us about the occasion, your preferred date and city, the audience size and what you want the experience to achieve. If you have a budget in mind, include that too. These details help us understand the brief and discuss a suitable direction.",
+    question: "How do we start planning an event with Manato?",
   },
   {
     answer:
-      "Hand-picked vocalists from the Chennai indie and playback circuits. Songs that were born as duets are sung as duets — with a co-singer on stage, never a backing track doing the work.",
-    question: "Who sings at Manato events?",
+      "Yes. We welcome conversations with brands and sponsors interested in event partnerships and entertainment activations. Share your objectives and the audiences you want to reach so we can explore a relevant opportunity together.",
+    question: "Can brands and sponsors partner with Manato?",
   },
   {
     answer:
-      "We don't sell tickets online yet. Every edition is announced first on our Instagram — dates, venue, and how to reserve your seat.",
-    question: "How can I attend the next edition?",
+      "Contact us to ask about upcoming public events. Dates, venues, participating artists and booking details are confirmed for each event individually.",
+    question: "How can I find out about upcoming events?",
   },
   {
     answer:
-      "Yes. We build the same themed format for private celebrations and corporate nights — you pick the composer, we build the evening. Write to us below.",
-    question: "Do you organise private or corporate evenings?",
+      "Yes. We plan experiences for private occasions, teams, brands and businesses. Share the occasion and what matters to your guests, and we can discuss the format, scale and support your event needs.",
+    question: "Do you organise private celebrations and corporate events?",
   },
   {
     answer:
-      "We'd love to hear you. Send a short recording and your repertoire to hello@manato.in — auditions for the next edition follow every announcement.",
-    question: "I'm a singer — how do I get involved?",
+      "Send us a short introduction, your area of expertise, your location and links to relevant work. Let us know the kinds of events or collaborations you are interested in so we can understand how you might fit future opportunities.",
+    question: "How can artists, talent and event professionals get involved?",
   },
 ];

@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Fraunces, Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 
+import { LazyMotionProvider } from "@/components/lazy-motion-provider";
+
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -22,18 +24,27 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   description:
-    "Manato Entertainments stages themed live music evenings — one composer or pairing, twenty to thirty songs, sung live by hand-picked singers. Grand stages, golden memories.",
+    "Concerts, corporate events, celebrity meet & greets, celebrations and brand activations. Manato creates experiences that connect people.",
+  metadataBase: new URL("https://www.manatoentertainments.com/"),
   openGraph: {
     description:
-      "One theme. One night. Every song, live. Themed tribute evenings built around composers like Ilaiyaraaja, A. R. Rahman and Koti.",
-    title: "Manato Entertainments — Themed Live Music Nights",
+      "Creating moments. Connecting people. Building a legacy. Discover concerts, celebrations, corporate events and brand experiences with Manato.",
+    images: [
+      {
+        alt: "Manato Entertainments — Grand Stages | Golden Memories",
+        height: 1254,
+        url: "/assets/manato-navy-no-sparkle.png",
+        width: 1254,
+      },
+    ],
+    title: "Manato Entertainments | Where Entertainment Meets Experience",
     type: "website",
   },
-  title: "Manato Entertainments — Themed Live Music Nights",
+  title: "Manato Entertainments | Events & Entertainment",
 };
 
 export const viewport: Viewport = {
-  themeColor: "#050505",
+  themeColor: "#010f29",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -58,7 +69,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </>
         )}
       </head>
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        <LazyMotionProvider>{children}</LazyMotionProvider>
+      </body>
     </html>
   );
 }
