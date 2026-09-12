@@ -1,3 +1,4 @@
+import { LightBeams } from "@/components/light-beams";
 import { SectionHeading } from "@/components/primitives";
 import { Reveal } from "@/components/reveal";
 import { differenceSteps } from "@/lib/content";
@@ -8,6 +9,18 @@ export const About = () => (
     className="border-hairline section-glow section-glow-about scroll-mt-20 border-t md:scroll-mt-[88px]"
     id="about"
   >
+    {/* Signature atmosphere: a beam field flowing top → bottom, left →
+        right over a top-edge light pool (DESIGN.md §5/§7). */}
+    <div
+      aria-hidden="true"
+      className="section-fx absolute inset-x-0 top-0 h-52 bg-[radial-gradient(55%_200px_at_50%_0%,rgba(247,248,252,0.14),transparent)]"
+    />
+    <div
+      aria-hidden="true"
+      className="section-fx mask-fade-b pointer-events-none absolute inset-x-0 top-0 h-72 md:h-[28rem]"
+    >
+      <LightBeams />
+    </div>
     <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 md:py-28">
       <Reveal>
         <SectionHeading
