@@ -47,11 +47,15 @@ export const SectionHeading = ({
     >
       <WordReveal text={title} />
       {accent ? (
-        <WordReveal
-          className="text-crest-300 italic"
-          delayChildren={0.45}
-          text={accent}
-        />
+        <>
+          {/* Spacer between the base title and the italic accent tail. */}
+          <span aria-hidden="true"> </span>
+          <WordReveal
+            className="text-crest-300 italic"
+            delayChildren={0.45}
+            text={accent}
+          />
+        </>
       ) : null}
     </h2>
     {lead ? (
