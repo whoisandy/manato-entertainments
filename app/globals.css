@@ -214,7 +214,9 @@
     transparent 70%
   );
   animation: glow-drift 25s ease-in-out alternate infinite;
-  will-change: transform;
+  /* No will-change: the transform animation promotes the layer while it
+     runs, and a permanent promotion pins five full-section textures in
+     GPU memory on every scroll position (measured scroll-jank fix). */
 }
 
 /* Ensure section content sits above the glow layer */

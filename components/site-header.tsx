@@ -84,7 +84,7 @@ export const SiteHeader = ({
     <header
       className={`fixed inset-x-0 top-0 z-40 transition-colors duration-200 ${
         scrolled || open
-          ? "border-hairline bg-stage/85 border-b backdrop-blur-md"
+          ? "border-hairline bg-stage/85 border-b backdrop-blur-sm"
           : "border-b border-transparent"
       }`}
     >
