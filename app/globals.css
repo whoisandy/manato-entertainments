@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  /* Manato navy theme (DESIGN.md §2) — navy stage, white text,
+  /* MANATO navy theme (DESIGN.md §2) — navy stage, white text,
      white/silver accents, crest gold for numerals/decoration only. */
   --color-stage: #010f29;
   --color-panel: #0a1a38;
@@ -25,6 +25,9 @@
   --color-crest-500: #e0b658;
   --color-crest-600: #b58e3f;
   --color-crest-wash: rgba(224, 182, 88, 0.16);
+  /* Error red — the only status color (DESIGN.md §2). AA on stage 7.6:1
+     and on panel 6.8:1, so field errors and error toasts stay readable. */
+  --color-error: #ff7a7a;
 
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
   --font-display: var(--font-fraunces), Georgia, serif;
@@ -411,7 +414,7 @@ body:has([data-slot="dialog-content"].gallery-lightbox) media-control-bar {
 }
 
 :root {
-  /* Manato navy design tokens (DESIGN.md §2) mapped onto the
+  /* MANATO navy design tokens (DESIGN.md §2) mapped onto the
      shadcn/Base UI variable contract. Site is dark-only — no .dark block. */
   --background: #010f29;
   --foreground: #f7f8fc;
@@ -427,7 +430,9 @@ body:has([data-slot="dialog-content"].gallery-lightbox) media-control-bar {
   --muted-foreground: #b3bdd4;
   --accent: rgba(247, 248, 252, 0.14);
   --accent-foreground: #eef1f8;
-  --destructive: oklch(0.577 0.245 27.325);
+  /* Mirrors --color-error so vendored primitives' aria-invalid:* /
+     text-destructive styles use the MANATO status red. */
+  --destructive: #ff7a7a;
   --border: rgba(247, 248, 252, 0.12);
   --input: rgba(247, 248, 252, 0.12);
   --ring: #d9dfef;

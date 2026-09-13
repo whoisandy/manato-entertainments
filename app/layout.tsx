@@ -3,6 +3,7 @@ import { Fraunces, Geist } from "next/font/google";
 import Script from "next/script";
 
 import { LazyMotionProvider } from "@/components/lazy-motion-provider";
+import { Toaster } from "@/components/toast";
 
 import "./globals.css";
 
@@ -19,11 +20,11 @@ const geistSans = Geist({
 
 export const metadata: Metadata = {
   description:
-    "Concerts, corporate events, celebrity meet & greets, celebrations and brand activations. Manato creates experiences that connect people.",
+    "Concerts, corporate events, celebrity meet & greets, celebrations and brand activations. MANATO creates experiences that connect people.",
   metadataBase: new URL("https://www.manatoentertainments.com/"),
   openGraph: {
     description:
-      "Creating moments. Connecting people. Building a legacy. Discover concerts, celebrations, corporate events and brand experiences with Manato.",
+      "Creating moments. Connecting people. Building a legacy. Discover concerts, celebrations, corporate events and brand experiences with MANATO.",
     images: [
       {
         alt: "MANATO Entertainments — Grand Stages | Golden Memories",
@@ -66,6 +67,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="flex min-h-full flex-col">
         <LazyMotionProvider>{children}</LazyMotionProvider>
+        <Toaster />
       </body>
     </html>
   );
