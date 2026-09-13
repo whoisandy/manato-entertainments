@@ -41,11 +41,12 @@ Dark-only site. No light mode.
 | Accent/crest | --color-crest-500 | #E0B658 | Crest gold (extracted from logo crest) — kicker dashes, pull-quote border, chips |
 | Accent/crest-deep | --color-crest-600 | #B58E3F | Crest on elevated surfaces, pressed states |
 | Accent/crest-wash | --color-crest-wash | rgba(224,182,88,0.16) | Chip backgrounds |
+| Status/error | --color-error | #FF7A7A | Validation messages, invalid borders, error toast rule (AA 7.6:1 stage / 6.8:1 panel) |
 
 ### Rules
 
 - White/silver is the identity accent for interaction (focus, hover, buttons). Crest gold is decoration: numerals, kickers, the pull-quote rule — it never floods large surfaces (matches the logo, where gold is the crest only).
-- Never introduce a color not in this table. Pure #FFFFFF text is reserved to the logo mark; UI text uses bone #F7F8FC. Status colors omitted: this static site has no error/success states (form is mailto).
+- Never introduce a color not in this table. Pure #FFFFFF text is reserved to the logo mark; UI text uses bone #F7F8FC. `error` is the single status color (added 2026-09-13): field-level validation messages, invalid input borders, and error toasts. Success states stay `crest-400`/`ash` — see FormField and Toast.
 
 ## 3. Typography
 
@@ -152,7 +153,7 @@ Dark-only site. No light mode.
 
 > Rebuilt 2026-09-12 (stakeholder request) from `vercel/next.js/examples/with-vercel-blob`'s `SharedModal.tsx` visual language, fed from local `public/photos/*.jpg` (no Vercel Blob/swr/blurhash). Documented exceptions to the site-wide 0-radius rule: the lightbox's circular buttons (`rounded-full`) and filmstrip thumbs (`rounded-md`) — third rounded zone after the tab pills and strapline pill.
 
-- **Structure** (`components/shared-modal.tsx`, composed by `gallery.tsx` through the shadcn/Base-UI `Dialog`): viewport-sized stage (`h-dvh w-full`, `z-50`) inside the popup — the main image keeps its own aspect ratio via replaced-element clamps (`h-auto w-auto max-h-full max-w-[min(100%,80rem)] object-contain` + `priority`), filling width- or height-wise without upscaling; controls live on a `pointer-events-none absolute inset-0` layer **pinned to the viewport corners** (fixed positions across every photo/orientation, always painting above the image — mobile included): close top-right (`DialogClose`→Button; moved top-right and the download anchor removed 2026-09-12, stakeholder request), chevrons mid-sides at `p-3` that render only when a photo exists in that direction (starter behavior — bounded navigation, no wrap-around); bottom filmstrip on a viewport-wide `bg-gradient-to-b from-transparent to-stage/80` band, mounted INSIDE the stage's z-50 stacking context (starter structure) so it always paints above the image.
+- **Structure** (`components/shared-modal.tsx`, composed by `gallery.tsx` through the shadcn/Base-UI `Dialog`): viewport-sized stage (`h-dvh w-full`, `z-50`) inside the popup — the main image keeps its own aspect ratio via replaced-element clamps (`h-auto max-h-full max-w-[min(100%,80rem)] w-auto object-contain` + `loading="eager"` — Next 16 deprecated `priority` in favor of eager loading/fetchPriority), filling width- or height-wise without upscaling; controls live on a `pointer-events-none absolute inset-0` layer **pinned to the viewport corners** (fixed positions across every photo/orientation, always painting above the image — mobile included): close top-right (`DialogClose`→Button; moved top-right and the download anchor removed 2026-09-12, stakeholder request), chevrons mid-sides at `p-3` that render only when a photo exists in that direction (starter behavior — bounded navigation, no wrap-around); bottom filmstrip on a viewport-wide `bg-gradient-to-b from-transparent to-stage/80` band, mounted INSIDE the stage's z-50 stacking context (starter structure) so it always paints above the image.
 - **Filmstrip mechanics (starter-verbatim)**: window of ±15 thumbs; every `motion.button` animates `x: index × −100%` of its own width (the `flex aspect-[3/2] h-14` parent shrink-widths to one thumb, so the row glides the active thumb to the centered viewport); active thumb `scale 1.25 + brightness-110 + shadow-lg shadow-black/50 + rounded-md + z-20`, inactive `brightness-50 contrast-125 hover:brightness-75`; first/last thumbs carry the strip's outer `rounded-l-md`/`rounded-r-md`.
 - **Tokens**: scrim `stage/78% + blur(28px)` via a `body:has(.gallery-lightbox)` rule in globals.css (the vendored Dialog's Backdrop is a portal sibling, so the deepened blur keys off the popup's class — no vendored edits); buttons solid `bg-panel` + `hairline-strong` border → hover `elevated`, icon `bone/75` → `bone`; strip gradient ends `to-stage/80`. No black scrims or new colors.
 - **States**: open/close via Dialog 100ms fade+zoom; image swaps slide ±1000px with `MotionConfig` spring x (stiffness 300, damping 30) + 0.2s opacity, direction-aware (state in `gallery.tsx`); swipe via `react-swipeable` (trackMouse); buttons transition-colors 200ms.
@@ -169,9 +170,18 @@ Dark-only site. No light mode.
 
 ### FormField
 
-- **Structure**: label (body-sm bone) + input/textarea: bg panel, 1px hairline border, radius 0, px-4 py-3, text bone; focus — border crest-500 + 3px crest-wash ring.
-- **States**: default/focus/placeholder dust; required attrs native.
-- **Accessibility**: every input labelled; autocomplete attrs; form submit builds mailto (no backend).
+- **Structure**: label (body-sm bone) + input/textarea: bg panel, 1px hairline border, radius 0, px-4 py-3, text bone; focus — border crest-500 + 3px crest-wash ring; invalid — border `error` + `error`/20 ring (the vendored `aria-invalid:*` contract, retuned via `--destructive: #ff7a7a`).
+- **States**: default/focus/invalid/placeholder dust; `required` attrs stay for semantics while `noValidate` on the form suppresses the native bubbles — validation is ours.
+- **Validation (2026-09-13, stakeholder request — replaces HTML5)**: `lib/validation.ts` `validateEnquiry()` is the single source, run on submit in the client (instant) and re-run in the action (untrusted entry). Invalid submit calls `preventDefault()` — React then never dispatches the Server Action (`nativeEvent.defaultPrevented`), so nothing leaves the page — focuses the first invalid field, and renders a red `error` message under each bad field (`aria-invalid` + `aria-describedby`). Editing a field clears its message. Limits: name 2–80, email pattern ≤254, message 10–2000 chars.
+- **Submission (2026-09-13)**: the form posts through the `sendContactEnquiry` Server Action (`app/actions/contact.ts`, Resend API) — no backend route handler. It returns `{status, message, fieldErrors, token}`; server `fieldErrors` render like the client ones, `token` fires exactly one Toast per completed run, and pending disables the submit button with a "Sending…" label. Contact + footer email/phone entries stay native (`mailto:` / `tel:` anchors).
+- **Env**: `RESEND_API_KEY` (required), `MAIL_FROM` (verified sender; `onboarding@resend.dev` sandbox fallback, delivers only to the account owner's own address); submitter address rides as `replyTo`. See `.env.example`.
+
+### Toast (Toaster)
+
+- **Structure**: `components/toast.tsx` wraps the vendored `components/ui/toast.tsx` (shadcn on Base UI) — the primitive keeps the machinery (stacking, swipe-to-dismiss, timers, `aria-live` viewport), the wrapper applies the site surface: sharp 0-radius, `bg-panel`, `border-hairline-strong`, **no shadow** (borders-only rule), and a 2px left rule — `crest-400` on success, `error` on error. Icon: `CircleCheckIcon` (crest-400) / `OctagonXIcon` (error). Title bone body-sm, description ash body-sm, close dust → bone. Viewport bottom-right desktop / bottom-center mobile, `z-[100]` (above the lightbox's z-70).
+- **API**: mounted once in `app/layout.tsx`; `notify({title, description, type, timeout})` is callable from anywhere (module-level `createToastManager()`), so non-React call sites work. Success auto-dismisses at 6s, errors at 8s. `data-type` on the root drives the per-state styling in CSS.
+- **States**: success/error, plus dismiss via close button or swipe. `motion-reduce:[transition:none]` collapses the primitive's transform transitions.
+- **Accessibility**: Base UI's viewport owns the live region; the toast is not focus-trapping, so the form stays usable while one is visible.
 
 ### IconBtn (chevrons, close, hamburger)
 
@@ -266,7 +276,7 @@ Dark-only site. No light mode.
 
 | Item | Location | Why accepted | Owner / Exit |
 | --- | --- | --- | --- |
-| Contact form is mailto-only, no backend | components/contact-form.tsx | Launch scope is explicitly static — no dynamic functionality | User wires a form service post-launch |
+| Single page only (`app/page.tsx`) — but contact form submits via a Resend Server Action (added 2026-09-13) | app/actions/contact.ts | User request: real delivery without a backend/RDB; the only server code on the site | — |
 | Hero/gallery photos are user-supplied JPGs (≤1600px) served as-is to next/image | public/photos/*.jpg | Fine for 2× displays at current sizes; sharp optimizes to AVIF/WebP at runtime | Convert hero set to pre-sized AVIF if LCP budget slips |
 | Primitive Showcase Gate via the page itself, not a separate showcase route | app/page.tsx | User constraint: single page only; the page exercises every primitive + state at 375/768/1280 during visual QA | — |
 | react-scan wired via manual dev-gated snippet (CLI prompt failed) | app/layout.tsx | Canonical manual install from react-dev-tooling-skill; verified dev-gated | — |
