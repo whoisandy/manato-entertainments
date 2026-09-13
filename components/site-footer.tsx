@@ -18,7 +18,7 @@ export const SiteFooter = () => (
     <div className="relative mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 md:py-16">
       <div className="grid gap-10 md:grid-cols-[1fr_1fr_1.5fr]">
         <AnimatedContainer className="flex flex-col" delay={0.05}>
-          <h3 className="text-crest-400 text-[13px] tracking-[0.05em] uppercase">
+          <h3 className="text-crest-400 text-[13px] tracking-wider uppercase">
             Connect With MANATO
           </h3>
           <ul className="text-ash mt-4 space-y-3 text-sm">
@@ -49,7 +49,7 @@ export const SiteFooter = () => (
 
         <AnimatedContainer className="flex flex-col" delay={0.1}>
           <nav aria-label="Footer">
-            <h3 className="text-crest-400 text-[13px] tracking-[0.05em] uppercase">
+            <h3 className="text-crest-400 text-[13px] tracking-wider uppercase">
               Explore
             </h3>
             <ul className="mt-4 space-y-3">

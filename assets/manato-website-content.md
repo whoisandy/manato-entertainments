@@ -12,7 +12,7 @@ This document contains publishable copy adapted to the existing single-page webs
 | #top: location line, main heading, paragraph and two buttons | Entertainment & Event Management; Where Entertainment Meets Experience; new introduction and enquiry links | Replace the city/music-only line. Add the short brand strapline beneath the heading. |
 | #top: four statistics | 4 Founders · 1 Shared vision · Growing Team · Lasting Experiences | Replace the unverified performance totals. Allow the last two values to render as text. |
 | #about: three paragraphs and pull quote | Four founders, early events, growing team and long-term ambition | Use the three paragraphs below in the existing slots. |
-| #about: four numbered process items | The Manato Difference: vision, creativity, execution and audience connection | Keep four items; replace each title and description. |
+| #about: four numbered process items | The MANATO Difference: vision, creativity, execution and audience connection | Keep four items; replace each title and description. |
 | #events: section introduction | What We Do / Experiences Designed to Be Remembered | Broaden the section from tribute concerts to the full service offering. |
 | #events: featured upcoming edition | Concerts & Live Events | Use it as a service feature. Remove the sample artist pairing, date/location line and performance counts. |
 | #events: four-row setlist panel | Who We Create For: Audiences, Artists, Brands, Partners & Sponsors | Replace song titles and singer credits with the four short audience descriptions. |
@@ -22,7 +22,7 @@ This document contains publishable copy adapted to the existing single-page webs
 | #contact: introduction, labels and three-field form | Tell Us What You Have in Mind | Preserve the email-app handoff; verify the destination address before enabling it. |
 | Footer and document metadata | Broader entertainment positioning and original brand tagline | Update the footer, page title, description and social-sharing metadata together. |
 
-The existing website presents a narrower music-night concept and includes sample-looking statistics, named event material and contact information. Because the site was described as containing placeholders, those items are not used as evidence of Manato’s achievements, bookings or contact details.
+The existing website presents a narrower music-night concept and includes sample-looking statistics, named event material and contact information. Because the site was described as containing placeholders, those items are not used as evidence of MANATO’s achievements, bookings or contact details.
 
 ## 2. Header and navigation
 
@@ -48,7 +48,7 @@ The existing website presents a narrower music-night concept and includes sample
 
 **Supporting line:** Creating Moments. Connecting People. Building a Legacy.
 
-**Body:** From intimate celebrations to live concerts, corporate events and brand activations, Manato brings creative thinking, thoughtful planning and strong execution together to create experiences people remember and brands value.
+**Body:** From intimate celebrations to live concerts, corporate events and brand activations, MANATO brings creative thinking, thoughtful planning and strong execution together to create experiences people remember and brands value.
 
 **Primary button:** Plan an Event → #contact
 
@@ -73,11 +73,11 @@ MANATO Entertainments began with four people and one shared belief: a great even
 
 Our journey started with small events. Each one taught us more about audiences, artists, production, partnerships and the details that bring an experience to life. Those early experiences became the foundation of a passionate, growing team.
 
-Today, we bring that foundation to concerts, corporate events, celebrity meet & greets, celebrations and brand experiences. We are building Manato for the long term, with the ambition to take on bigger ideas, reach new audiences and earn trust through every experience we create.
+Today, we bring that foundation to concerts, corporate events, celebrity meet & greets, celebrations and brand experiences. We are building MANATO for the long term, with the ambition to take on bigger ideas, reach new audiences and earn trust through every experience we create.
 
 **Pull quote:** Our journey is still young. Our vision is not.
 
-### The Manato Difference
+### The MANATO Difference
 
 **01. A Clear Vision:** We begin with what the experience needs to achieve and how we want people to feel.
 
@@ -141,15 +141,15 @@ Editorial note: this section describes services. It does not announce an event o
 
 ## 6. Gallery — #gallery
 
-**Eyebrow:** The Manato Gallery
+**Eyebrow:** The MANATO Gallery
 
 **Heading:** Moments That Bring Us Together
 
-**Body:** A glimpse into the people, connections and shared moments behind Manato. Explore the gallery for a closer look at our journey.
+**Body:** A glimpse into the people, connections and shared moments behind MANATO. Explore the gallery for a closer look at our journey.
 
 **Interaction hint:** Select an image to view it.
 
-**If no approved gallery images are available:** Our Story Is Taking Shape — More moments from Manato will be shared here as our journey grows.
+**If no approved gallery images are available:** Our Story Is Taking Shape — More moments from MANATO will be shared here as our journey grows.
 
 | Viewer element    | Copy                          |
 | ----------------- | ----------------------------- |
@@ -186,15 +186,15 @@ Editorial note: retain only approved photographs. Describe what a photograph sho
 
 **Introduction:** Planning an event, exploring a partnership or looking to get involved? Start here. For anything else, get in touch.
 
-### 1. What kinds of events does Manato manage?
+### 1. What kinds of events does MANATO manage?
 
 We create and manage concerts and live events, corporate events, celebrity meet & greets, parties and celebrations, brand activations and special events. Each experience is shaped around its audience, purpose and scale.
 
-### 2. How do we start planning an event with Manato?
+### 2. How do we start planning an event with MANATO?
 
 Tell us about the occasion, your preferred date and city, the audience size and what you want the experience to achieve. If you have a budget in mind, include that too. These details help us understand the brief and discuss a suitable direction.
 
-### 3. Can brands and sponsors partner with Manato?
+### 3. Can brands and sponsors partner with MANATO?
 
 Yes. We welcome conversations with brands and sponsors interested in event partnerships and entertainment activations. Share your objectives and the audiences you want to reach so we can explore a relevant opportunity together.
 
@@ -216,7 +216,7 @@ Send us a short introduction, your area of expertise, your location and links to
 
 **Heading:** Tell Us What You Have in Mind
 
-**Introduction:** Planning a celebration, bringing a brand experience to life, exploring a partnership or looking to collaborate? Start a conversation with Manato.
+**Introduction:** Planning a celebration, bringing a brand experience to life, exploring a partnership or looking to collaborate? Start a conversation with MANATO.
 
 | Field | Label | Placeholder | Required |
 | --- | --- | --- | --- |
@@ -260,7 +260,7 @@ The structured content file deliberately leaves contact values unset. These are 
 
 **Navigation heading:** Explore
 
-**Contact heading:** Connect With Manato
+**Contact heading:** Connect With MANATO
 
 **Closing statement:** Dream Big. Create Experiences. Build a Legacy.
 
@@ -273,10 +273,10 @@ Reuse the same five navigation labels and destinations as the header. Show only 
 | Field | Replacement |
 | --- | --- |
 | Page title | MANATO Entertainments \| Events & Entertainment |
-| Meta description | Concerts, corporate events, celebrity meet & greets, celebrations and brand activations. Manato creates experiences that connect people. |
+| Meta description | Concerts, corporate events, celebrity meet & greets, celebrations and brand activations. MANATO creates experiences that connect people. |
 | Canonical URL | https://www.manatoentertainments.com/ |
 | Social title | MANATO Entertainments \| Where Entertainment Meets Experience |
-| Social description | Creating moments. Connecting people. Building a legacy. Discover concerts, celebrations, corporate events and brand experiences with Manato. |
+| Social description | Creating moments. Connecting people. Building a legacy. Discover concerts, celebrations, corporate events and brand experiences with MANATO. |
 | Social image alternative text | MANATO Entertainments — Grand Stages \| Golden Memories |
 
 Use the canonical URL shown above because the non-www address currently redirects to www. This is one page: the anchor sections do not need invented standalone page URLs. Use a complete, legible brand image for the social preview; the crown-only mark is suitable for a compact icon once a proper transparent export is available.
@@ -289,15 +289,15 @@ These are complete copy modules for new blocks. They were not present in the ins
 
 ### Four Founders. One Vision. One Growing Team.
 
-**Eyebrow:** The Team Behind Manato
+**Eyebrow:** The Team Behind MANATO
 
 **Suggested anchor:** #team
 
-Manato began with four people who shared a dream and the determination to build from the ground up. Different strengths in creativity, strategy, leadership, relationships and execution came together around one ambition: to create experiences worth remembering.
+MANATO began with four people who shared a dream and the determination to build from the ground up. Different strengths in creativity, strategy, leadership, relationships and execution came together around one ambition: to create experiences worth remembering.
 
 Today, that ambition is shared by a growing team. Creative minds, planners, production professionals, operations teams and partners all contribute to bringing each experience to life.
 
-As we grow, we continue to invest in the people behind the work. Their ideas, care and commitment are helping shape the next chapter of Manato.
+As we grow, we continue to invest in the people behind the work. Their ideas, care and commitment are helping shape the next chapter of MANATO.
 
 **Closing line:** A strong vision needs a stronger team.
 
@@ -325,9 +325,9 @@ We want to build a company audiences look forward to, artists trust, brands beli
 
 Our next chapter is about expanding our capabilities, exploring new markets, working with more artists and brands, and developing new formats of entertainment. We want to create experiences that travel across cities, connect physical and digital audiences, and open doors for emerging talent and entertainment professionals.
 
-From four dreamers to a growing team. From small events to bigger possibilities. We are building Manato for the next decade, one meaningful experience at a time.
+From four dreamers to a growing team. From small events to bigger possibilities. We are building MANATO for the next decade, one meaningful experience at a time.
 
-**Closing line:** This Is Manato. And This Is Only the Beginning.
+**Closing line:** This Is MANATO. And This Is Only the Beginning.
 
 If founder portraits or biography cards are added, obtain all four names, their agreed titles and approved biographies first. The supplied brief does not identify individuals or assign responsibilities to specific founders.
 

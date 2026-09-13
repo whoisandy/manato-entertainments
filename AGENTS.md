@@ -16,7 +16,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Lint/format: **oxlint + oxfmt** via ultracite — `bun run check` lints, `bun run fix` formats+autofixes. Vendored code (`components/ui/**`, `hooks/**`) and agent artifacts (`.playwright-mcp/**`) are excluded from both — do not restyle them by hand.
 - Build: `bun run build` (Next.js 16, Turbopack default for dev and build). Dev: `bun run dev`.
 - Tailwind CSS v4 — theme tokens live in `app/globals.css` via `@theme`; there is no `tailwind.config.js`.
-- UI primitives are **shadcn/ui on Base UI** (`components/ui/*`, managed by `bunx shadcn@latest add`). The shadcn variable contract is mapped onto the Manato palette in `app/globals.css` `:root`. Do not restyle vendored primitives ad hoc — extend them in our own components (`components/primitives.tsx`, etc.).
+- UI primitives are **shadcn/ui on Base UI** (`components/ui/*`, managed by `bunx shadcn@latest add`). The shadcn variable contract is mapped onto the MANATO palette in `app/globals.css` `:root`. Do not restyle vendored primitives ad hoc — extend them in our own components (`components/primitives.tsx`, etc.).
 
 ## Design system
 

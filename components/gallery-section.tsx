@@ -25,7 +25,7 @@ export const GallerySection = () => (
         <SectionHeading
           id="gallery-title"
           kicker="The MANATO Gallery"
-          lead="A glimpse into the people, connections and shared moments behind Manato. Explore the gallery for a closer look at our journey."
+          lead="A glimpse into the people, connections and shared moments behind MANATO. Explore the gallery for a closer look at our journey."
           title="Moments That"
           accent="Bring Us Together"
         />

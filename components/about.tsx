@@ -40,9 +40,9 @@ export const About = () => (
         <Reveal>
           <div className="text-ash space-y-6 text-base leading-relaxed">
             <p>
-              MANATO Entertainments began with four people, one shared belief,
-              and a simple idea — every event should become an experience that
-              stays with people.
+              MANATO Entertainments began with, one shared belief, and a simple
+              idea — every event should become an experience that stays with
+              people.
             </p>
             <p>
               From the beginning, we wanted to create more than just events. We

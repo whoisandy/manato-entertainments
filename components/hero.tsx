@@ -39,7 +39,7 @@ export const Hero = () => (
 
       <p className="text-ash mt-8 max-w-2xl text-lg leading-relaxed">
         From intimate celebrations to live concerts, corporate events and brand
-        activations, Manato brings creative thinking, thoughtful planning and
+        activations, MANATO brings creative thinking, thoughtful planning and
         strong execution together to create experiences people remember and
         brands value.
       </p>

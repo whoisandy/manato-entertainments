@@ -321,17 +321,17 @@ export const faqs: FaqItem[] = [
   {
     answer:
       "We create and manage concerts and live events, corporate events, celebrity meet & greets, parties and celebrations, brand activations and special events. Each experience is shaped around its audience, purpose and scale.",
-    question: "What kinds of events does Manato manage?",
+    question: "What kinds of events does MANATO manage?",
   },
   {
     answer:
       "Tell us about your occasion, preferred date and city, audience size, and the experience you want to create. If you have a budget in mind, please include that too. These details help us understand your brief and recommend the right direction for your event.",
-    question: "How do we start planning an event with Manato?",
+    question: "How do we start planning an event with MANATO?",
   },
   {
     answer:
       "Yes. We welcome partnerships with brands and sponsors looking to create meaningful event experiences and entertainment activations. Share your objectives, target audience, and partnership goals with us, and we’ll explore opportunities that align with your brand and our events.",
-    question: "Can brands and sponsors partner with Manato?",
+    question: "Can brands and sponsors partner with MANATO?",
   },
   {
     answer:

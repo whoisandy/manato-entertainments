@@ -38,7 +38,7 @@ export const Contact = () => (
               title="Your Idea."
             />
 
-            <a
+            {/*<a
               className="text-ash hover:text-crest-300 group inline-flex items-center gap-2 text-sm transition-colors duration-200"
               href="#contact-form"
             >
@@ -49,11 +49,11 @@ export const Contact = () => (
                 →
               </span>
               Fill in the form with all the necessary information
-            </a>
+            </a>*/}
 
             <dl className="mt-12 space-y-8">
               <div>
-                <dt className="text-crest-400 text-[13px] tracking-[0.05em] uppercase">
+                <dt className="text-crest-400 text-[13px] tracking-wider uppercase">
                   Email
                 </dt>
                 <dd className="mt-1">
@@ -66,7 +66,7 @@ export const Contact = () => (
                 </dd>
               </div>
               <div>
-                <dt className="text-crest-400 text-[13px] tracking-[0.05em] uppercase">
+                <dt className="text-crest-400 text-[13px] tracking-wider uppercase">
                   Call
                 </dt>
                 <dd className="mt-1">

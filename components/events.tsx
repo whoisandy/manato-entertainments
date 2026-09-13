@@ -50,7 +50,7 @@ export const Events = () => (
                 <StaggerItem
                   as="li"
                   index={chipIndex}
-                  className="border-hairline bg-crest-wash text-crest-300 border px-3 py-1.5 text-[13px] tracking-[0.05em]"
+                  className="border-hairline bg-crest-wash text-crest-300 border px-3 py-1.5 text-[13px] tracking-wider"
                   key={chip.label}
                 >
                   {chip.label}
@@ -67,7 +67,7 @@ export const Events = () => (
           </div>
 
           <div>
-            <h4 className="text-crest-400 text-[13px] tracking-[0.05em] uppercase">
+            <h4 className="text-crest-400 text-[13px] tracking-wider uppercase">
               Who We Create For
             </h4>
             <Stagger as="ol" className="mt-4">
@@ -78,7 +78,7 @@ export const Events = () => (
                   className="border-hairline grid grid-cols-[3rem_1fr] items-baseline gap-x-4 border-t py-4 first:border-t-0 first:pt-2"
                   key={entry.title}
                 >
-                  <span className="text-crest-400 text-[13px] tracking-[0.05em]">
+                  <span className="text-crest-400 text-[13px] tracking-wider">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <div>
@@ -99,7 +99,7 @@ export const Events = () => (
 
       <Stagger as="div" className="mt-16 md:mt-20" delay={120}>
         <StaggerItem index={0}>
-          <h3 className="text-crest-400 text-[13px] tracking-[0.05em] uppercase">
+          <h3 className="text-crest-400 text-[13px] tracking-wider uppercase">
             More Ways to Create an Experience
           </h3>
         </StaggerItem>

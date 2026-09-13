@@ -6,10 +6,10 @@
   },
   "seo": {
     "title": "MANATO Entertainments | Events & Entertainment",
-    "description": "Concerts, corporate events, celebrity meet & greets, celebrations and brand activations. Manato creates experiences that connect people.",
+    "description": "Concerts, corporate events, celebrity meet & greets, celebrations and brand activations. MANATO creates experiences that connect people.",
     "canonicalUrl": "https://www.manatoentertainments.com/",
     "openGraphTitle": "MANATO Entertainments | Where Entertainment Meets Experience",
-    "openGraphDescription": "Creating moments. Connecting people. Building a legacy. Discover concerts, celebrations, corporate events and brand experiences with Manato.",
+    "openGraphDescription": "Creating moments. Connecting people. Building a legacy. Discover concerts, celebrations, corporate events and brand experiences with MANATO.",
     "openGraphImageAlt": "MANATO Entertainments — Grand Stages | Golden Memories",
     "organization": {
       "@context": "https://schema.org",
@@ -56,7 +56,7 @@
     "eyebrow": "Entertainment & Event Management",
     "heading": "Where Entertainment Meets Experience",
     "strapline": "Creating Moments. Connecting People. Building a Legacy.",
-    "description": "From intimate celebrations to live concerts, corporate events and brand activations, Manato brings creative thinking, thoughtful planning and strong execution together to create experiences people remember and brands value.",
+    "description": "From intimate celebrations to live concerts, corporate events and brand activations, MANATO brings creative thinking, thoughtful planning and strong execution together to create experiences people remember and brands value.",
     "primaryCta": {
       "label": "Plan an Event",
       "href": "#contact"
@@ -91,11 +91,11 @@
     "paragraphs": [
       "MANATO Entertainments began with four people and one shared belief: a great event creates an experience that stays with people. Bringing different strengths and perspectives together, our founders set out to build something they could grow with purpose.",
       "Our journey started with small events. Each one taught us more about audiences, artists, production, partnerships and the details that bring an experience to life. Those early experiences became the foundation of a passionate, growing team.",
-      "Today, we bring that foundation to concerts, corporate events, celebrity meet & greets, celebrations and brand experiences. We are building Manato for the long term, with the ambition to take on bigger ideas, reach new audiences and earn trust through every experience we create."
+      "Today, we bring that foundation to concerts, corporate events, celebrity meet & greets, celebrations and brand experiences. We are building MANATO for the long term, with the ambition to take on bigger ideas, reach new audiences and earn trust through every experience we create."
     ],
     "pullQuote": "Our journey is still young. Our vision is not.",
     "difference": {
-      "heading": "The Manato Difference",
+      "heading": "The MANATO Difference",
       "items": [
         {
           "title": "A Clear Vision",
@@ -182,12 +182,12 @@
   },
   "gallery": {
     "id": "gallery",
-    "eyebrow": "The Manato Gallery",
+    "eyebrow": "The MANATO Gallery",
     "heading": "Moments That Bring Us Together",
-    "description": "A glimpse into the people, connections and shared moments behind Manato. Explore the gallery for a closer look at our journey.",
+    "description": "A glimpse into the people, connections and shared moments behind MANATO. Explore the gallery for a closer look at our journey.",
     "instruction": "Select an image to view it.",
     "emptyHeading": "Our Story Is Taking Shape",
-    "emptyDescription": "More moments from Manato will be shared here as our journey grows.",
+    "emptyDescription": "More moments from MANATO will be shared here as our journey grows.",
     "lightbox": {
       "openLabelTemplate": "View photo {index} of {total}",
       "closeLabel": "Close photo",
@@ -253,15 +253,15 @@
     "description": "Planning an event, exploring a partnership or looking to get involved? Start here. For anything else, get in touch.",
     "items": [
       {
-        "question": "What kinds of events does Manato manage?",
+        "question": "What kinds of events does MANATO manage?",
         "answer": "We create and manage concerts and live events, corporate events, celebrity meet & greets, parties and celebrations, brand activations and special events. Each experience is shaped around its audience, purpose and scale."
       },
       {
-        "question": "How do we start planning an event with Manato?",
+        "question": "How do we start planning an event with MANATO?",
         "answer": "Tell us about the occasion, your preferred date and city, the audience size and what you want the experience to achieve. If you have a budget in mind, include that too. These details help us understand the brief and discuss a suitable direction."
       },
       {
-        "question": "Can brands and sponsors partner with Manato?",
+        "question": "Can brands and sponsors partner with MANATO?",
         "answer": "Yes. We welcome conversations with brands and sponsors interested in event partnerships and entertainment activations. Share your objectives and the audiences you want to reach so we can explore a relevant opportunity together."
       },
       {
@@ -282,12 +282,12 @@
     "id": "contact",
     "eyebrow": "Let’s Create Something Memorable",
     "heading": "Tell Us What You Have in Mind",
-    "description": "Planning a celebration, bringing a brand experience to life, exploring a partnership or looking to collaborate? Start a conversation with Manato.",
+    "description": "Planning a celebration, bringing a brand experience to life, exploring a partnership or looking to collaborate? Start a conversation with MANATO.",
     "detailsLabels": {
       "email": "Email",
       "phone": "Phone",
       "address": "Visit Us",
-      "social": "Follow Manato"
+      "social": "Follow MANATO"
     },
     "verifiedEmail": null,
     "verifiedPhone": null,
@@ -328,7 +328,7 @@
     "description": "Entertainment and event management for concerts, corporate events, celebrations and brand experiences. Creating moments that connect people and stay with them.",
     "tagline": "Grand Stages | Golden Memories",
     "exploreHeading": "Explore",
-    "contactHeading": "Connect With Manato",
+    "contactHeading": "Connect With MANATO",
     "copyrightTemplate": "© {year} MANATO Entertainments. All rights reserved.",
     "closingLine": "Dream Big. Create Experiences. Build a Legacy.",
     "location": null
@@ -336,12 +336,12 @@
   "optionalSections": {
     "team": {
       "suggestedId": "team",
-      "eyebrow": "The Team Behind Manato",
+      "eyebrow": "The Team Behind MANATO",
       "heading": "Four Founders. One Vision. One Growing Team.",
       "paragraphs": [
-        "Manato began with four people who shared a dream and the determination to build from the ground up. Different strengths in creativity, strategy, leadership, relationships and execution came together around one ambition: to create experiences worth remembering.",
+        "MANATO began with four people who shared a dream and the determination to build from the ground up. Different strengths in creativity, strategy, leadership, relationships and execution came together around one ambition: to create experiences worth remembering.",
         "Today, that ambition is shared by a growing team. Creative minds, planners, production professionals, operations teams and partners all contribute to bringing each experience to life.",
-        "As we grow, we continue to invest in the people behind the work. Their ideas, care and commitment are helping shape the next chapter of Manato."
+        "As we grow, we continue to invest in the people behind the work. Their ideas, care and commitment are helping shape the next chapter of MANATO."
       ],
       "closingLine": "A strong vision needs a stronger team."
     },
@@ -366,9 +366,9 @@
       "paragraphs": [
         "We want to build a company audiences look forward to, artists trust, brands believe in and partners choose to grow with. That means earning confidence through consistency, creativity, care and lasting relationships.",
         "Our next chapter is about expanding our capabilities, exploring new markets, working with more artists and brands, and developing new formats of entertainment. We want to create experiences that travel across cities, connect physical and digital audiences, and open doors for emerging talent and entertainment professionals.",
-        "From four dreamers to a growing team. From small events to bigger possibilities. We are building Manato for the next decade, one meaningful experience at a time."
+        "From four dreamers to a growing team. From small events to bigger possibilities. We are building MANATO for the next decade, one meaningful experience at a time."
       ],
-      "closingLine": "This Is Manato. And This Is Only the Beginning."
+      "closingLine": "This Is MANATO. And This Is Only the Beginning."
     }
   },
   "_editorial": {
@@ -393,7 +393,7 @@
     "removeOrConfirmBeforeReuse": [
       "The four numerical performance claims: 12+ nights, 300+ songs, 40+ singers and 5,000+ guests.",
       "The announced composer pairing, coming-soon location, song and singer counts, sample setlist, performer names and archived event dates.",
-      "Any assertion that named composers or celebrities are booked, appearing, endorsing or partnering with Manato.",
+      "Any assertion that named composers or celebrities are booked, appearing, endorsing or partnering with MANATO.",
       "The response-time promise in the existing contact form.",
       "Instagram and YouTube links that currently point to #.",
       "Unverified job titles, identities, dates or event context in gallery captions and image alternative text."
