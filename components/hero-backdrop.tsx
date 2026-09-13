@@ -13,8 +13,8 @@ const CROSSFADE_MS = 1.2;
  * Vervee/Vibe-style cycling photo backdrop: a photo panel hugging the right
  * on md+ (full-bleed on mobile), blended into the stage by a left-edge dark
  * gradient. All photos stay mounted as stacked layers and cross-fade via
- * opacity — no mount churn, the priority preload stays consumed, and the
- * cycle images pre-decode. Each active layer also runs a slow Ken Burns
+ * opacity — no mount churn, the LCP image's eager/fetchPriority wiring stays on
+ * the first layer, and the cycle images pre-decode. Each active layer also runs a slow Ken Burns
  * zoom-out (1.2 → 1.05, the 5% buffer hides the 2px blur edge bleed), so
  * the hero keeps moving between cross-fades. The cycle pauses under
  * prefers-reduced-motion.
@@ -82,7 +82,8 @@ export const HeroBackdrop = () => {
               src={photo.src}
               alt=""
               fill
-              priority={photoIndex === 0}
+              fetchPriority={photoIndex === 0 ? "high" : "auto"}
+              loading={photoIndex === 0 ? "eager" : "lazy"}
               sizes="(min-width: 768px) 58vw, 60vw"
               quality={75}
               className="object-cover blur-[2px]"

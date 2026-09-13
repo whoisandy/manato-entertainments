@@ -123,7 +123,7 @@ export const SharedModal = ({
                 alt={photo.alt}
                 width={photo.width}
                 height={photo.height}
-                priority
+                loading="eager"
                 onLoad={() => setLoaded(true)}
                 className="h-auto max-h-full w-auto max-w-[min(100%,80rem)] object-contain"
               />

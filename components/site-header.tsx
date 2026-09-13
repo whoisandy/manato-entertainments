@@ -100,7 +100,8 @@ export const SiteHeader = ({
             alt={logo.alt}
             width={logo.width}
             height={logo.height}
-            priority
+            fetchPriority="high"
+            loading="eager"
             sizes="(min-width: 768px) 84px, 72px"
             className="h-12 w-auto md:h-14"
           />
