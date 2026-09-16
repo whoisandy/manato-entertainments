@@ -2,6 +2,7 @@
 
 import { Resend } from "resend";
 
+import { renderEnquiryNotification } from "@/emails/enquiry-notification";
 import { site } from "@/lib/content";
 import type { EnquiryFieldErrors } from "@/lib/validation";
 import {
@@ -18,14 +19,6 @@ export interface ContactFormState {
   /** Changes on every completed run so the client can fire one toast per submit. */
   token: number;
 }
-
-const renderBody = (name: string, email: string, message: string) => ({
-  html: `<p><strong>${name}</strong> (${email}) wrote:</p><p>${message
-    .split("\n")
-    .map((line) => `${line}<br/>`)
-    .join("")}</p>`,
-  text: `${name} (${email}) wrote:\n\n${message}`,
-});
 
 const fail = (
   message: string,
@@ -55,8 +48,25 @@ export const sendContactEnquiry = async (
     );
   }
 
-  const from = process.env.MAIL_FROM ?? "onboarding@resend.dev";
-  const body = renderBody(values.name, values.email, values.message);
+  const fromAddress = process.env.MAIL_FROM ?? "onboarding@resend.dev";
+  /** Friendly sender name — without it, mail clients show the bare
+   *  mailbox part of MAIL_FROM (e.g. just "contact") in the inbox row. */
+  const from = fromAddress.includes("<")
+    ? fromAddress
+    : `MANATO Entertainments <${fromAddress}>`;
+  /** Env override for the notification inbox — test routing without code
+   *  changes; falls back to the public address. */
+  const to = process.env.MAIL_TO ?? site.email;
+  const body = await renderEnquiryNotification({
+    email: values.email,
+    message: values.message,
+    name: values.name,
+    receivedAt: new Date().toLocaleString("en-IN", {
+      dateStyle: "medium",
+      timeStyle: "short",
+      timeZone: "Asia/Calcutta",
+    }),
+  });
 
   try {
     const resend = new Resend(apiKey);
@@ -64,9 +74,9 @@ export const sendContactEnquiry = async (
       from,
       html: body.html,
       replyTo: values.email,
-      subject: `Website enquiry — ${values.name}`,
+      subject: `New enquiry — ${values.name}`,
       text: body.text,
-      to: site.email,
+      to,
     });
 
     if (error) {
