@@ -20,23 +20,28 @@ const geistSans = Geist({
 
 export const metadata: Metadata = {
   description:
-    "Concerts, corporate events, celebrity meet & greets, celebrations and brand activations. MANATO creates experiences that connect people.",
+    "Concerts, corporate events, celebrations and brand activations. MANATO creates experiences that connect people.",
   metadataBase: new URL("https://www.manatoentertainments.com/"),
   openGraph: {
     description:
-      "Creating moments. Connecting people. Building a legacy. Discover concerts, celebrations, corporate events and brand experiences with MANATO.",
+      "Grand Stages. Golden Memories. Concerts, corporate events and brand experiences by MANATO Entertainments.",
     images: [
       {
         alt: "MANATO Entertainments — Grand Stages | Golden Memories",
-        height: 1254,
-        url: "/assets/manato-navy-no-sparkle.png",
-        width: 1254,
+        height: 630,
+        type: "image/png",
+        url: "/assets/manato-og.png",
+        width: 1200,
       },
     ],
+    siteName: "MANATO Entertainments",
     title: "MANATO Entertainments | Where Entertainment Meets Experience",
     type: "website",
   },
   title: "MANATO Entertainments | Events & Entertainment",
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export const viewport: Viewport = {
