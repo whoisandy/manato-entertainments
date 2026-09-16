@@ -172,8 +172,28 @@ const photo = (
   width,
 });
 
-/** Brand event photos (user-supplied, 2026-04-10), deterministically named. */
+/** Brand event photos and creatives, deterministically named. 13–15 are the
+ *  newest set (2026-09-16) — campaign posters for the 21 September Hyderabad
+ *  press meet — so they lead the gallery grid. */
 export const photos: Photo[] = [
+  photo(
+    "/photos/13.jpg",
+    "MANATO Entertainments poster announcing The King of Beat & Melody concert in Hyderabad, with a 21 September 2026 press meet.",
+    1254,
+    1254
+  ),
+  photo(
+    "/photos/14.jpg",
+    "Poster for KOTI — The Biggest Concert of the Legend in Hyderabad, marking 50 years of music with a 21 September 2026 press meet.",
+    941,
+    1672
+  ),
+  photo(
+    "/photos/15.jpg",
+    "MANATO Entertainments poster for The King of Beat & Melody, reading 'Legends perform on stage. Legacies are built behind it.'",
+    1254,
+    1254
+  ),
   photo(
     "/photos/01.jpg",
     "A group holding a ceremonial tray at a flower-decorated doorway.",
@@ -248,14 +268,22 @@ export const photos: Photo[] = [
   ),
 ];
 
-/** Landscape subset used by the hero backdrop cycle (wide crops read best). */
+/** Landscape subset used by the hero backdrop cycle (wide crops read best).
+ *  Selected by file name, not array position, so gallery order can change
+ *  freely without silently swapping the hero set. */
 export const heroPhotos: Photo[] = [
-  photos[11],
-  photos[0],
-  photos[8],
-  photos[9],
-  photos[4],
-];
+  "12.jpg",
+  "01.jpg",
+  "09.jpg",
+  "10.jpg",
+  "05.jpg",
+].map((file) => {
+  const match = photos.find((item) => item.src === `/photos/${file}`);
+  if (!match) {
+    throw new Error(`heroPhotos: /photos/${file} is not in the photos list`);
+  }
+  return match;
+});
 
 /** Brand event videos (user-supplied, 2026-09-12), deterministically named
  *  01–09 in public/videos. Posters are real frames extracted from the files
