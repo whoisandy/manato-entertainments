@@ -11,10 +11,13 @@
     "extract-logo": "bun scripts/extract-logo.ts",
     "fix": "ultracite fix",
     "lint": "ultracite check",
-    "start": "next start"
+    "start": "next start",
+    "email": "email dev --dir emails --port 5560"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",
+    "@react-email/render": "^2.1.0",
+    "@react-email/ui": "^6.9.5",
     "@shadcn/react": "^0.3.1",
     "class-variance-authority": "^0.7.1",
     "cmdk": "^1.1.1",
@@ -29,6 +32,7 @@
     "react": "19.2.8",
     "react-day-picker": "^10.0.1",
     "react-dom": "19.2.8",
+    "react-email": "^6.9.5",
     "react-resizable-panels": "^4.12.4",
     "react-swipeable": "^7.0.2",
     "recharts": "3.8.0",
@@ -57,6 +61,7 @@
     "unrs-resolver"
   ],
   "trustedDependencies": [
+    "esbuild",
     "ffmpeg-static",
     "sharp",
     "unrs-resolver"
