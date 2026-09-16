@@ -55,7 +55,7 @@ const circleButton =
   "pointer-events-auto rounded-full border-hairline-strong bg-panel p-2 text-bone/75 backdrop-blur-lg transition-colors duration-200 hover:bg-elevated hover:text-bone focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-silver-400";
 
 const chevronButton =
-  "pointer-events-auto absolute top-[calc(50%-16px)] rounded-full border-hairline-strong bg-panel p-3 text-bone/75 backdrop-blur-lg transition-colors duration-200 hover:bg-elevated hover:text-bone focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-silver-400";
+  "pointer-events-auto absolute top-1/2 -translate-y-1/2 rounded-full border-hairline-strong bg-panel p-3 text-bone/75 backdrop-blur-lg transition-colors duration-200 hover:bg-elevated hover:text-bone focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-silver-400";
 
 export const SharedModal = ({
   index,
@@ -98,16 +98,14 @@ export const SharedModal = ({
           : { damping: 30, stiffness: 300, type: "spring" },
       }}
     >
-      {/* Stage fills the popup viewport; the image carries its own aspect
-          ratio and fills width- or height-wise (never upscaled). The
-          filmstrip lives INSIDE this z-50 stacking context (starter
-          structure) so it always paints above the image. */}
-      <div
-        className="relative z-50 flex h-dvh w-full items-center justify-center"
-        {...handlers}
-      >
-        {/* Main image (slide-clipped) */}
-        <div className="absolute inset-0 overflow-hidden">
+      {/* Stage fills the popup viewport as a flex column: the photo area
+          (flex-1) and the filmstrip stack, so the image always centers in
+          the space above the strip with no hardcoded strip height. The
+          slide layer stays absolute inside the photo area because two
+          slides coexist during a transition (enter + exit). */}
+      <div className="relative z-50 flex h-dvh w-full flex-col" {...handlers}>
+        {/* Photo area (slide-clipped) */}
+        <div className="relative min-h-0 flex-1 overflow-hidden">
           <AnimatePresence initial={false} custom={direction}>
             <m.div
               key={photo.src}
@@ -129,56 +127,63 @@ export const SharedModal = ({
               />
             </m.div>
           </AnimatePresence>
+
+          {/* Chevrons — vertically centered on the photo area: a position
+              that is stable across every photo and orientation. */}
+          <div className="pointer-events-none absolute inset-0">
+            {loaded ? (
+              <>
+                {index > 0 ? (
+                  <button
+                    type="button"
+                    className={`${chevronButton} left-3`}
+                    onClick={() => onChange(index - 1)}
+                    aria-label="Previous photo"
+                  >
+                    <ChevronLeftIcon className="size-6" />
+                  </button>
+                ) : null}
+                {index + 1 < photos.length ? (
+                  <button
+                    type="button"
+                    className={`${chevronButton} right-3`}
+                    onClick={() => onChange(index + 1)}
+                    aria-label="Next photo"
+                  >
+                    <ChevronRightIcon className="size-6" />
+                  </button>
+                ) : null}
+              </>
+            ) : null}
+          </div>
         </div>
 
-        {/* Controls layer — pinned to the viewport corners so the buttons
-            hold fixed positions across every photo and orientation; they
-            always paint above the image (on mobile included). */}
+        {/* Close — pinned to the stage's top-right corner. */}
         <div className="pointer-events-none absolute inset-0">
           {loaded ? (
-            <>
-              {index > 0 ? (
-                <button
-                  type="button"
-                  className={`${chevronButton} left-3`}
-                  onClick={() => onChange(index - 1)}
-                  aria-label="Previous photo"
-                >
-                  <ChevronLeftIcon className="size-6" />
-                </button>
-              ) : null}
-              {index + 1 < photos.length ? (
-                <button
-                  type="button"
-                  className={`${chevronButton} right-3`}
-                  onClick={() => onChange(index + 1)}
-                  aria-label="Next photo"
-                >
-                  <ChevronRightIcon className="size-6" />
-                </button>
-              ) : null}
-
-              <div className="pointer-events-auto absolute top-0 right-0 flex items-center gap-2 p-3">
-                <DialogClose
-                  render={
-                    <button
-                      type="button"
-                      className={circleButton}
-                      aria-label="Close photo viewer"
-                    />
-                  }
-                >
-                  <XIcon className="size-5" />
-                </DialogClose>
-              </div>
-            </>
+            <div className="pointer-events-auto absolute top-0 right-0 flex items-center gap-2 p-3">
+              <DialogClose
+                render={
+                  <button
+                    type="button"
+                    className={circleButton}
+                    aria-label="Close photo viewer"
+                  />
+                }
+              >
+                <XIcon className="size-5" />
+              </DialogClose>
+            </div>
           ) : null}
         </div>
 
-        {/* Filmstrip — the starter's sliding-window trick: every thumb
-          translates by index * -100% of its own width, so the row glides
-          the active thumb into view; the active one lifts via scale. */}
-        <div className="to-stage/80 fixed inset-x-0 bottom-0 z-40 overflow-hidden bg-gradient-to-b from-transparent">
+        {/* Filmstrip — a flex item at the bottom of the column: it owns its
+            own height, so the photo area above is exactly viewport-minus-
+            strip and nothing ever hides behind it. The starter's
+            sliding-window trick: every thumb translates by index * -100%
+            of its own width, so the row glides the active thumb into
+            view; the active one lifts via scale. */}
+        <div className="to-stage/80 overflow-hidden bg-gradient-to-b from-transparent">
           <m.div
             initial={false}
             className="mx-auto mt-6 mb-6 flex aspect-[3/2] h-14"
