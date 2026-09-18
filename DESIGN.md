@@ -208,6 +208,14 @@ Dark-only site. No light mode.
 - **States**: the vendored canvas has no reduced-motion path, so the wrapper renders nothing under prefers-reduced-motion (decorative layer — losing it is acceptable; animating it is not). The vendored IO gate skips drawing off-screen.
 - **Accessibility**: wrappers `aria-hidden`; `pointer-events-none` on both wrappers and canvases; no interactivity is intercepted.
 
+### HeroSpotlight (spotlight washes behind the stage dust)
+
+- **Structure**: vendored aceternity `SpotlightNew` (`components/ui/spotlight-new.tsx`, registry `@aceternity/spotlight-new`; CLI dep resolution failed so the source was vendored by hand) wrapped by `components/hero-spotlight.tsx`, mounted in the hero **between** `HeroBackdrop` (disabled — see §7 cycle flag) and `StageDust` — DOM order paints it behind the dust, above the (disabled) backdrop. Two 45° washes (one per top corner) drift horizontally ±100px, 7s ease-in-out reverse, with a 1.5s fade-in.
+- **Surgical vendored edits (documented)**: (1) `import { motion }` → `import { m as motion }` — the site's `LazyMotionProvider` is strict; (2) the two flight layers drop the demo's `z-40` — hero layers paint by DOM order, and a pinned z-index would lift the washes over the stage dust and content.
+- **Tokens (no demo colors)**: stage light = silver with a faint crest counter-light, every color a token value at wash-level alpha (≤0.08) so AA contrast holds (§7 wash rule): gradientFirst = bone `rgba(247,248,252,.08/.02/0)`, gradientSecond = silver-300→silver-400 `rgba(238,241,248,.06)` → `rgba(217,223,239,.02)`, gradientThird = crest-300→crest-500 `rgba(246,217,150,.05)` → `rgba(224,182,88,.02)`.
+- **States/gates**: `aria-hidden`, `pointer-events-none` throughout; unmounted under prefers-reduced-motion; an IntersectionObserver (160px band) unmounts the field when the hero leaves the viewport so the infinite drift stops off-screen.
+- **Accessibility**: purely decorative; hero interactivity untouched.
+
 ### LightBeams (gallery + About signature atmosphere)
 
 - **Structure**: vendored aceternity `BackgroundBeams` (`components/ui/background-beams.tsx`, installed via `bunx shadcn@latest add @aceternity/background-beams-demo`; demo scaffold removed) wrapped by `components/light-beams.tsx` (renamed from `gallery-beams.tsx`, 2026-09-12). Mounted twice as `section-fx mask-fade-b` strips at the top of a section — gallery `h-72 md:h-[26rem]`; About `h-72 md:h-[28rem]` — fading to transparent at ~94% height. About additionally pairs this with the shared `SectionFloorLight` at its bottom edge (2026-09-12: extracted to `components/section-floor-light.tsx` and mounted on every nav section).
@@ -224,7 +232,9 @@ Dark-only site. No light mode.
 
 ### NavItem
 
-- **Structure**: body-sm ash, hover bone + crest-400 2px underline offset; active section not tracked (static site).
+- **Structure**: body-sm ash, hover bone + crest-400 2px underline offset; the clicked section is highlighted immediately (bone + crest-400 2px underline, `aria-current`), then on desktop the highlight tracks scroll position via a scroll-spy (viewport middle band) and clears back at the hero; a 1s click-guard window stops the spy flashing intermediate sections during the click's smooth scroll (2026-09-18, stakeholder item 7 + follow-up).
+- **Logo (2026-09-18)**: header logo click is a real `<button>` — smooth `scrollTo` top with `history.replaceState` stripping the hash; no `#top` in the URL.
+- **Anchor scrolling (2026-09-18)**: same-page anchors are intercepted document-wide (`components/smooth-anchors.tsx`) and run a custom easeOutExpo flight (`lib/smooth-scroll.ts`, 450–850ms scaled by distance, no overshoot) — the browser's default `scroll-behavior: smooth` is untunable slow ease-in-out. Per-frame `scrollTo` must pass `behavior: "instant"` or each frame spawns another browser smooth animation. The scroll-spy pauses while a flight is in flight (so it never flashes pass-through sections) and recomputes on the settle event; landings respect the root `scroll-padding-top` (88px desktop) so section headings clear the fixed header.
 - **States**: hover/focus-visible.
 
 ## 6. Motion & Interaction
@@ -254,7 +264,7 @@ Dark-only site. No light mode.
 - Default: 1px solid var(--color-hairline) — cards, rows, form, nav bottom.
 - Subtle: var(--color-hairline-strong) — emphasized dividers (stats grid internal lines, ghost button border).
 - Depth via tonal steps only: stage #010F29 → panel #0A1A38 → elevated #122447.
-- Hero atmosphere: the brand photo backdrop, Vervee-style — a photo panel hugging the right on md+ (full-bleed on mobile), cycling via `motion` AnimatePresence (1.2s cross-fade every 6s) with a slow Ken Burns zoom-out (1.2 → 1.05 over 7.2s per layer — the 5% end buffer hides the 2px blur edge bleed), 2px blur, blended into the stage by a left-edge dark gradient (`from-stage via-stage/55 to-transparent`) plus top/bottom blends; mobile keeps a flat `stage/55` scrim under stacked text. Grain overlay stays.
+- Hero atmosphere: the brand photo backdrop, Vervee-style — a photo panel hugging the right on md+ (full-bleed on mobile), cycling via `motion` AnimatePresence (1.2s cross-fade every 6s) with a slow Ken Burns zoom-out (1.2 → 1.05 over 7.2s per layer — the 5% end buffer hides the 2px blur edge bleed), 2px blur, blended into the stage by a left-edge dark gradient (`from-stage via-stage/55 to-transparent`) plus top/bottom blends; mobile keeps a flat `stage/55` scrim under stacked text. Grain overlay stays. **Cycle flag (2026-09-18, stakeholder request):** the auto-advance cycler is OFF by default — `heroCycleEnabled` in `lib/content.ts` (`false`); the backdrop component itself is untouched (all layers mount, layer 0's Ken Burns zoom still plays) and flipping the flag to `true` restores the original cross-fade cycle. Header (2026-09-18): full-bleed bar — content spans the viewport edge to edge (no max-w container), logo bumped to h-14/h-16.
 - Section ambience: per-section radial gradient washes (pure CSS, server-safe) inside each content section — absolutely positioned pseudo-elements or child divs with `pointer-events-none`, `aria-hidden`, low-alpha radial gradients bleeding to transparent. Each section gets a distinct placement/combination so the navy canvas shifts subtly as the user scrolls.
   - **Tokens**: reuse existing `--color-silver-wash` (rgba(247,248,252,0.14)) and `--color-crest-wash` (rgba(224,182,88,0.16)) at reduced alpha (≤0.08–0.10 effective) so text contrast stays WCAG AA (bone/ash on stage remains ≥4.5:1 over the wash). No new colors.
   - **Placement**: About — silver light pooled at the section's top edge (footer-band radial treatment: `ellipse 45% 16% at 50% 8%`, α0.12; radii are per-section vars `--glow-rx/--glow-ry`); Events — faint crest wash upper-right; Gallery — silver lower-right; FAQ — crest upper-left; Contact — silver right. Total per-section wash alpha ≤ 0.10–0.12.
