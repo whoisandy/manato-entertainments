@@ -1,6 +1,7 @@
 import { ArrowRightIcon, CalendarPlusIcon } from "lucide-react";
 
 import { HeroBackdrop } from "@/components/hero-backdrop";
+import { HeroSpotlight } from "@/components/hero-spotlight";
 import { Kicker } from "@/components/primitives";
 import { StageDust } from "@/components/stage-dust";
 import { buttonClass } from "@/lib/button";
@@ -15,6 +16,9 @@ export const Hero = () => (
     id="top"
   >
     <HeroBackdrop />
+    {/* Spotlight washes: behind the stage dust (DOM order), a busy
+        counterweight for the quiet single-photo hero. */}
+    <HeroSpotlight />
     <StageDust className="absolute inset-x-0 bottom-0 h-56 md:h-80" />
 
     <div className="relative mx-auto w-full max-w-6xl px-4 pt-36 pb-20 sm:px-6 md:pt-44 md:pb-28">

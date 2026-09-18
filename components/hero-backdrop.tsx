@@ -4,7 +4,7 @@ import { m, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-import { heroPhotos } from "@/lib/content";
+import { heroCycleEnabled, heroPhotos } from "@/lib/content";
 
 const CYCLE_MS = 6000;
 const CROSSFADE_MS = 1.2;
@@ -18,14 +18,22 @@ const CROSSFADE_MS = 1.2;
  * zoom-out (1.2 → 1.05, the 5% buffer hides the 2px blur edge bleed), so
  * the hero keeps moving between cross-fades. The cycle pauses under
  * prefers-reduced-motion.
+ *
+ * The auto-advance cycler itself is flag-gated: `heroCycleEnabled` in
+ * lib/content.ts is currently `false` (stakeholder request, 2026-09-18 — no
+ * cycling imagery on the home page), so the backdrop renders the original
+ * layer stack with layer 0 active indefinitely (its Ken Burns zoom still
+ * plays) and never advances. Flip the flag to `true` and the original
+ * cross-fade cycle resumes unchanged — nothing else differs from the
+ * original component.
  */
-export const HeroBackdrop = () => {
+export const HeroBackdrop = ({ enabled = false }: { enabled?: boolean }) => {
   const [index, setIndex] = useState(0);
   const [auxLayersMounted, setAuxLayersMounted] = useState(false);
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    if (reduceMotion || heroPhotos.length < 2) {
+    if (!heroCycleEnabled || reduceMotion || heroPhotos.length < 2) {
       return;
     }
     const timer = setInterval(() => {
@@ -41,6 +49,10 @@ export const HeroBackdrop = () => {
     const timer = setTimeout(() => setAuxLayersMounted(true), 2500);
     return () => clearTimeout(timer);
   }, []);
+
+  if (!enabled) {
+    return null;
+  }
 
   if (heroPhotos.length === 0) {
     return null;
@@ -93,10 +105,10 @@ export const HeroBackdrop = () => {
       })}
       {/* Dark gradient overlay: photo blends left into the stage (md+),
           mobile keeps a full scrim under the stacked text. */}
-      <div className="from-stage via-stage/55 absolute inset-0 bg-gradient-to-r to-transparent" />
+      <div className="from-stage via-stage/55 absolute inset-0 bg-linear-to-r to-transparent" />
       <div className="bg-stage/55 absolute inset-0 md:bg-transparent" />
-      <div className="from-stage/70 absolute inset-0 bg-gradient-to-b via-transparent to-transparent" />
-      <div className="from-stage via-stage/10 absolute inset-0 bg-gradient-to-t to-transparent" />
+      <div className="from-stage/70 absolute inset-0 bg-linear-to-b via-transparent to-transparent" />
+      <div className="from-stage via-stage/10 absolute inset-0 bg-linear-to-t to-transparent" />
     </div>
   );
 };
