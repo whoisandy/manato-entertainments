@@ -3,6 +3,7 @@ import { Fraunces, Geist } from "next/font/google";
 import Script from "next/script";
 
 import { LazyMotionProvider } from "@/components/lazy-motion-provider";
+import { SmoothAnchors } from "@/components/smooth-anchors";
 import { Toaster } from "@/components/toast";
 
 import "./globals.css";
@@ -72,6 +73,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="flex min-h-full flex-col">
         <LazyMotionProvider>{children}</LazyMotionProvider>
+        <SmoothAnchors />
         <Toaster />
       </body>
     </html>
