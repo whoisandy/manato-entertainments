@@ -73,14 +73,19 @@ export interface SocialLink {
   href: string;
 }
 
-/** Verified profile URLs supplied by the stakeholder (2026-09-11/12). */
+/** Verified profile URLs supplied by the stakeholder. The Facebook page is
+ *  a profile-style page (2026-09-18 verification): the vanity slug
+ *  /manatoentertainments is dead — only this /people/ URL resolves. */
 export const socialLinks: SocialLink[] = [
   {
     href: "https://www.instagram.com/manato_entertainments",
     label: "Instagram",
   },
   { href: "https://x.com/MANATO_Team", label: "X" },
-  { href: "https://www.facebook.com/manatoentertainments", label: "Facebook" },
+  {
+    href: "https://www.facebook.com/people/Manato-Entertainments/pfbid0FkBwnocixuwoQ98Y4Fro4uP5koy7vVdtQviU1UZjw7dAvaHdKm4LRPfUoPoHf85Wl/",
+    label: "Facebook",
+  },
   { href: "https://www.youtube.com/@MANATOEntertainments", label: "YouTube" },
 ];
 

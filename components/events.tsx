@@ -45,18 +45,6 @@ export const Events = () => (
             <p className="text-ash mt-6 text-base leading-relaxed">
               {featuredEvent.description}
             </p>
-            <Stagger as="ul" className="mt-8 flex flex-wrap gap-3" delay={200}>
-              {featuredEvent.meta.map((chip, chipIndex) => (
-                <StaggerItem
-                  as="li"
-                  index={chipIndex}
-                  className="border-hairline bg-crest-wash text-crest-300 border px-3 py-1.5 text-[13px] tracking-wider"
-                  key={chip.label}
-                >
-                  {chip.label}
-                </StaggerItem>
-              ))}
-            </Stagger>
             <div className="mt-10 flex flex-wrap gap-4">
               <a href="#contact" className={buttonClass("primary")}>
                 <CalendarPlusIcon aria-hidden="true" className="size-4" />

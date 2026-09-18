@@ -19,16 +19,11 @@ export interface AudienceEntry {
   body: string;
 }
 
-export interface MetaChip {
-  label: string;
-}
-
 export interface FeaturedEvent {
   kicker: string;
   title: string;
   subtitle: string;
   description: string;
-  meta: MetaChip[];
   note: string;
 }
 
@@ -111,8 +106,7 @@ export const featuredEvent: FeaturedEvent = {
   description:
     "Live music and entertainment experiences built around the connection between the stage and the crowd. We bring creative direction, planning and production together to shape moments audiences can feel, share and remember.",
   kicker: "Live Entertainment",
-  meta: [{ label: "Music" }, { label: "Artists" }, { label: "Audiences" }],
-  note: "Tell us about the experience you want to create, and let’s explore what it could become.",
+  note: "Tell us about the experience you want to create, and let’s bring It to life.",
   subtitle: "Where artists and audiences come together.",
   title: "Concerts & Live Events",
 };
@@ -123,7 +117,7 @@ export const audiences: AudienceEntry[] = [
     title: "Audiences",
   },
   {
-    body: "Experiences shaped around performance and a connection with the audience.",
+    body: "Experiences shaped around performance, creativity and a genuine connection with the audience.",
     title: "Artists",
   },
   {
@@ -172,24 +166,26 @@ const photo = (
   width,
 });
 
-/** Brand event photos and creatives, deterministically named. 13–15 are the
- *  newest set (2026-09-16) — campaign posters for the 21 September Hyderabad
- *  press meet — so they lead the gallery grid. */
+/** Brand event photos and creatives, deterministically named 01–13
+ *  (2026-09-18: the two selfie-like audience shots were removed per
+ *  stakeholder; the sequence stays contiguous). 11–13 are the newest set —
+ *  campaign posters for the 21 September Hyderabad press meet — so they
+ *  lead the gallery grid. */
 export const photos: Photo[] = [
   photo(
-    "/photos/13.jpg",
+    "/photos/11.jpg",
     "MANATO Entertainments poster announcing The King of Beat & Melody concert in Hyderabad, with a 21 September 2026 press meet.",
     1254,
     1254
   ),
   photo(
-    "/photos/14.jpg",
+    "/photos/12.jpg",
     "Poster for KOTI — The Biggest Concert of the Legend in Hyderabad, marking 50 years of music with a 21 September 2026 press meet.",
     941,
     1672
   ),
   photo(
-    "/photos/15.jpg",
+    "/photos/13.jpg",
     "MANATO Entertainments poster for The King of Beat & Melody, reading 'Legends perform on stage. Legacies are built behind it.'",
     1254,
     1254
@@ -250,40 +246,30 @@ export const photos: Photo[] = [
   ),
   photo(
     "/photos/10.jpg",
-    "Two women taking a selfie among rows of cream and gold chairs.",
-    1152,
-    864
-  ),
-  photo(
-    "/photos/11.jpg",
-    "Three people smiling for a selfie in a hall with cream and gold chairs.",
-    960,
-    1280
-  ),
-  photo(
-    "/photos/12.jpg",
     "A person in sunglasses and a white jacket playing a classical guitar.",
     1600,
     1068
   ),
 ];
 
-/** Landscape subset used by the hero backdrop cycle (wide crops read best).
+/** Stakeholder request (2026-09-18): no auto-cycling imagery on the home
+ *  page. Flip to true to restore the hero's cross-fade photo cycle — the
+ *  backdrop keeps the full heroPhotos set and resumes where it left off. */
+export const heroCycleEnabled = false;
+
+/** Landscape subset used by the hero backdrop (wide crops read best).
  *  Selected by file name, not array position, so gallery order can change
- *  freely without silently swapping the hero set. */
-export const heroPhotos: Photo[] = [
-  "12.jpg",
-  "01.jpg",
-  "09.jpg",
-  "10.jpg",
-  "05.jpg",
-].map((file) => {
-  const match = photos.find((item) => item.src === `/photos/${file}`);
-  if (!match) {
-    throw new Error(`heroPhotos: /photos/${file} is not in the photos list`);
+ *  freely without silently swapping the hero set. With the cycle disabled
+ *  the first entry is the static hero photo. */
+export const heroPhotos: Photo[] = ["10.jpg", "01.jpg", "09.jpg", "05.jpg"].map(
+  (file) => {
+    const match = photos.find((item) => item.src === `/photos/${file}`);
+    if (!match) {
+      throw new Error(`heroPhotos: /photos/${file} is not in the photos list`);
+    }
+    return match;
   }
-  return match;
-});
+);
 
 /** Brand event videos (user-supplied, 2026-09-12), deterministically named
  *  01–09 in public/videos. Posters are real frames extracted from the files
@@ -363,7 +349,7 @@ export const faqs: FaqItem[] = [
   },
   {
     answer:
-      "Get in touch with us to learn about our upcoming public events. Event dates, venues, participating artists, and booking details are confirmed individually, so our team can provide you with the latest information and availability.",
+      "Get in touch with us to learn about our upcoming public events. Event dates, venues, participating artists, and booking details are confirmed individually, so our team can provide you with the latest information and availability. You can also follow us for announcements — Instagram (@manato_entertainments), YouTube (@MANATOEntertainments) and Facebook (Manato Entertainments) — or write to us at manatoentertainments@gmail.com.",
     question: "How can I find out about upcoming events?",
   },
   {

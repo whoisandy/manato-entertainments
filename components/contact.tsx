@@ -34,7 +34,7 @@ export const Contact = () => (
               compact
               id="contact-title"
               kicker="Tell Us What You Have in Mind"
-              lead="One unforgettable experience. What are you imagining? A celebration? A brand experience? A special collaboration? Whatever the idea, let’s build something people will remember."
+              lead="One unforgettable experience. Whether it’s a celebration, brand experience or special collaboration, let’s turn your idea into something people will remember."
               title="Your Idea."
             />
 
